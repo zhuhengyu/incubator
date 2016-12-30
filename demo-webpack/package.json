@@ -1,0 +1,15 @@
+{
+  "name": "demo-webpack",
+  "version": "1.0.0",
+  "description": "Hello Webpack",
+  "main": "index.js",
+  "author": "ouyang-chao",
+  "license": "MIT",
+  "scripts": {
+    "webpack": "webpack",
+    "start": "webpack ./app/app.js ./app/dist/bundle.js"
+  },
+  "devDependencies": {
+    "webpack": "^1.14.0"
+  }
+}

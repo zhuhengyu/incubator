@@ -1,0 +1,26 @@
+{
+  "name": "demo-gulp",
+  "version": "1.0.0",
+  "description": "Hello Gulp",
+  "main": "index.js",
+  "author": "ouyang-chao",
+  "license": "MIT",
+  "scripts": {
+    "gulp": "gulp",
+    "start": "gulp default"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-env": "^1.1.4",
+    "chai": "^3.5.0",
+    "del": "^2.2.2",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^6.8.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-mocha": "^3.0.1",
+    "mocha": "^3.2.0",
+    "require-dir": "^0.3.1"
+  }
+}
