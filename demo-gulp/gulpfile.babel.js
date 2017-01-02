@@ -12,6 +12,7 @@ requireDir('./build', {
 const tasks = [
   'clean',
   'lint',
+  'test',
 ];
 
 gulp.task('default', tasks);

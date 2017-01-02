@@ -7,6 +7,9 @@ const config = {
     js: [
       'app/**/*.js'
     ],
+    test: [
+      'app/**/*.test.js'
+    ],
   },
   output: [
     'dist',
