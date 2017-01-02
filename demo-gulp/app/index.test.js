@@ -4,11 +4,13 @@
 
 import chai from 'chai';
 
-const should = chai.should();
+// chai.should();
+// const expect = chai.expect;
+const assert = chai.assert;
 
 describe('Hello World', () => {
-  it('this is just a test', () => {
+  it('should be Hello World', () => {
     const foo = 'Hello World';
-    foo.should.be.a('string');
+    assert.equal(foo, 'Hello World');
   });
 });
