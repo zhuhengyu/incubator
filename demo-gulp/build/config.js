@@ -5,7 +5,8 @@
 const config = {
   app: {
     js: [
-      'app/**/*.js'
+      'app/**/*.js',
+      '!app/**/*.test.js'
     ],
     test: [
       'app/**/*.test.js'
