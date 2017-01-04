@@ -5,9 +5,11 @@
 import gulp from 'gulp';
 import del from 'del';
 
-import config from './config';
+import config from './_config';
 
-const {output} = config;
+const {
+  output,
+} = config;
 
 gulp.task('clean', () => {
   del(output);

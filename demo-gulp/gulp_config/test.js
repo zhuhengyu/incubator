@@ -5,12 +5,10 @@
 import gulp from 'gulp';
 import mocha from 'gulp-mocha';
 
-import config from './config';
+import config from './_config';
 
 const {
-  app:{
-    test,
-  },
+  test,
 } = config;
 
 gulp.task('test', () => {

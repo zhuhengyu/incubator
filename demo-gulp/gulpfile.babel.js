@@ -5,14 +5,16 @@
 import gulp from 'gulp';
 import requireDir from 'require-dir';
 
-requireDir('./build', {
+requireDir('./gulp_config', {
   recurse: false,
 });
 
-const tasks = [
+gulp.task('default', [
   'clean',
   'lint',
   'test',
-];
-
-gulp.task('default', tasks);
+  'server',
+  'watch',
+  'bundle',
+], () => {
+});

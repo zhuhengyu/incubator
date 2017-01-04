@@ -5,12 +5,10 @@
 import gulp from 'gulp';
 import eslint from 'gulp-eslint';
 
-import config from './config';
+import config from './_config';
 
 const {
-  app:{
-    js,
-  },
+  js,
 } = config;
 
 gulp.task('lint', () => {
