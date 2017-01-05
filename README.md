@@ -1,4 +1,6 @@
-# 孵化器/Incubator
+# 孵化器
+
+[English][1]
 
 ## 林林总总
 
@@ -6,14 +8,13 @@
 
 有价值的程序或项目会被移到新的库中，没价值的过段时间就删除。
 
-## Lots of stuff
-
-Some demos, boilerplates, tutorials, wheel reinventions, even blog indices or whatever comes into my head.
-
-Valuable programmes or projects will be moved to a new repository, otherwise will be removed.
-
 ## 目录/Contents
 
-[1]: https://github.com/oychao/incubator/tree/master/demo-backend
-[2]: https://github.com/oychao/incubator/tree/master/demo-immutable
-[3]: https://github.com/oychao/incubator/tree/master/demo-universal-boilerplate
+1. **[demo-backend-faker][2]** 为前端开发提供模拟数据的后端系统。
+2. **[demo-immutable][3]** 开源库[ImmutableJS](https://facebook.github.io/immutable-js/)基本示例。
+3. **[demo-universal-boilerplate][4]** 基于ES6，[Gulp](http://gulpjs.com/)，[Webpack](https://webpack.github.io/)的基本前端项目模板。
+
+[1]: https://github.com/oychao/incubator/blob/master/README-en.md
+[2]: https://github.com/oychao/incubator/tree/master/demo-backend-faker
+[3]: https://github.com/oychao/incubator/tree/master/demo-immutable
+[4]: https://github.com/oychao/incubator/tree/master/demo-universal-boilerplate
