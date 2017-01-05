@@ -1,8 +1,8 @@
 /**
- * Created by ouyangcharles on 2016/12/28.
+ * Created by 欧阳 超 on 2016/12/28.
  */
 
-import webpack from 'webpack';
+import path from 'path';
 
 const PROD = process.env.NODE_ENV === 'production';
 
@@ -11,31 +11,26 @@ const config = {
   PROD,
   // all html files
   html: [
-    'app/**/*.html',
+    path.join(__dirname, '../app/**/*.html'),
   ],
   // css files
   css: [
-    'app/**/*.css',
+    path.join(__dirname, '../app/**/*.css'),
+    path.join(__dirname, '../app/**/*.sass'),
   ],
   // javascript files except test files
   js: [
-    'app/**/*.js',
-    '!app/**/*.test.js'
+    path.join(__dirname, '../app/**/*.js'),
+    path.join(__dirname, '../!app/**/*.test.js'),
   ],
   // test files
   test: [
-    'app/**/*.test.js'
+    path.join(__dirname, '../app/**/*.test.js'),
   ],
   // output path
-  output: PROD ? 'build' : 'dist',
-  // webpack configuration
-  webpack_config: {
-    entry: './app/index.js',
-    output: {
-      filename: 'bundle.js',
-    },
-    plugins: [new webpack.optimize.UglifyJsPlugin()],
-  },
+  output: PROD ?
+    path.join(__dirname, '../build') :
+    path.join(__dirname, '../dist'),
 };
 
 export default config;

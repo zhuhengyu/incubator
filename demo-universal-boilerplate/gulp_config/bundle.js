@@ -1,40 +1,60 @@
 /**
- * Created by ouyangcharles on 2017/01/04.
+ * Created by 欧阳 超 on 2017/01/04.
  */
 
+import path from 'path';
 import gulp from 'gulp';
+import htmlmin from 'gulp-html-minifier';
 import webpack from 'webpack-stream';
-import livereload from 'gulp-livereload';
-import cond from 'gulp-cond';
+import * as _webpack from 'webpack';
 
 import config from './_config';
+import './test';
 
 const {
-  PROD,
   html,
   css,
-  js,
   output,
-  webpack_config,
 } = config;
 
-// gulp.task('html', () => {
-//   gulp.src(html)
-//     .pipe(gulp.dest(output));
-// });
-//
-// gulp.task('css', () => {
-// });
+// webpack configuration
+const webpack_config = {
+  entry: path.join(__dirname, '../app/index.js'),
+  output: {
+    filename: 'bundle.js',
+  },
+  plugins: [
+    new _webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false,
+      },
+    }),
+  ],
+  module: {
+    loaders: [{
+      test: /\.sass$/,
+      loaders: [
+        'style-loader',
+        'css-loader',
+        'sass-loader',
+      ],
+    }, {
+      test: /\.js$/,
+      loader: 'babel-loader',
+      query: {
+        compact: false,
+      },
+    },],
+  },
+};
 
-gulp.task('bundle', [], () => {
+gulp.task('bundle', ['test'], () => {
   gulp.src(html)
-    .pipe(gulp.dest(output))
-    .pipe(cond(!PROD, livereload({start: !PROD})));
-  gulp.src(css)
-    .pipe(gulp.dest(output))
-    .pipe(cond(!PROD, livereload({start: !PROD})));
-  gulp.src(js)
-    .pipe(cond(!PROD, livereload({start: !PROD})));
+    .pipe(htmlmin({
+      collapseWhitespace: true,
+    }))
+    .pipe(gulp.dest(output));
   gulp.src(webpack_config.entry)
     .pipe(webpack(webpack_config))
     .pipe(gulp.dest(output));

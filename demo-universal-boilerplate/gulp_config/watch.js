@@ -1,9 +1,9 @@
 /**
- * Created by ouyangcharles on 2017/01/04.
+ * Created by 欧阳 超 on 2017/01/04.
  */
 
 import gulp from 'gulp';
-import livereload from 'gulp-livereload';
+import connect from 'gulp-connect';
 
 import config from './_config';
 import './bundle';
@@ -16,11 +16,14 @@ const {
 
 const all_resources = html.concat(css).concat(js);
 
+gulp.task('livereload', ['bundle'], () => {
+  gulp.src(all_resources)
+    .pipe(connect.reload());
+});
+
 gulp.task('watch', () => {
-  livereload.listen({
-    basePath: 'dist',
-  });
   gulp.watch(all_resources, [
+    'livereload',
     'bundle',
   ]);
 });
