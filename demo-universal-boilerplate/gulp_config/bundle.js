@@ -4,6 +4,7 @@
 
 import path from 'path';
 import gulp from 'gulp';
+import plumber from 'gulp-plumber';
 import htmlmin from 'gulp-html-minifier';
 import webpack from 'webpack-stream';
 import * as _webpack from 'webpack';
@@ -51,11 +52,15 @@ const webpack_config = {
 
 gulp.task('bundle', ['test'], () => {
   gulp.src(html)
+    .pipe(plumber())
     .pipe(htmlmin({
       collapseWhitespace: true,
     }))
+    .pipe(plumber.stop())
     .pipe(gulp.dest(output));
   gulp.src(webpack_config.entry)
+    .pipe(plumber())
     .pipe(webpack(webpack_config))
+    .pipe(plumber.stop())
     .pipe(gulp.dest(output));
 });

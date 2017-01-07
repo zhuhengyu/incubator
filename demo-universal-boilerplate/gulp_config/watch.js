@@ -3,6 +3,7 @@
  */
 
 import gulp from 'gulp';
+import plumber from 'gulp-plumber';
 import connect from 'gulp-connect';
 
 import config from './_config';
@@ -18,7 +19,9 @@ const all_resources = html.concat(css).concat(js);
 
 gulp.task('livereload', ['bundle'], () => {
   gulp.src(all_resources)
-    .pipe(connect.reload());
+    .pipe(plumber())
+    .pipe(connect.reload())
+    .pipe(plumber.stop());
 });
 
 gulp.task('watch', () => {

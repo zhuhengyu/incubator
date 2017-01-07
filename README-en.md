@@ -1,6 +1,8 @@
 # Incubator
 
-[Chinese][1]
+##### Documents
+
+[中文][1] | English
 
 ## Lots of stuff
 

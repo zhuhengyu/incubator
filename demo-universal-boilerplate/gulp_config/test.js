@@ -3,6 +3,7 @@
  */
 
 import gulp from 'gulp';
+import plumber from 'gulp-plumber';
 import mocha from 'gulp-mocha';
 
 import config from './_config';
@@ -14,5 +15,7 @@ const {
 gulp.task('test', () => {
   gulp.src(test, {
     read: false,
-  }).pipe(mocha());
+  }).pipe(plumber())
+    .pipe(mocha())
+    .pipe(plumber.stop());
 });

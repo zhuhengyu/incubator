@@ -3,6 +3,7 @@
  */
 
 import gulp from 'gulp';
+import plumber from 'gulp-plumber';
 import eslint from 'gulp-eslint';
 
 import config from './_config';
@@ -13,6 +14,8 @@ const {
 
 gulp.task('lint', () => {
   gulp.src(js)
+    .pipe(plumber())
     .pipe(eslint())
-    .pipe(eslint.format());
+    .pipe(eslint.format())
+    .pipe(plumber.stop());
 });

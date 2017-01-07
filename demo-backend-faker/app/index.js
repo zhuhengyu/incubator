@@ -2,25 +2,17 @@
  * Created by 欧阳 超 on 2017/01/05.
  */
 
-// const http = require('http');
-//
-// http.createServer((req, res) => {
-//   res.writeHead(200, {
-//     'Content-Type': 'text/plain',
-//   });
-//   res.end(JSON.stringify({
-//     foo: 'foo',
-//     bar: 'bar',
-//   }));
-// }).listen(7000);
-
 import express from 'express';
+import faker from 'faker';
 
 const app = express();
 
 app.get('/', (req, res) => {
+  const name = faker.name.findName();
+  const age = 13;
   res.send(JSON.stringify({
-    foo: 'foo',
-    bar: 'bar',
+    name,
+    age,
   }));
+}).listen(7000, () => {
 });

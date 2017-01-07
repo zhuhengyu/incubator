@@ -1,6 +1,8 @@
 # 孵化器
 
-[English][1]
+##### 文档
+
+中文 | [English][1]
 
 ## 林林总总
 
@@ -13,6 +15,8 @@
 1. **[demo-backend-faker][2]** 为前端开发提供模拟数据的后端系统。
 2. **[demo-immutable][3]** 开源库[ImmutableJS](https://facebook.github.io/immutable-js/)基本示例。
 3. **[demo-universal-boilerplate][4]** 基于ES6，[Gulp](http://gulpjs.com/)，[Webpack](https://webpack.github.io/)的基本前端项目模板。
+4. demo-gulp 已移除
+5. demo-webpack 已移除
 
 [1]: https://github.com/oychao/incubator/blob/master/README-en.md
 [2]: https://github.com/oychao/incubator/tree/master/demo-backend-faker
