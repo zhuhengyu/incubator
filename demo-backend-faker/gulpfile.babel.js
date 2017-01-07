@@ -12,7 +12,7 @@ gulp.task('compile', () => {
   return gulp.src('app/index.js')
     .pipe(plumber())
     .pipe(babel({
-      presets: ['es2015']
+      presets: ['env']
     }))
     .pipe(plumber.stop())
     .pipe(gulp.dest('dist'));

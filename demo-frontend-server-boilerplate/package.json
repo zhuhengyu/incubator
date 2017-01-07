@@ -1,0 +1,24 @@
+{
+  "name": "demo-frontend-server-boilerplate",
+  "version": "1.0.0",
+  "description": "demo frontend server boilerplate",
+  "main": "dist/app.js",
+  "author": "ouyang-chao",
+  "license": "MIT",
+  "scripts": {
+    "gulp": "gulp",
+    "start": "gulp default"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
+    "babel-register": "^6.18.0",
+    "gulp": "^3.9.1",
+    "gulp-plumber": "^1.1.0",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-stream": "^3.2.0"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
