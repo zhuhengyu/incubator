@@ -2,13 +2,13 @@
  * Created by 欧阳 超 on 2017/01/07.
  */
 
-const express = require('express');
+import express from 'express';
+
+import route from './routes'
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+app.use(route);
 
 app.listen(9000, () => {
 });
