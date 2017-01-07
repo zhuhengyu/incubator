@@ -10,14 +10,14 @@
 
 有价值的程序或项目会被移到新的库中，没价值的过段时间就删除。
 
-## 目录/Contents
+## 目录
 
 1. **[demo-backend-faker][2]** 为前端开发提供模拟数据的后端系统。
 2. **[demo-immutable][3]** 开源库[ImmutableJS](https://facebook.github.io/immutable-js/)基本示例。
 3. **[demo-universal-boilerplate][4]** 基于ES6，[Gulp](http://gulpjs.com/)，[Webpack](https://webpack.github.io/)的基本前端静态模板。
 4. **[demo-universal-server-boilerplate][5]** 基于ES6，Gulp，Webpack，Express的基本前端服务器模板。
-5. demo-gulp 已移除
-6. demo-webpack 已移除
+5. demo-gulp 已移除。
+6. demo-webpack 已移除。
 
 [1]: https://github.com/oychao/incubator/blob/master/README-en.md
 [2]: https://github.com/oychao/incubator/tree/master/demo-backend-faker
