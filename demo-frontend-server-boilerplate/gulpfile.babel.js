@@ -32,7 +32,7 @@ gulp.task('test', ['lint'], () => {
     .pipe(plumber.stop());
 });
 
-gulp.task('webpack', () => {
+gulp.task('webpack', ['test'], () => {
   gulp.src([
     'app/app.js'
   ])
@@ -42,7 +42,7 @@ gulp.task('webpack', () => {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('nodemon', ['webpack'], () => {
+gulp.task('nodemon', ['webpack', 'test', 'lint'], () => {
   nodemon(nodemon_config).on('restart', () => {
     setTimeout(() => {
 
