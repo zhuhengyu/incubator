@@ -2,7 +2,8 @@
  * Created by 欧阳 超 on 2017/01/07.
  */
 
-import assert from 'assert';
+// import assert from 'power-assert';
+const assert = require('assert');
 
 describe('Hello World', () => {
   beforeEach(function () {
@@ -13,7 +14,7 @@ describe('Hello World', () => {
 
   describe('#foo()', () => {
     it('should return true', function () {
-      assert(this.foo.bar === 'bar');
+      assert(this.foo.bar === 'baz');
     });
   });
 });

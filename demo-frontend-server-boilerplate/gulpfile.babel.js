@@ -8,6 +8,7 @@ import webpack_stream from 'webpack-stream';
 import nodemon from 'gulp-nodemon';
 import eslint from 'gulp-eslint';
 import mocha from 'gulp-mocha';
+import espower from 'gulp-espower';
 
 import nodemon_config from './config/nodemon.config.babel';
 import webpack_config from './config/webpack.config.babel';
@@ -28,6 +29,8 @@ gulp.task('test', ['lint'], () => {
     'app/**/*.test.js',
   ])
     .pipe(plumber())
+    .pipe(espower())
+    .pipe(gulp.dest('dist'))
     .pipe(mocha())
     .pipe(plumber.stop());
 });
