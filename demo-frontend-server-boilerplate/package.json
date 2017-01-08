@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "gulp": "gulp",
+    "test": "gulp test",
     "start": "gulp default"
   },
   "devDependencies": {
@@ -14,6 +15,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-power-assert": "^1.0.0",
     "babel-register": "^6.18.0",
+    "del": "^2.2.2",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-react": "^6.8.0",
     "gulp": "^3.9.1",

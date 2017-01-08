@@ -2,7 +2,7 @@
  * Created by 欧阳 超 on 2017/01/07.
  */
 
-import assert from 'power-assert';
+import assert from 'assert';
 
 describe('Hello World', () => {
   beforeEach(function () {
@@ -19,7 +19,8 @@ describe('Hello World', () => {
 
   describe('#bar()', () => {
     it('this.foo.bar should be "Hello World"', function () {
-      assert(this.foo.str === 5);
+      const target = 'hello world';
+      assert(this.foo.str === target);
     });
   });
 });

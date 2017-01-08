@@ -10,6 +10,7 @@ import eslint from 'gulp-eslint';
 import mocha from 'gulp-mocha';
 import babel from 'gulp-babel';
 import gulpSequence from 'gulp-sequence';
+import del from 'del';
 
 import nodemon_config from './config/nodemon.config.babel';
 import webpack_config from './config/webpack.config.babel';
@@ -35,8 +36,11 @@ gulp.task('test', () => {
         'babel-preset-power-assert'
       ],
     }))
-    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('temp'))
     .pipe(mocha())
+    .once('end', () => {
+      del('temp');
+    })
     .pipe(plumber.stop());
 });
 
