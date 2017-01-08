@@ -2,8 +2,7 @@
  * Created by 欧阳 超 on 2017/01/07.
  */
 
-// import assert from 'power-assert';
-const assert = require('assert');
+import assert from 'power-assert';
 
 describe('Hello World', () => {
   beforeEach(function () {
