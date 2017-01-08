@@ -10,7 +10,7 @@ fs.readdirSync('node_modules')
   .filter(_ => ['.bin'].indexOf(_) === -1)
   .forEach(_ => modules[_] = `commonjs ${_}`);
 
-const config = {
+const webpack_config = {
   entry: './app/app.js',
   output: {
     filename: 'bundle.js',
@@ -36,4 +36,4 @@ const config = {
   },
 };
 
-export default config;
+export default webpack_config;
