@@ -8,15 +8,14 @@ import webpack_stream from 'webpack-stream';
 import nodemon from 'gulp-nodemon';
 import eslint from 'gulp-eslint';
 import mocha from 'gulp-mocha';
-import espower from 'gulp-espower';
 import babel from 'gulp-babel';
-import runSequence from 'run-sequence';
+import gulpSequence from 'gulp-sequence';
 
 import nodemon_config from './config/nodemon.config.babel';
 import webpack_config from './config/webpack.config.babel';
 
 gulp.task('lint', () => {
-  gulp.src([
+  return gulp.src([
     'app/**/*.js',
     '!app/**/*.test.js',
   ])
@@ -27,22 +26,22 @@ gulp.task('lint', () => {
 });
 
 gulp.task('test', () => {
-  gulp.src([
+  return gulp.src([
     'app/**/*.test.js',
   ])
     .pipe(plumber())
     .pipe(babel({
-      presets: [
-        'es2015'
+      'presets': [
+        'babel-preset-power-assert'
       ],
     }))
-    .pipe(espower())
+    .pipe(gulp.dest('dist'))
     .pipe(mocha())
     .pipe(plumber.stop());
 });
 
 gulp.task('webpack', () => {
-  gulp.src([
+  return gulp.src([
     'app/app.js'
   ])
     .pipe(plumber())
@@ -52,13 +51,16 @@ gulp.task('webpack', () => {
 });
 
 gulp.task('nodemon', () => {
-  nodemon(nodemon_config).on('restart', () => {
-    setTimeout(() => {
-
-    });
+  return nodemon(nodemon_config).on('start', () => {
   });
 });
 
-gulp.task('default', () => {
-  runSequence('test', 'lint', 'webpack', 'nodemon');
-});
+gulp.task('default', gulpSequence([
+  'lint',
+], [
+  'test',
+], [
+  'webpack',
+], [
+  'nodemon',
+]));

@@ -7,13 +7,19 @@ import assert from 'power-assert';
 describe('Hello World', () => {
   beforeEach(function () {
     this.foo = {
-      bar: 'bar',
+      str: 'Hello World',
     };
   });
 
   describe('#foo()', () => {
-    it('should return true', function () {
-      assert(this.foo.bar === 'baz');
+    it('this.foo.bar should be "Hello World"', function () {
+      assert(this.foo.str === 'Hello World');
+    });
+  });
+
+  describe('#bar()', () => {
+    it('this.foo.bar should be "Hello World"', function () {
+      assert(this.foo.str === 5);
     });
   });
 });
