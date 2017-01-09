@@ -19,7 +19,7 @@ describe('Hello World', () => {
 
   describe('#bar()', () => {
     it('this.foo.bar should be "Hello World"', function () {
-      const target = 'hello world';
+      const target = 1;
       assert(this.foo.str === target);
     });
   });

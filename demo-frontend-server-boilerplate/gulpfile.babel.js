@@ -15,6 +15,10 @@ import del from 'del';
 import nodemon_config from './config/nodemon.config.babel';
 import webpack_config from './config/webpack.config.babel';
 
+gulp.task('clean', () => {
+  del('dist');
+});
+
 gulp.task('lint', () => {
   return gulp.src([
     'app/**/*.js',
@@ -60,6 +64,8 @@ gulp.task('nodemon', () => {
 });
 
 gulp.task('default', gulpSequence([
+  'clean',
+], [
   'lint',
 ], [
   'test',
