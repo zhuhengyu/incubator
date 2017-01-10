@@ -26,7 +26,9 @@ gulp.task('livereload', () => {
 });
 
 gulp.task('server', () => {
-  livereload.listen();
+  livereload.listen({
+    port: 35730,
+  });
   nodemon({
     script: 'dist/index.js',
     watch: [

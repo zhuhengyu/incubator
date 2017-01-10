@@ -1,26 +1,20 @@
 /**
- * Created by 欧阳 超 on 2017/01/07.
+ * Created by 欧阳 超 on 2017/01/10.
  */
 
 import assert from 'assert';
+import request from 'request';
 
-describe('Hello World', () => {
+describe('Request', () => {
   beforeEach(function () {
-    this.foo = {
-      str: 'Hello World',
-    };
   });
 
-  describe('#foo()', () => {
-    it('this.foo.bar should be "Hello World"', function () {
-      assert(this.foo.str === 'Hello World');
-    });
-  });
-
-  describe('#bar()', () => {
-    it('this.foo.bar should be "Hello World"', function () {
-      const target = 1;
-      assert(this.foo.str === target);
+  describe('#get()', (done) => {
+    it('should return a fake name', function () {
+      request.get('http://localhost:7000/', (err, res, body) => {
+        assert(typeof body.age === 'number');
+        done();
+      });
     });
   });
 });

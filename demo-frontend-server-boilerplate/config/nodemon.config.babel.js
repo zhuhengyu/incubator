@@ -6,10 +6,10 @@ const nodemon_config = {
   script: 'dist/bundle.js',
   watch: [
     'app/**/*.js',
-    '!app/**/*.test.js'
+    // '!app/**/*.test.js'
   ],
   env: {
-    NODE_ENV: 'production',
+    NODE_ENV: 'development',
   },
   tasks: [
     'webpack',

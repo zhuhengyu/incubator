@@ -10,6 +10,7 @@ import eslint from 'gulp-eslint';
 import mocha from 'gulp-mocha';
 import babel from 'gulp-babel';
 import gulpSequence from 'gulp-sequence';
+import livereload from 'gulp-livereload';
 import del from 'del';
 
 import nodemon_config from './config/nodemon.config.babel';
@@ -50,7 +51,7 @@ gulp.task('test', () => {
 
 gulp.task('webpack', () => {
   return gulp.src([
-    'app/app.js'
+    'app/app.js',
   ])
     .pipe(plumber())
     .pipe(webpack_stream(webpack_config))
@@ -59,8 +60,18 @@ gulp.task('webpack', () => {
 });
 
 gulp.task('nodemon', () => {
-  return nodemon(nodemon_config).on('start', () => {
+  livereload.listen({
+    port: 35729,
   });
+  return nodemon(nodemon_config)
+    .on('readable', () => {
+      setTimeout(() => {
+        gulp.src('dist/bundle.js')
+          .pipe(plumber())
+          .pipe(livereload())
+          .pipe(plumber.stop());
+      }, 8e2);
+    });
 });
 
 gulp.task('default', gulpSequence([
@@ -68,8 +79,8 @@ gulp.task('default', gulpSequence([
 ], [
   'lint',
 ], [
-  'test',
-], [
+//   'test',
+// ], [
   'webpack',
 ], [
   'nodemon',
