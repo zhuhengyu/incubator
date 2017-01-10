@@ -19,7 +19,7 @@
 5. demo-gulp 已移除。
 6. demo-webpack 已移除。
 
-[1]: https://github.com/oychao/incubator
+[1]: https://github.com/oychao/incubator/blob/master/README-en.md
 [2]: https://github.com/oychao/incubator/tree/master/demo-backend-faker
 [3]: https://github.com/oychao/incubator/tree/master/demo-immutable
 [4]: https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate
