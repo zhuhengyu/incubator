@@ -14,13 +14,13 @@
 
 1. **[demo-backend-faker][2]** 为前端开发提供模拟数据的后端系统。
 2. **[demo-immutable][3]** 开源库[ImmutableJS](https://facebook.github.io/immutable-js/)基本示例。
-3. **[demo-universal-boilerplate][4]** 基于ES6，[Gulp](http://gulpjs.com/)，[Webpack](https://webpack.github.io/)的基本前端静态模板。
-4. **[demo-universal-server-boilerplate][5]** 基于ES6，Gulp，Webpack，Express的基本前端服务器模板。
+3. **[demo-frontend-static-boilerplate][4]** 基于ES6，[Gulp](http://gulpjs.com/)，[Webpack](https://webpack.github.io/)的基本前端静态模板。
+4. **[demo-frontend-server-boilerplate][5]** 基于ES6，Gulp，Webpack，Express的基本前端服务器模板。
 5. demo-gulp 已移除。
 6. demo-webpack 已移除。
 
-[1]: https://github.com/oychao/incubator/blob/master/README-en.md
+[1]: https://github.com/oychao/incubator
 [2]: https://github.com/oychao/incubator/tree/master/demo-backend-faker
 [3]: https://github.com/oychao/incubator/tree/master/demo-immutable
-[4]: https://github.com/oychao/incubator/tree/master/demo-universal-boilerplate
+[4]: https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate
 [5]: https://github.com/oychao/incubator/tree/master/demo-frontend-server-boilerplate
