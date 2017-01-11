@@ -12,14 +12,16 @@ fs.readdirSync('node_modules')
   .forEach(_ => modules[_] = `commonjs ${_}`);
 
 const webpack_config = {
-  entry: './app/app.js',
+  entry: './app/server.js',
   output: {
-    filename: 'bundle.js',
+    filename: 'server.js',
   },
   target: 'node',
   externals: modules,
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      chunks: [],
+    }),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: {
@@ -30,6 +32,12 @@ const webpack_config = {
   module: {
     loaders: [{
       test: /\.js$/,
+      loader: 'babel-loader',
+      query: {
+        compact: false,
+      },
+    }, {
+      test: /.jsx$/,
       loader: 'babel-loader',
       query: {
         compact: false,

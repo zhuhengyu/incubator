@@ -51,7 +51,7 @@ gulp.task('test', () => {
 
 gulp.task('webpack', () => {
   return gulp.src([
-    'app/app.js',
+    'app/server.js',
   ])
     .pipe(plumber())
     .pipe(webpack_stream(webpack_config))
@@ -65,10 +65,8 @@ gulp.task('nodemon', () => {
   });
   return nodemon(nodemon_config)
     .on('restart', () => {
-      process.stdout.pipe(console);
-      process.stderr.pipe(console);
       setTimeout(() => {
-        gulp.src('dist/bundle.js')
+        gulp.src('dist/server.js')
           .pipe(plumber())
           .pipe(livereload())
           .pipe(plumber.stop());

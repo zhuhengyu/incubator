@@ -3,10 +3,11 @@
  */
 
 const nodemon_config = {
-  script: 'dist/bundle.js',
+  script: 'dist/server.js',
   watch: [
     'app/**/*.js',
-    // '!app/**/*.test.js'
+    '!app/**/*.test.js',
+    'app/**/*.jsx',
   ],
   env: {
     NODE_ENV: 'development',

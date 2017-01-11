@@ -16,7 +16,7 @@ export const App = (props) => {
       ${age}
     </div>
   );
-}
+};
 
 App.propTypes = {
   name: React.PropTypes.string.isRequired,
