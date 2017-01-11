@@ -18,12 +18,12 @@ const webpack_config = {
   target: 'node',
   externals: modules,
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: {
-        warnings: false
-      }
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   minimize: true,
+    //   compress: {
+    //     warnings: false
+    //   }
+    // }),
   ],
   module: {
     loaders: [{

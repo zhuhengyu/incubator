@@ -64,7 +64,9 @@ gulp.task('nodemon', () => {
     port: 35729,
   });
   return nodemon(nodemon_config)
-    .on('readable', () => {
+    .on('restart', () => {
+      process.stdout.pipe(console);
+      process.stderr.pipe(console);
       setTimeout(() => {
         gulp.src('dist/bundle.js')
           .pipe(plumber())
