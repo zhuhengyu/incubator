@@ -3,16 +3,18 @@
  */
 
 const nodemon_config = {
-  script: 'dist/server.js',
+  script: 'server/server.js',
   watch: [
     'app/**/*.js',
     '!app/**/*.test.js',
     'app/**/*.jsx',
+    'server.js',
   ],
   env: {
     NODE_ENV: 'development',
   },
   tasks: [
+    'server',
     'webpack',
   ],
   stdout: false,

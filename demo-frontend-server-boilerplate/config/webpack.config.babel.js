@@ -3,6 +3,7 @@
  */
 
 import fs from 'fs';
+import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
@@ -12,15 +13,27 @@ fs.readdirSync('node_modules')
   .forEach(_ => modules[_] = `commonjs ${_}`);
 
 const webpack_config = {
-  entry: './app/server.js',
+  entry: {
+    client: './app/client.js',
+  },
   output: {
-    filename: 'server.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
   },
   target: 'node',
   externals: modules,
   plugins: [
     new HtmlWebpackPlugin({
-      chunks: [],
+      chunks: [
+        'client',
+      ],
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true
+      }
     }),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,

@@ -9,6 +9,7 @@ import nodemon from 'gulp-nodemon';
 import eslint from 'gulp-eslint';
 import mocha from 'gulp-mocha';
 import babel from 'gulp-babel';
+import uglify from 'gulp-uglify';
 import gulpSequence from 'gulp-sequence';
 import livereload from 'gulp-livereload';
 import del from 'del';
@@ -18,6 +19,7 @@ import webpack_config from './config/webpack.config.babel';
 
 gulp.task('clean', () => {
   del('dist');
+  del('server');
 });
 
 gulp.task('lint', () => {
@@ -50,9 +52,7 @@ gulp.task('test', () => {
 });
 
 gulp.task('webpack', () => {
-  return gulp.src([
-    'app/server.js',
-  ])
+  return gulp.src([])
     .pipe(plumber())
     .pipe(webpack_stream(webpack_config))
     .pipe(plumber.stop())
@@ -66,12 +66,23 @@ gulp.task('nodemon', () => {
   return nodemon(nodemon_config)
     .on('restart', () => {
       setTimeout(() => {
-        gulp.src('dist/server.js')
+        gulp.src(['server/server.js'])
           .pipe(plumber())
           .pipe(livereload())
           .pipe(plumber.stop());
       }, 8e2);
     });
+});
+
+gulp.task('server', () => {
+  return gulp.src([
+    './server.js',
+  ])
+    .pipe(plumber())
+    .pipe(babel())
+    .pipe(uglify())
+    .pipe(plumber.stop())
+    .pipe(gulp.dest('server'));
 });
 
 gulp.task('default', gulpSequence([
@@ -81,6 +92,8 @@ gulp.task('default', gulpSequence([
 ], [
 //   'test',
 // ], [
+  'server',
+], [
   'webpack',
 ], [
   'nodemon',
