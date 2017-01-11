@@ -4,6 +4,7 @@
 
 import fs from 'fs';
 import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const modules = {};
 fs.readdirSync('node_modules')
@@ -18,12 +19,13 @@ const webpack_config = {
   target: 'node',
   externals: modules,
   plugins: [
-    // new webpack.optimize.UglifyJsPlugin({
-    //   minimize: true,
-    //   compress: {
-    //     warnings: false
-    //   }
-    // }),
+    new HtmlWebpackPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false
+      }
+    }),
   ],
   module: {
     loaders: [{
