@@ -2,21 +2,18 @@
  * Created by 欧阳 超 on 2017/01/08.
  */
 
+// import path from 'path';
+
 const nodemon_config = {
   script: 'server/server.js',
   watch: [
-    'app/**/*.js',
-    'app/**/*.jsx',
-    '!app/**/*.test.js',
-    'server.js',
+    'dist/**/*',
+    'server/**/*',
   ],
   env: {
     NODE_ENV: 'development',
   },
-  tasks: [
-    'server',
-    'webpack',
-  ],
+  tasks: [],
   stdout: false,
 };
 

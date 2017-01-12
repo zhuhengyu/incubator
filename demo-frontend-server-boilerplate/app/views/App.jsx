@@ -11,6 +11,7 @@ export const App = (props) => {
   } = props;
   return (
     <div>
+      Hello World
       <hr/>
       {name}
       <br/>

@@ -25,7 +25,6 @@ gulp.task('clean', () => {
 gulp.task('lint', () => {
   return gulp.src([
     'app/**/*.js',
-    '!app/**/*.test.js',
   ])
     .pipe(plumber())
     .pipe(eslint())
@@ -64,7 +63,7 @@ gulp.task('nodemon', () => {
     port: 35729,
   });
   return nodemon(nodemon_config)
-    .on('restart', () => {
+    .on('readable', () => {
       setTimeout(() => {
         gulp.src(['server/server.js'])
           .pipe(plumber())
@@ -85,6 +84,32 @@ gulp.task('server', () => {
     .pipe(gulp.dest('server'));
 });
 
+gulp.task('watch:client', () => {
+  return gulp.watch([
+    'app/**/*.js',
+    'app/**/*.jsx',
+    '!app/**/*.test.js',
+  ], [
+    'webpack',
+  ]);
+});
+
+gulp.task('watch:test', () => {
+  return gulp.watch([
+    'app/**/*.test.js',
+  ], [
+    'lint',
+  ]);
+});
+
+gulp.task('watch:server', () => {
+  return gulp.watch([
+    'server.js',
+  ], [
+    'server',
+  ]);
+});
+
 gulp.task('default', gulpSequence([
   'clean',
 ], [
@@ -97,4 +122,8 @@ gulp.task('default', gulpSequence([
   'webpack',
 ], [
   'nodemon',
+], [
+  'watch:client',
+  'watch:test',
+  'watch:server',
 ]));
