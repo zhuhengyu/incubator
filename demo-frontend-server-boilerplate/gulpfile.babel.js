@@ -25,6 +25,7 @@ gulp.task('clean', () => {
 gulp.task('lint', () => {
   return gulp.src([
     'app/**/*.js',
+    'app/**/*.jsx',
   ])
     .pipe(plumber())
     .pipe(eslint())
@@ -75,7 +76,7 @@ gulp.task('nodemon', () => {
 
 gulp.task('server', () => {
   return gulp.src([
-    './server.js',
+    'server.js',
   ])
     .pipe(plumber())
     .pipe(babel())
