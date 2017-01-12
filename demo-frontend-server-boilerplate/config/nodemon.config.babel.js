@@ -6,8 +6,8 @@ const nodemon_config = {
   script: 'server/server.js',
   watch: [
     'app/**/*.js',
-    '!app/**/*.test.js',
     'app/**/*.jsx',
+    '!app/**/*.test.js',
     'server.js',
   ],
   env: {

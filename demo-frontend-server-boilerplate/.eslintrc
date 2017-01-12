@@ -23,6 +23,16 @@
     "react",
     "mocha"
   ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    }
+  },
   "rules": {
     "mocha/no-exclusive-tests": "error",
     "indent": [

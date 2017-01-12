@@ -9,54 +9,73 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const modules = {};
 fs.readdirSync('node_modules')
-  .filter(_ => ['.bin'].indexOf(_) === -1)
+  .filter(_ => [
+    '.bin',
+    'react',
+    'react-dom',
+    'object-assign',
+  ].indexOf(_) === -1)
   .forEach(_ => modules[_] = `commonjs ${_}`);
 
+const plugins = [];
+const htmlWebpackPlugin = new HtmlWebpackPlugin({
+  chunks: [
+    'client',
+  ],
+  template: path.resolve(__dirname, '..', 'app', 'index.html'),
+  minify: {
+    collapseWhitespace: true,
+    removeComments: true,
+    removeRedundantAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true
+  },
+});
+const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
+  minimize: true,
+  compress: {
+    warnings: false
+  }
+});
+const productionPlugin = new webpack.DefinePlugin({
+  'process.env': {
+    NODE_ENV: JSON.stringify('production')
+  }
+});
+plugins.push(htmlWebpackPlugin);
+plugins.push(uglifyJsPlugin);
+plugins.push(productionPlugin);
+
+const loaders = [];
+loaders.push({
+  test: /(\.js$|\.jsx?$)/,
+  loader: 'babel',
+  exclude: /(node_modules|bower_components)/,
+  query: {
+    presets: [
+      'es2015',
+      'react',
+    ],
+  },
+});
+
 const webpack_config = {
+  cache: true,
   entry: {
-    client: './app/client.js',
+    client: './app/client.jsx',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
   },
-  target: 'node',
   externals: modules,
-  plugins: [
-    new HtmlWebpackPlugin({
-      chunks: [
-        'client',
-      ],
-      minify: {
-        collapseWhitespace: true,
-        removeComments: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      minimize: true,
-      compress: {
-        warnings: false
-      }
-    }),
-  ],
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      query: {
-        compact: false,
-      },
-    }, {
-      test: /.jsx$/,
-      loader: 'babel-loader',
-      query: {
-        compact: false,
-      },
-    },],
+    loaders,
   },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+  },
+  plugins,
 };
 
 export default webpack_config;

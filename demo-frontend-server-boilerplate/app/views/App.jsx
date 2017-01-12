@@ -11,9 +11,10 @@ export const App = (props) => {
   } = props;
   return (
     <div>
-      ${name}
+      <hr/>
+      {name}
       <br/>
-      ${age}
+      {age}
     </div>
   );
 };
