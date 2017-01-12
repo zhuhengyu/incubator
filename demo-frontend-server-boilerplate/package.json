@@ -8,6 +8,7 @@
   "scripts": {
     "gulp": "gulp",
     "test": "gulp test",
+    "build": "gulp webpack",
     "start": "gulp default"
   },
   "devDependencies": {
