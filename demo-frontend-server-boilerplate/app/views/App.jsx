@@ -4,14 +4,16 @@
 
 import React from 'react';
 
+import './App.sass';
+
 export const App = (props) => {
   const {
     name,
     age,
   } = props;
   return (
-    <div>
-      Hello World
+    <div className="app">
+      Hello World, We are using Nginx now.
       <hr/>
       {name}
       <br/>

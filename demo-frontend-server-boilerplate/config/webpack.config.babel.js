@@ -49,7 +49,7 @@ plugins.push(productionPlugin);
 const loaders = [];
 loaders.push({
   test: /(\.js$|\.jsx?$)/,
-  loader: 'babel',
+  loader: 'babel-loader',
   exclude: /(node_modules|bower_components)/,
   query: {
     presets: [
@@ -57,6 +57,14 @@ loaders.push({
       'react',
     ],
   },
+});
+loaders.push({
+  test: /\.sass$/,
+  loaders: [
+    'style-loader',
+    'css-loader',
+    'sass-loader',
+  ],
 });
 
 const webpack_config = {
