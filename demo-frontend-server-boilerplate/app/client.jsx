@@ -7,4 +7,6 @@ import ReactDOM from 'react-dom';
 
 import {App} from './views/App';
 
+import './global.sass';
+
 ReactDOM.render(<App/>, document.getElementById('react-root'));
