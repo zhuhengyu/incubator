@@ -16,6 +16,7 @@ Valuable programmes or projects will be moved to a new repository, otherwise wil
 2. **[demo-immutable][3]** Demos for [ImmutableJS](https://facebook.github.io/immutable-js/).
 3. **[demo-frontend-static-boilerplate][4]** Demo frontend static boilerplate based on ES6, [Gulp](http://gulpjs.com/) and [Webpack](https://webpack.github.io/).
 4. **[demo-frontend-server-boilerplate][5]** Demo frontend server boilerplate based on ES6, Gulp, Webpack and Express.
+5. **[demo-redux][6]** Pure [Redux][http://redux.js.org/] demo without any other library.
 5. demo-gulp Removed.
 6. demo-webpack Removed.
 
@@ -24,3 +25,5 @@ Valuable programmes or projects will be moved to a new repository, otherwise wil
 [3]: https://github.com/oychao/incubator/tree/master/demo-immutable
 [4]: https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate
 [5]: https://github.com/oychao/incubator/tree/master/demo-frontend-server-boilerplate
+[6]: https://github.com/oychao/incubator/tree/master/demo-redux
+
