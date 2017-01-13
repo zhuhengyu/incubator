@@ -8,7 +8,7 @@ export const REMOVE_ITEM = 'REMOVE_ITEM';
 export function addItem(text) {
   return {
     type: ADD_ITEM,
-    text:,
+    text,
   };
 }
 
