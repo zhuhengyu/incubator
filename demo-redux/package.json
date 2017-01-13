@@ -1,0 +1,16 @@
+{
+  "name": "demo-redux",
+  "version": "1.0.0",
+  "description": "demo redux",
+  "main": "index.js",
+  "author": "ouyang-chao",
+  "license": "MIT",
+  "scripts": {
+    "gulp": "gulp",
+    "start": "gulp default"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2"
+  }
+}
