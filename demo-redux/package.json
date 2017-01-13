@@ -16,5 +16,8 @@
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "^3.0.1",
     "gulp-plumber": "^1.1.0"
+  },
+  "dependencies": {
+    "redux": "^3.6.0"
   }
 }
