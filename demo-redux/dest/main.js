@@ -59,6 +59,10 @@
 	 */
 
 	_store.store.dispatch(_ACTION.addItem('Hello Redux.'));
+	_store.store.dispatch(_ACTION.addItem('Hello Redux2.'));
+	_store.store.dispatch(_ACTION.addItem('Hello Redux3.'));
+
+	_store.store.dispatch(_ACTION.removeItem(1));
 
 	(0, _store.unsubscribe)();
 
@@ -1339,7 +1343,9 @@
 	    case _ACTION.ADD_ITEM:
 	      return [].concat(_toConsumableArray(state), [action.text]);
 	    case _ACTION.REMOVE_ITEM:
-	      return [];
+	      return state.filter(function (val, idx) {
+	        return idx !== action.index;
+	      });
 	    default:
 	      return state;
 	  }
