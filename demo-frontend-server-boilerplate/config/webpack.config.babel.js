@@ -14,6 +14,13 @@ fs.readdirSync('node_modules')
     'react',
     'react-dom',
     'object-assign',
+    'react-router',
+    'react-redux',
+    'invariant',
+    'warning',
+    'hoist-non-react-statics',
+    'query-string',
+    'strict-uri-encode',
   ].indexOf(_) === -1)
   .forEach(_ => modules[_] = `commonjs ${_}`);
 
@@ -39,7 +46,7 @@ const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
 });
 const productionPlugin = new webpack.DefinePlugin({
   'process.env': {
-    NODE_ENV: JSON.stringify('production')
+    NODE_ENV: JSON.stringify('production'),
   }
 });
 plugins.push(htmlWebpackPlugin);
