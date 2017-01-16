@@ -4,9 +4,9 @@
 
 import React from 'react';
 
-import './App.sass';
+import './Memo.sass';
 
-export const App = (props) => {
+export const Memo = (props) => {
   const {
     name,
     age,
@@ -22,7 +22,7 @@ export const App = (props) => {
   );
 };
 
-App.propTypes = {
+Memo.propTypes = {
   name: React.PropTypes.string.isRequired,
   age: React.PropTypes.number.isRequired,
 };

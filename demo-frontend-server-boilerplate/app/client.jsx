@@ -5,8 +5,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {App} from './views/App';
+import {Memo} from './views/Memo';
 
 import './global.sass';
 
-ReactDOM.render(<App/>, document.getElementById('react-root'));
+ReactDOM.render(<Memo />, document.getElementById('react-root'));
