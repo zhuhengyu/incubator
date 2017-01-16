@@ -89,6 +89,7 @@ gulp.task('watch:client', () => {
   return gulp.watch([
     'app/**/*.js',
     'app/**/*.jsx',
+    'app/**/*.sass',
     '!app/**/*.test.js',
   ], [
     'webpack',

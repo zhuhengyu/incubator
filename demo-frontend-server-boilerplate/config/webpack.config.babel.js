@@ -15,12 +15,14 @@ fs.readdirSync('node_modules')
     'react-dom',
     'object-assign',
     'react-router',
+    'redux',
     'react-redux',
     'invariant',
     'warning',
     'hoist-non-react-statics',
     'query-string',
     'strict-uri-encode',
+    'symbol-observable',
   ].indexOf(_) === -1)
   .forEach(_ => modules[_] = `commonjs ${_}`);
 
@@ -50,7 +52,7 @@ const productionPlugin = new webpack.DefinePlugin({
   }
 });
 plugins.push(htmlWebpackPlugin);
-plugins.push(uglifyJsPlugin);
+//plugins.push(uglifyJsPlugin);
 plugins.push(productionPlugin);
 
 const loaders = [];

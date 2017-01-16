@@ -3,18 +3,26 @@
  */
 
 import React from 'react';
+import {
+  Provider,
+} from 'react-redux';
 
-import Profile from './user/Profile';
+import store from '../store/store';
+import UserListContainer from './user/UserListContainer';
 
 import './App.sass';
 
 const App = () => {
   return (
-    <div className="app">
-      User Admin.
-      <hr/>
-      <Profile id = '1' name = 'Zhao' age = {25} />
-    </div>
+    <Provider store={store}>
+      <div className="app">
+        <h2>
+          User Admin
+        </h2>
+        <hr/>
+        <UserListContainer/>
+      </div>
+    </Provider>
   );
 };
 
