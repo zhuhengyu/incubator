@@ -15,8 +15,8 @@
 1. **[demo-backend-faker][2]** 为前端开发提供模拟数据的后端系统。
 2. **[demo-immutable][3]** 开源库[ImmutableJS](https://facebook.github.io/immutable-js/)基本示例。
 3. **[demo-frontend-static-boilerplate][4]** 基于ES6，[Gulp](http://gulpjs.com/)，[Webpack](https://webpack.github.io/)的基本前端静态模板。
-4. **[demo-frontend-server-boilerplate][5]** 基于ES6，Gulp，Webpack，Express的基本前端服务器模板。
-5. **[demo-redux][6]** 不含其它任何库的纯[Redux][http://redux.js.org/]示例。 
+4. **[demo-frontend-server-boilerplate][5]** 基于ES6，Gulp，Webpack，[Express](http://expressjs.com/)的基本前端服务器模板。
+5. **[demo-redux][6]** 不含其它任何库的纯[Redux](http://redux.js.org/)示例。 
 6. demo-gulp 已移除。
 7. demo-webpack 已移除。
 
@@ -26,4 +26,3 @@
 [4]: https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate
 [5]: https://github.com/oychao/incubator/tree/master/demo-frontend-server-boilerplate
 [6]: https://github.com/oychao/incubator/tree/master/demo-redux
-
