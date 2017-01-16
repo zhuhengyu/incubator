@@ -8,6 +8,6 @@ import App from './reducer';
 
 export const store = createStore(App);
 
-export const unsubscribe = store.subscribe(()=>{
+export const unsubscribe = store.subscribe(()=> {
   console.log(store.getState());
 });

@@ -14,8 +14,9 @@ function items(state = [], action) {
         action.text,
       ];
     case _ACTION.REMOVE_ITEM:
-      return [
-      ];
+      return state.filter((val, idx)=> {
+        return idx !== action.index;
+      });
     default:
       return state;
   }
