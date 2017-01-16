@@ -46,31 +46,7 @@
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	__webpack_require__(1);
-
-	var foo = 'foo'; /**
-	                  * Created by 欧阳 超 on 2017/01/13.
-	                  */
-
-	console.log(foo);
-
-	exports.default = foo;
-
-/***/ },
-/* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _redux = __webpack_require__(2);
-
-	var _reducer = __webpack_require__(24);
-
-	var _reducer2 = _interopRequireDefault(_reducer);
+	var _store = __webpack_require__(1);
 
 	var _action = __webpack_require__(25);
 
@@ -78,19 +54,42 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+	/**
+	 * Created by 欧阳 超 on 2017/01/13.
+	 */
+
+	_store.store.dispatch(_ACTION.addItem('Hello Redux.'));
+
+	(0, _store.unsubscribe)();
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.unsubscribe = exports.store = undefined;
+
+	var _redux = __webpack_require__(2);
+
+	var _reducer = __webpack_require__(24);
+
+	var _reducer2 = _interopRequireDefault(_reducer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var store = (0, _redux.createStore)(_reducer2.default); /**
-	                                                         * Created by 欧阳 超 on 2017/01/13
-	                                                         */
+	/**
+	 * Created by 欧阳 超 on 2017/01/13
+	 */
 
-	var unsubscribe = store.subscribe(function () {
+	var store = exports.store = (0, _redux.createStore)(_reducer2.default);
+
+	var unsubscribe = exports.unsubscribe = store.subscribe(function () {
 	  console.log(store.getState());
 	});
-
-	store.dispatch(_ACTION.addItem('Hello Redux'));
-
-	unsubscribe();
 
 /***/ },
 /* 2 */

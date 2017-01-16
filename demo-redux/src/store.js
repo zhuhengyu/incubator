@@ -5,14 +5,9 @@
 import { createStore } from 'redux';
 
 import App from './reducer';
-import * as _ACTION from './action';
 
-const store = createStore(App);
+export const store = createStore(App);
 
-const unsubscribe = store.subscribe(()=>{
+export const unsubscribe = store.subscribe(()=>{
   console.log(store.getState());
 });
-
-store.dispatch(_ACTION.addItem('Hello Redux'));
-
-unsubscribe();

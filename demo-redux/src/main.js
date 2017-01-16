@@ -2,9 +2,13 @@
  * Created by 欧阳 超 on 2017/01/13.
  */
 
-import './store';
+import {
+  store,
+  unsubscribe,
+} from './store';
 
-const foo = 'foo';
-console.log(foo);
+import * as _ACTION from './action';
 
-export default foo;
+store.dispatch(_ACTION.addItem('Hello Redux.'));
+
+unsubscribe();
