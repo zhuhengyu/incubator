@@ -8,7 +8,7 @@
   "scripts": {
     "gulp": "gulp",
     "build": "gulp default",
-    "start": "node ./dest/main.js"
+    "start": "gulp default && node ./dest/main.js"
   },
   "devDependencies": {
     "babel": "^6.5.2",

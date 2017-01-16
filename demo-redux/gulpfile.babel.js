@@ -13,7 +13,9 @@ gulp.task('clean', ()=>{
   return del('dest');
 });
 
-gulp.task('lint', ()=>{
+gulp.task('lint', [
+  'clean',
+], ()=>{
   return gulp.src('src/**/*.js')
     .pipe(plumber())
     .pipe(eslint())
