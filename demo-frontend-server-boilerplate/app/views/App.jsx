@@ -8,19 +8,16 @@ import UserListContainer from './user/UserListContainer';
 
 import './App.sass';
 
-const App = () => {
-  return (
-    <div className="app">
-      <h2>
-        User Admin
-      </h2>
-      <hr/>
-      <UserListContainer/>
-    </div>
-  );
-};
+const App = () => (
+  <div className="app">
+    <h2>
+      User Admin
+    </h2>
+    <hr/>
+    <UserListContainer/>
+  </div>
+);
 
 App.propTypes = {};
 
 export default App;
-

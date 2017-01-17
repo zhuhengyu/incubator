@@ -13,5 +13,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 
+app.get('/data', (req, res) => {
+  res.send(JSON.stringify({name: 'Zhao', age: 35}));
+});
+
 app.listen(9000, () => {
 });
