@@ -7,13 +7,14 @@ import {
 } from 'react-redux';
 
 import {
+  addUser,
   deleteUser,
 } from '../../store/actions';
 import UserList from './UserList';
 
 const mapStateToProps = (state) => {
   return {
-    userlist: state.users,
+    userList: state.users,
   };
 };
 
@@ -21,6 +22,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUserDelete: (id) => {
       dispatch(deleteUser(id));
+    },
+    onUserAdd: (user) => {
+      dispatch(addUser(user))
     }
   };
 };

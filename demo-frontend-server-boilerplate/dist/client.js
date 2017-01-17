@@ -60,7 +60,7 @@
 
 	var _App2 = _interopRequireDefault(_App);
 
-	__webpack_require__(270);
+	__webpack_require__(271);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -25134,7 +25134,7 @@
 
 	var _UserListContainer2 = _interopRequireDefault(_UserListContainer);
 
-	__webpack_require__(268);
+	__webpack_require__(269);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27416,7 +27416,7 @@
 
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
-	    userlist: state.users
+	    userList: state.users
 	  };
 	}; /**
 	    * Created by 欧阳 超 on 2017/01/16
@@ -27426,6 +27426,9 @@
 	  return {
 	    onUserDelete: function onUserDelete(id) {
 	      dispatch((0, _actions.deleteUser)(id));
+	    },
+	    onUserAdd: function onUserAdd(user) {
+	      dispatch((0, _actions.addUser)(user));
 	    }
 	  };
 	};
@@ -27452,13 +27455,22 @@
 
 	var _UserProfile2 = _interopRequireDefault(_UserProfile);
 
-	__webpack_require__(264);
+	var _AddUser = __webpack_require__(264);
+
+	var _AddUser2 = _interopRequireDefault(_AddUser);
+
+	__webpack_require__(265);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	/**
+	 * Created by ouyangcharles on 2017/01/10.
+	 */
+
 	var UserList = function UserList(props) {
-	  var userlist = props.userlist,
-	      onUserDelete = props.onUserDelete;
+	  var userList = props.userList,
+	      onUserDelete = props.onUserDelete,
+	      onUserAdd = props.onUserAdd;
 
 	  return _react2.default.createElement(
 	    'div',
@@ -27493,7 +27505,7 @@
 	      _react2.default.createElement(
 	        'tbody',
 	        null,
-	        userlist.map(function (user, idx) {
+	        userList.map(function (user, idx) {
 	          return _react2.default.createElement(_UserProfile2.default, { key: idx,
 	            id: user.id,
 	            name: user.name,
@@ -27503,19 +27515,20 @@
 	            } });
 	        })
 	      )
-	    )
+	    ),
+	    _react2.default.createElement('hr', null),
+	    _react2.default.createElement(_AddUser2.default, { onAdd: onUserAdd })
 	  );
-	}; /**
-	    * Created by ouyangcharles on 2017/01/10.
-	    */
+	};
 
 	UserList.propTypes = {
-	  userlist: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
+	  userList: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
 	    id: _react2.default.PropTypes.string.isRequired,
 	    name: _react2.default.PropTypes.string.isRequired,
 	    age: _react2.default.PropTypes.number.isRequired
 	  })),
-	  onUserDelete: _react2.default.PropTypes.func.isRequired
+	  onUserDelete: _react2.default.PropTypes.func.isRequired,
+	  onUserAdd: _react2.default.PropTypes.func.isRequired
 	};
 
 	exports.default = UserList;
@@ -27587,13 +27600,71 @@
 /* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var AddUser = function AddUser(props) {
+	  var name = void 0;
+	  var age = void 0;
+	  var onAdd = props.onAdd;
+
+	  return _react2.default.createElement(
+	    "div",
+	    null,
+	    _react2.default.createElement(
+	      "form",
+	      { onSubmit: function onSubmit(e) {
+	          e.preventDefault();
+	          onAdd({
+	            name: name.value,
+	            age: age.value
+	          });
+	        } },
+	      _react2.default.createElement("input", { ref: function ref(_) {
+	          return name = _;
+	        }, type: "text" }),
+	      _react2.default.createElement("br", null),
+	      _react2.default.createElement("input", { ref: function ref(_) {
+	          return age = _;
+	        }, type: "number" }),
+	      _react2.default.createElement("br", null),
+	      _react2.default.createElement(
+	        "button",
+	        { type: "submit" },
+	        "Submit"
+	      )
+	    )
+	  );
+	}; /**
+	    * Created by ouyangcharles on 2017/01/10.
+	    */
+
+	AddUser.propTypes = {
+	  onAdd: _react2.default.PropTypes.func.isRequired
+	};
+
+	exports.default = AddUser;
+
+/***/ },
+/* 265 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(265);
+	var content = __webpack_require__(266);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(267)(content, {});
+	var update = __webpack_require__(268)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27610,10 +27681,10 @@
 	}
 
 /***/ },
-/* 265 */
+/* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(266)();
+	exports = module.exports = __webpack_require__(267)();
 	// imports
 
 
@@ -27624,7 +27695,7 @@
 
 
 /***/ },
-/* 266 */
+/* 267 */
 /***/ function(module, exports) {
 
 	/*
@@ -27680,7 +27751,7 @@
 
 
 /***/ },
-/* 267 */
+/* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -27932,16 +28003,16 @@
 
 
 /***/ },
-/* 268 */
+/* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(269);
+	var content = __webpack_require__(270);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(267)(content, {});
+	var update = __webpack_require__(268)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27958,10 +28029,10 @@
 	}
 
 /***/ },
-/* 269 */
+/* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(266)();
+	exports = module.exports = __webpack_require__(267)();
 	// imports
 
 
@@ -27972,16 +28043,16 @@
 
 
 /***/ },
-/* 270 */
+/* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(271);
+	var content = __webpack_require__(272);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(267)(content, {});
+	var update = __webpack_require__(268)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -27998,10 +28069,10 @@
 	}
 
 /***/ },
-/* 271 */
+/* 272 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(266)();
+	exports = module.exports = __webpack_require__(267)();
 	// imports
 
 

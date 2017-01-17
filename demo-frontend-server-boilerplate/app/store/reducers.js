@@ -9,7 +9,7 @@ import {
 import * as _ACTION from './actions';
 
 const users = (state = [], action) => {
-  switch(action.type) {
+  switch (action.type) {
     case _ACTION.ADD_USER:
       return [
         ...state,
