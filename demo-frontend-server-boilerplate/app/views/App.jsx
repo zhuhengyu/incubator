@@ -3,26 +3,20 @@
  */
 
 import React from 'react';
-import {
-  Provider,
-} from 'react-redux';
 
-import store from '../store/store';
 import UserListContainer from './user/UserListContainer';
 
 import './App.sass';
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <div className="app">
-        <h2>
-          User Admin
-        </h2>
-        <hr/>
-        <UserListContainer/>
-      </div>
-    </Provider>
+    <div className="app">
+      <h2>
+        User Admin
+      </h2>
+      <hr/>
+      <UserListContainer/>
+    </div>
   );
 };
 

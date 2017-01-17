@@ -4,18 +4,12 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  Router,
-  Route,
-  browserHistory,
-} from 'react-router';
 
-import App from './views/App';
+import Root from './Root';
+import store from './store/store';
 
 import './global.sass';
 
 ReactDOM.render((
-  <Router history={browserHistory}>
-    <Route path='/' component={App}/>
-  </Router>
+  <Root store={store}/>
 ), document.getElementById('react-root'));

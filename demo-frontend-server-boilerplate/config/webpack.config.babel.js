@@ -52,7 +52,7 @@ const productionPlugin = new webpack.DefinePlugin({
   }
 });
 plugins.push(htmlWebpackPlugin);
-//plugins.push(uglifyJsPlugin);
+plugins.push(uglifyJsPlugin);
 plugins.push(productionPlugin);
 
 const loaders = [];
@@ -81,6 +81,7 @@ const webpack_config = {
   entry: {
     client: './app/client.jsx',
   },
+  devtool: 'source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',

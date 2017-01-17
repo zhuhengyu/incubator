@@ -35,7 +35,7 @@ gulp.task('lint', () => {
 
 gulp.task('test', () => {
   return gulp.src([
-    'app/**/*.test.js',
+    'test/**/*.test.js',
   ])
     .pipe(plumber())
     .pipe(babel({
