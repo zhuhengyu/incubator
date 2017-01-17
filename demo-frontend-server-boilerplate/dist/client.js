@@ -27474,7 +27474,7 @@
 
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'userlist' },
+	    null,
 	    _react2.default.createElement(
 	      'table',
 	      null,
@@ -27613,8 +27613,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var AddUser = function AddUser(props) {
-	  var name = void 0;
-	  var age = void 0;
+	  var nameRef = void 0;
+	  var ageRef = void 0;
 	  var onAdd = props.onAdd;
 
 	  return _react2.default.createElement(
@@ -27625,16 +27625,16 @@
 	      { onSubmit: function onSubmit(e) {
 	          e.preventDefault();
 	          onAdd({
-	            name: name.value,
-	            age: age.value
+	            name: nameRef.value,
+	            age: ageRef.value
 	          });
 	        } },
 	      _react2.default.createElement("input", { ref: function ref(_) {
-	          return name = _;
+	          return nameRef = _;
 	        }, type: "text" }),
 	      _react2.default.createElement("br", null),
 	      _react2.default.createElement("input", { ref: function ref(_) {
-	          return age = _;
+	          return ageRef = _;
 	        }, type: "number" }),
 	      _react2.default.createElement("br", null),
 	      _react2.default.createElement(

@@ -24,14 +24,14 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(deleteUser(id));
     },
     onUserAdd: (user) => {
-      dispatch(addUser(user))
+      dispatch(addUser(user));
     }
   };
 };
 
 const UserListContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(UserList);
 
 export default UserListContainer;
