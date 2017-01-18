@@ -52,4 +52,3 @@ gulp.task('default', [
     .pipe(plumber.stop())
     .pipe(gulp.dest('dest'));
 });
-

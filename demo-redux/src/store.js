@@ -2,12 +2,19 @@
  * Created by 欧阳 超 on 2017/01/13
  */
 
-import { createStore } from 'redux';
+import {
+  createStore,
+  applyMiddleware,
+} from 'redux';
 
-import App from './reducer';
+import {
+  epicMiddleWare,
+  App,
+} from './reducer';
 
-export const store = createStore(App);
+// create a store and apply epic middle ware onto it
+export const store = createStore(App, applyMiddleware(epicMiddleWare));
 
-export const unsubscribe = store.subscribe(()=> {
+export const unsubscribe = store.subscribe(() => {
   console.log(store.getState());
 });

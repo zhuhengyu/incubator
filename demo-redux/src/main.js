@@ -2,17 +2,18 @@
  * Created by 欧阳 超 on 2017/01/13.
  */
 
+
 import {
   store,
-  unsubscribe,
+  // unsubscribe,
 } from './store';
 
-import * as _ACTION from './action';
+import {
+  addItem,
+} from './action';
 
-store.dispatch(_ACTION.addItem('Hello Redux.'));
-store.dispatch(_ACTION.addItem('Hello Redux2.'));
-store.dispatch(_ACTION.addItem('Hello Redux3.'));
+store.dispatch(addItem('Hello Redux.'));
+store.dispatch(addItem('Hello Redux2.'));
+store.dispatch(addItem('Hello Redux3.'));
 
-store.dispatch(_ACTION.removeItem(1));
-
-unsubscribe();
+// unsubscribe();

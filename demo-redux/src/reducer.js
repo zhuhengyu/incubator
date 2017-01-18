@@ -1,29 +1,49 @@
 /**
  * Create by 欧阳 超 on 2017/01/13
  */
+ 
+import {
+  combineReducers,
+} from 'redux';
+import 'rxjs/Rx';
+import {
+  createEpicMiddleware,
+} from 'redux-observable';
 
-import { combineReducers } from 'redux';
+import {
+  ADD_ITEM,
+  REMOVE_ITEM,
+  removeItem,
+} from './action';
 
-import * as _ACTION from './action';
+// define an redux-observable epic
+const addEpic = action =>
+  action
+    .ofType(ADD_ITEM)
+    .delay(1e3)
+    .mapTo(removeItem(0));
 
-function items(state = [], action) {
-  switch (action.type){
-    case _ACTION.ADD_ITEM:
+// create an epic middle ware for redux store
+export const epicMiddleWare = createEpicMiddleware(addEpic);
+
+// define reducers
+const items = (state = [], action) => {
+  switch (action.type) {
+    case ADD_ITEM:
       return [
         ...state,
         action.text,
       ];
-    case _ACTION.REMOVE_ITEM:
-      return state.filter((val, idx)=> {
+    case REMOVE_ITEM:
+      return state.filter((val, idx) => {
         return idx !== action.index;
       });
     default:
       return state;
   }
-}
+};
 
-const App = combineReducers({
+// combine reducers
+export const App = combineReducers({
   items,
 });
-
-export default App;
