@@ -2,9 +2,7 @@
  * Created by 欧阳 超 on 2017/01/16
  */
 
-import {
-  createStore,
-} from 'redux';
+import { createStore } from 'redux';
 
 import App from './reducers';
 import * as _ACTIONS from '../store/actions';
@@ -15,12 +13,12 @@ let store = createStore(App);
 const user1 = {
   id: '1',
   name: 'Zhao',
-  age: '25',
+  age: '25'
 };
 const user2 = {
   id: '2',
   name: 'Qiao',
-  age: '23',
+  age: '23'
 };
 
 store.dispatch(_ACTIONS.addUser(user1));

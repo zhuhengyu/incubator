@@ -8,16 +8,12 @@ export const DELETE_USER = 'DELETE_USER';
 
 export const addUser = (user) => {
   return Object.assign({
-    type: ADD_USER,
-  }, {
-    user,
-  });
+    type: ADD_USER
+  }, { user });
 };
 
 export const deleteUser = (id) => {
   return Object.assign({
-    type: DELETE_USER,
-  }, {
-    id,
-  });
+    type: DELETE_USER
+  }, { id });
 };

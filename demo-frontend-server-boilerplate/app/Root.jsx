@@ -17,7 +17,7 @@ import App from './views/App';
 const Root = ({store}) => (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={App}/>
+      <Route path='/' component={App} />
     </Router>
   </Provider>
 );

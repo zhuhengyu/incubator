@@ -13,8 +13,8 @@ const App = () => (
     <h2>
       User Admin
     </h2>
-    <hr/>
-    <UserListContainer/>
+    <hr />
+    <UserListContainer />
   </div>
 );
 

@@ -92,40 +92,40 @@ gulp.task('watch:client', () => {
     'app/**/*.sass',
     '!app/**/*.test.js',
   ], [
-    'webpack',
-  ]);
+      'webpack',
+    ]);
 });
 
 gulp.task('watch:test', () => {
   return gulp.watch([
     'app/**/*.test.js',
   ], [
-    'lint',
-  ]);
+      'lint',
+    ]);
 });
 
 gulp.task('watch:server', () => {
   return gulp.watch([
     'server.js',
   ], [
-    'server',
-  ]);
+      'server',
+    ]);
 });
 
 gulp.task('default', gulpSequence([
   'clean',
 ], [
-  'lint',
-], [
-//   'test',
-// ], [
-  'server',
-], [
-  'webpack',
-], [
-  'nodemon',
-], [
-  'watch:client',
-  'watch:test',
-  'watch:server',
-]));
+    'lint',
+  ], [
+    //   'test',
+    // ], [
+    'server',
+  ], [
+    'webpack',
+  ], [
+    'nodemon',
+  ], [
+    'watch:client',
+    'watch:test',
+    'watch:server',
+  ]));

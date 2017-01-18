@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/data', (req, res) => {
-  res.send(JSON.stringify({name: 'Zhao', age: 35}));
+  res.send(JSON.stringify({ name: 'Zhao', age: 35 }));
 });
 
 app.listen(9000, () => {

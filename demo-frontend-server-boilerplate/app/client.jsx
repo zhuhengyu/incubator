@@ -11,5 +11,5 @@ import store from './store/store';
 import './global.sass';
 
 ReactDOM.render((
-  <Root store={store}/>
+  <Root store={store} />
 ), document.getElementById('react-root'));
