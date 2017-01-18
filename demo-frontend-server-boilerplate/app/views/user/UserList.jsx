@@ -18,7 +18,6 @@ const UserList = (props) => {
     <div>
       <table>
         <thead>
-          <th>Id</th>
           <th>Name</th>
           <th>Age</th>
           <th>Actions</th>
@@ -27,10 +26,9 @@ const UserList = (props) => {
           {userList.map((user, idx) => {
             return (<UserProfile
               key={idx}
-              id={user.id}
               name={user.name}
               age={user.age}
-              onDelete={() => onUserDelete(user.id)} />);
+              onDelete={() => onUserDelete(idx)} />);
           })}
         </tbody>
       </table>
@@ -44,7 +42,6 @@ UserList.propTypes = {
   userList: React
     .PropTypes
     .arrayOf(React.PropTypes.shape({
-      id: React.PropTypes.string.isRequired,
       name: React.PropTypes.string.isRequired,
       age: React.PropTypes.number.isRequired
     })),

@@ -13,7 +13,6 @@ const UserProfile = (props) => {
   } = props;
   return (
     <tr>
-      <td>{id}</td>
       <td>{name}</td>
       <td>{age}</td>
       <td><a href="javascript:;" onClick={onDelete}>Delete</a></td>
@@ -22,7 +21,6 @@ const UserProfile = (props) => {
 };
 
 UserProfile.propTypes = {
-  id: React.PropTypes.string.isRequired,
   name: React.PropTypes.string.isRequired,
   age: React.PropTypes.string.isRequired,
   onDelete: React.PropTypes.func.isRequired,
