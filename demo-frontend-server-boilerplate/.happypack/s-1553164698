@@ -1,0 +1,68 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * Create by 欧阳 超 on 2017/01/16
+ */
+
+// action types
+var ADD_USER = exports.ADD_USER = 'ADD_USER';
+var DELETE_USER = exports.DELETE_USER = 'DELETE_USER';
+var RECEIVE_USERS = exports.RECEIVE_USERS = 'RECEIVE_USERS';
+var APP_FETCHING_USER = exports.APP_FETCHING_USER = 'APP_FETCHING_USER';
+var APP_FETCHING_USER_FINISHED = exports.APP_FETCHING_USER_FINISHED = 'APP_FETCHING_USER_FINISHED';
+var APP_ADDING_USER = exports.APP_ADDING_USER = 'APP_ADDING_USER';
+var APP_ADDING_USER_FINISHED = exports.APP_ADDING_USER_FINISHED = 'APP_ADDING_USER_FINISHED';
+var APP_DELETING_USER = exports.APP_DELETING_USER = 'APP_DELETING_USER';
+var APP_DELETING_USER_FINISHED = exports.APP_DELETING_USER_FINISHED = 'APP_DELETING_USER_FINISHED';
+
+// data action
+var addUser = exports.addUser = function addUser(user) {
+  return Object.assign({}, {
+    type: ADD_USER
+  }, { user: user });
+};
+var deleteUser = exports.deleteUser = function deleteUser(idx) {
+  return Object.assign({}, {
+    type: DELETE_USER
+  }, { idx: idx });
+};
+var receiveUsers = exports.receiveUsers = function receiveUsers(users) {
+  return Object.assign({}, {
+    type: RECEIVE_USERS
+  }, { users: users });
+};
+
+// app action
+var appFetchingUser = exports.appFetchingUser = function appFetchingUser() {
+  return Object.assign({}, {
+    type: APP_FETCHING_USER
+  });
+};
+var appFetchingUserFinished = exports.appFetchingUserFinished = function appFetchingUserFinished() {
+  return Object.assign({}, {
+    type: APP_ADDING_USER_FINISHED
+  });
+};
+var appAddingUser = exports.appAddingUser = function appAddingUser(user) {
+  return Object.assign({}, {
+    type: APP_ADDING_USER
+  }, { user: user });
+};
+var appAddingUserFinished = exports.appAddingUserFinished = function appAddingUserFinished() {
+  return Object.assign({}, {
+    type: APP_ADDING_USER_FINISHED
+  });
+};
+var appDeletingUser = exports.appDeletingUser = function appDeletingUser() {
+  return Object.assign({}, {
+    type: APP_DELETING_USER
+  });
+};
+var appDeletingUserFinished = exports.appDeletingUserFinished = function appDeletingUserFinished() {
+  return Object.assign({}, {
+    type: APP_DELETING_USER_FINISHED
+  });
+};

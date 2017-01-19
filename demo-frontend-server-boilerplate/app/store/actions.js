@@ -13,7 +13,7 @@ export const APP_ADDING_USER_FINISHED = 'APP_ADDING_USER_FINISHED';
 export const APP_DELETING_USER = 'APP_DELETING_USER';
 export const APP_DELETING_USER_FINISHED = 'APP_DELETING_USER_FINISHED';
 
-// actions
+// data action
 export const addUser = (user) => {
   return Object.assign({}, {
     type: ADD_USER,
@@ -29,6 +29,8 @@ export const receiveUsers = (users) => {
     type: RECEIVE_USERS,
   }, { users });
 };
+
+// app action
 export const appFetchingUser = () => {
   return Object.assign({}, {
     type: APP_FETCHING_USER,
@@ -37,5 +39,25 @@ export const appFetchingUser = () => {
 export const appFetchingUserFinished = () => {
   return Object.assign({}, {
     type: APP_ADDING_USER_FINISHED
+  });
+};
+export const appAddingUser = (user) => {
+  return Object.assign({}, {
+    type: APP_ADDING_USER,
+  }, { user });
+};
+export const appAddingUserFinished = () => {
+  return Object.assign({}, {
+    type: APP_ADDING_USER_FINISHED,
+  });
+};
+export const appDeletingUser = () => {
+  return Object.assign({}, {
+    type: APP_DELETING_USER,
+  });
+};
+export const appDeletingUserFinished = () => {
+  return Object.assign({}, {
+    type: APP_DELETING_USER_FINISHED,
   });
 };

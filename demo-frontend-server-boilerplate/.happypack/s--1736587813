@@ -1,0 +1,27 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = require('redux');
+
+var _reduxObservable = require('redux-observable');
+
+var _reducers = require('./reducers');
+
+var _actions = require('./actions');
+
+/**
+ * Created by 欧阳 超 on 2017/01/16
+ */
+
+var app = (0, _redux.combineReducers)(Object.assign({}, _reducers.userReducers));
+var rootEpic = (0, _reduxObservable.combineEpics)(_reducers.rootUserEpic);
+var rootEpicMiddleware = (0, _reduxObservable.createEpicMiddleware)(rootEpic);
+
+var store = (0, _redux.createStore)(app, (0, _redux.applyMiddleware)(rootEpicMiddleware));
+
+store.dispatch((0, _actions.appFetchingUser)());
+
+exports.default = store;

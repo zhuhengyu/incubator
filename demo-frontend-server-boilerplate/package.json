@@ -8,6 +8,7 @@
   "scripts": {
     "gulp": "gulp",
     "test": "gulp test",
+    "clean": "gulp clean",
     "build": "gulp webpack && gulp server",
     "start": "gulp default"
   },
@@ -31,6 +32,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-sequence": "^0.4.6",
     "gulp-uglify": "^2.0.0",
+    "happypack": "^3.0.2",
     "html-webpack-plugin": "^2.26.0",
     "node-sass": "^4.2.0",
     "power-assert": "^1.4.2",

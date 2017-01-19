@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 
-app.get('/data', (req, res) => {
+app.get('/data/user', (req, res) => {
   // let's mock up some data
   // BEGIN
   const user1 = {
@@ -26,6 +26,10 @@ app.get('/data', (req, res) => {
   };
   // END
   res.send(JSON.stringify([user1, user2]));
+});
+
+app.post('/data/user', () => {
+  res.send(JSON.stringify({ status: 'OK' }));
 });
 
 app.listen(9000, () => {

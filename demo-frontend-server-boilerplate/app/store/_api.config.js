@@ -4,4 +4,4 @@
 
 export const API_DATA_BASE = 'http://localhost:9000';
 
-export const API_USER_LIST = `${API_DATA_BASE}/data`;
+export const API_USER = `${API_DATA_BASE}/data/user/`;

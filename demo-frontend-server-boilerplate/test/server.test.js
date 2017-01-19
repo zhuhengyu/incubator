@@ -13,7 +13,7 @@ describe('Mock Server', () => {
 
   describe('#userlist', (done) => {
     it('should return a userlist', function () {
-      request.get(Api.API_USER_LIST, (err, res, body) => {
+      request.get(Api.API_USER, (err, res, body) => {
         if (err) {
           done(err);
         }

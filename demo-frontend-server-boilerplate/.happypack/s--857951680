@@ -1,0 +1,51 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var UserProfile = function UserProfile(props) {
+  var name = props.name,
+      age = props.age,
+      onDelete = props.onDelete;
+
+  return _react2.default.createElement(
+    "tr",
+    null,
+    _react2.default.createElement(
+      "td",
+      null,
+      name
+    ),
+    _react2.default.createElement(
+      "td",
+      null,
+      age
+    ),
+    _react2.default.createElement(
+      "td",
+      null,
+      _react2.default.createElement(
+        "a",
+        { href: "javascript:;", onClick: onDelete },
+        "Delete"
+      )
+    )
+  );
+}; /**
+    * Created by ouyangcharles on 2017/01/10.
+    */
+
+UserProfile.propTypes = {
+  name: _react2.default.PropTypes.string.isRequired,
+  age: _react2.default.PropTypes.string.isRequired,
+  onDelete: _react2.default.PropTypes.func.isRequired
+};
+
+exports.default = UserProfile;

@@ -1,0 +1,84 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _UserProfile = require('./profile/UserProfile');
+
+var _UserProfile2 = _interopRequireDefault(_UserProfile);
+
+var _AddUser = require('./add/AddUser');
+
+var _AddUser2 = _interopRequireDefault(_AddUser);
+
+require('./UserList.sass');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Created by ouyangcharles on 2017/01/10.
+ */
+var UserList = function UserList(props) {
+  var userList = props.userList,
+      onUserDelete = props.onUserDelete,
+      onUserAdd = props.onUserAdd;
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'table',
+      null,
+      _react2.default.createElement(
+        'thead',
+        null,
+        _react2.default.createElement(
+          'th',
+          null,
+          'Name'
+        ),
+        _react2.default.createElement(
+          'th',
+          null,
+          'Age'
+        ),
+        _react2.default.createElement(
+          'th',
+          null,
+          'Actions'
+        )
+      ),
+      _react2.default.createElement(
+        'tbody',
+        null,
+        userList.map(function (user, idx) {
+          return _react2.default.createElement(_UserProfile2.default, {
+            key: idx,
+            name: user.name,
+            age: user.age,
+            onDelete: function onDelete() {
+              return onUserDelete(idx);
+            } });
+        })
+      )
+    ),
+    _react2.default.createElement('hr', null),
+    _react2.default.createElement(_AddUser2.default, { onAdd: onUserAdd })
+  );
+};
+
+UserList.propTypes = {
+  userList: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
+    name: _react2.default.PropTypes.string.isRequired,
+    age: _react2.default.PropTypes.number.isRequired
+  })),
+  onUserDelete: _react2.default.PropTypes.func.isRequired,
+  onUserAdd: _react2.default.PropTypes.func.isRequired
+};
+
+exports.default = UserList;

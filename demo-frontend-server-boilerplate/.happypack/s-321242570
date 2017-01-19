@@ -1,0 +1,52 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var AddUser = function AddUser(props) {
+  var nameRef = void 0;
+  var ageRef = void 0;
+  var onAdd = props.onAdd;
+
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "form",
+      {
+        onSubmit: function onSubmit(e) {
+          e.preventDefault();
+          onAdd({ name: nameRef.value, age: ageRef.value });
+        } },
+      _react2.default.createElement("input", { ref: function ref(_) {
+          return nameRef = _;
+        }, type: "text" }),
+      _react2.default.createElement("br", null),
+      _react2.default.createElement("input", { ref: function ref(_) {
+          return ageRef = _;
+        }, type: "number" }),
+      _react2.default.createElement("br", null),
+      _react2.default.createElement(
+        "button",
+        { type: "submit" },
+        "Submit"
+      )
+    )
+  );
+}; /**
+    * Created by ouyangcharles on 2017/01/10.
+    */
+
+
+AddUser.propTypes = {
+  onAdd: _react2.default.PropTypes.func.isRequired
+};
+
+exports.default = AddUser;

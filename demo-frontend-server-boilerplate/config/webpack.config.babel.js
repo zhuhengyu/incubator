@@ -6,33 +6,35 @@ import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HappyPack from 'happypack';
 
-const modules = {};
-fs.readdirSync('node_modules')
-  .filter(_ => [
-    '.bin',
-    'react',
-    'react-dom',
-    'object-assign',
-    'react-router',
-    'redux',
-    'react-redux',
-    'redux-observable',
-    'setimmediate',
-    'rxjs',
-    'invariant',
-    'warning',
-    'hoist-non-react-statics',
-    'query-string',
-    'strict-uri-encode',
-    'symbol-observable',
-  ].indexOf(_) === -1)
-  .forEach(_ => modules[_] = `commonjs ${_}`);
+// const modules = {};
+// fs.readdirSync('node_modules')
+//   .filter(_ => [
+//     '.bin',
+//     'react',
+//     'react-dom',
+//     'object-assign',
+//     'react-router',
+//     'redux',
+//     'react-redux',
+//     'redux-observable',
+//     'setimmediate',
+//     'rxjs',
+//     'invariant',
+//     'warning',
+//     'hoist-non-react-statics',
+//     'query-string',
+//     'strict-uri-encode',
+//     'symbol-observable',
+//   ].indexOf(_) === -1)
+//   .forEach(_ => modules[_] = `commonjs ${_}`);
 
 const plugins = [];
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   chunks: [
     'client',
+    // 'lib',
   ],
   template: path.resolve(__dirname, '..', 'app', 'index.html'),
   minify: {
@@ -54,21 +56,48 @@ const productionPlugin = new webpack.DefinePlugin({
     NODE_ENV: JSON.stringify('production'),
   }
 });
+const commonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin({
+  name: 'lib',
+  minChunks: module => {
+    const userRequest = module.userRequest;
+    if (typeof userRequest !== 'string') {
+      return false;
+    }
+    return userRequest.indexOf('bower_components') >= 0 ||
+      userRequest.indexOf('node_modules') >= 0 ||
+      userRequest.indexOf('libraries') >= 0;
+  }
+});
+const happyPackPlugin = new HappyPack({
+  loaders: [{
+    path: 'babel-loader',
+    query: {
+      presets: [
+        'react',
+        'es2015',
+      ],
+    },
+  }],
+});
 plugins.push(htmlWebpackPlugin);
 plugins.push(uglifyJsPlugin);
 plugins.push(productionPlugin);
+// plugins.push(commonsChunkPlugin);
+plugins.push(happyPackPlugin);
 
 const loaders = [];
 loaders.push({
-  test: /(\.js$|\.jsx?$)/,
-  loader: 'babel-loader',
+  test: /(\.js$|\.jsx$)/,
+  // loader: 'babel-loader',
+  loader: 'happypack/loader',
+  // include: path.resolve(__dirname, '..', 'app'),
   exclude: /(node_modules|bower_components)/,
-  query: {
-    presets: [
-      'es2015',
-      'react',
-    ],
-  },
+  // query: {
+  //   presets: [
+  //     'react',
+  //     'es2015',
+  //   ],
+  // },
 });
 loaders.push({
   test: /\.sass$/,
@@ -84,12 +113,14 @@ const webpack_config = {
   entry: {
     client: './app/client.jsx',
   },
-  devtool: 'source-map',
+  // devtool: 'source-map',
+  // devtool: 'inline-eval-cheap-source-map',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
+    // filename: '[chunkhash].js',
   },
-  externals: modules,
+  // externals: modules,
   module: {
     loaders,
   },

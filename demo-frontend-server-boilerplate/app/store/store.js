@@ -2,13 +2,19 @@
  * Created by 欧阳 超 on 2017/01/16
  */
 
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
-import { app, addUserEpic } from './reducers';
-
+import { userReducers, rootUserEpic } from './reducers';
 import { appFetchingUser } from './actions';
 
-let store = createStore(app, applyMiddleware(addUserEpic));
+const app = combineReducers(Object.assign({}, userReducers));
+const rootEpic = combineEpics(
+  rootUserEpic
+);
+const rootEpicMiddleware = createEpicMiddleware(rootEpic);
+
+let store = createStore(app, applyMiddleware(rootEpicMiddleware));
 
 store.dispatch(appFetchingUser());
 
