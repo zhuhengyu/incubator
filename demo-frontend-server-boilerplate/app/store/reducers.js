@@ -16,6 +16,7 @@ import {
   receiveUsers,
   appFetchingUserFinished,
 } from './actions';
+import * as Api from './_api.config';
 
 // user reducers
 const users = (state = [], action) => {
@@ -56,27 +57,17 @@ const isFetching = (state = {
   }
 };
 
-// let's mock up some data
-// BEGIN
-const user1 = {
-  name: 'Zhao',
-  age: '25'
-};
-const user2 = {
-  name: 'Qiao',
-  age: '23'
-};
-// END
-
 // epics
 export const addUserEpic = createEpicMiddleware(action$ =>
   action$.ofType(APP_FETCHING_USER)
-    .delay(1e3)
-    .flatMap(() =>
-      Observable.concat(
-        Observable.of(receiveUsers([user1, user2])),
-        Observable.of(appFetchingUserFinished())
-      )
+    .switchMap(() =>
+      Observable.ajax.get(Api.API_USER_LIST)
+        .flatMap(payload =>
+          Observable.concat(
+            Observable.of(receiveUsers(payload.response)),
+            Observable.of(appFetchingUserFinished())
+          )
+        )
     )
 );
 

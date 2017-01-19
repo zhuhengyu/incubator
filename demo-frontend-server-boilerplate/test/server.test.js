@@ -5,13 +5,15 @@
 import assert from 'assert';
 import request from 'request';
 
-describe('Request', () => {
+import * as Api from '../app/store/_api.config';
+
+describe('Mock Server', () => {
   beforeEach(function () {
   });
 
-  describe('#get()', (done) => {
-    it('should return a fake name', function () {
-      request.get('http://localhost:7000/', (err, res, body) => {
+  describe('#userlist', (done) => {
+    it('should return a userlist', function () {
+      request.get(Api.API_USER_LIST, (err, res, body) => {
         if (err) {
           done(err);
         }

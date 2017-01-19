@@ -22,7 +22,7 @@ app.get('/data', (req, res) => {
   };
   const user2 = {
     name: 'Qiao',
-    age: '23'
+    age: '24'
   };
   // END
   res.send(JSON.stringify([user1, user2]));
