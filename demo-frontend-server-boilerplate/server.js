@@ -14,7 +14,18 @@ app.get('/', (req, res) => {
 });
 
 app.get('/data', (req, res) => {
-  res.send(JSON.stringify({ name: 'Zhao', age: 35 }));
+  // let's mock up some data
+  // BEGIN
+  const user1 = {
+    name: 'Zhao',
+    age: '25'
+  };
+  const user2 = {
+    name: 'Qiao',
+    age: '23'
+  };
+  // END
+  res.send(JSON.stringify([user1, user2]));
 });
 
 app.listen(9000, () => {
