@@ -2,25 +2,14 @@
  * Created by 欧阳 超 on 2017/01/16
  */
 
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 
-import App from './reducers';
-import {addUser} from '../store/actions';
+import { app, addUserEpic } from './reducers';
 
-let store = createStore(App);
+import { appFetchingUser } from './actions';
 
-// BEGIN: let's mock up some data
-const user1 = {
-  name: 'Zhao',
-  age: '25'
-};
-const user2 = {
-  name: 'Qiao',
-  age: '23'
-};
+let store = createStore(app, applyMiddleware(addUserEpic));
 
-store.dispatch(addUser(user1));
-store.dispatch(addUser(user2));
-// END
+store.dispatch(appFetchingUser());
 
 export default store;

@@ -3,14 +3,21 @@
  */
 
 import { combineReducers } from 'redux';
+import 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
+import { createEpicMiddleware } from 'redux-observable';
 
 import {
   ADD_USER,
   DELETE_USER,
   RECEIVE_USERS,
-  TOGGLE_FETCHING_USER_STATE,
+  APP_FETCHING_USER,
+  APP_FETCHING_USER_FINISHED,
+  receiveUsers,
+  appFetchingUserFinished,
 } from './actions';
 
+// user reducers
 const users = (state = [], action) => {
   switch (action.type) {
     case ADD_USER:
@@ -32,15 +39,48 @@ const users = (state = [], action) => {
   }
 };
 
-const isFetching = (state = false, action) => {
+const isFetching = (state = {
+  fetchingUser: false,
+  addingUser: false,
+  deletingUser: false,
+}, action) => {
   switch (action.type) {
-    case TOGGLE_FETCHING_USER_STATE:
-      return !state;
+    case APP_FETCHING_USER:
+      state.fetchingUser = true;
+      return state;
+    case APP_FETCHING_USER_FINISHED:
+      state.fetchingUser = false;
+      return state;
     default:
       return state;
   }
 };
 
-const app = combineReducers({ users });
+// let's mock up some data
+// BEGIN
+const user1 = {
+  name: 'Zhao',
+  age: '25'
+};
+const user2 = {
+  name: 'Qiao',
+  age: '23'
+};
+// END
 
-export default app;
+// epics
+export const addUserEpic = createEpicMiddleware(action$ =>
+  action$.ofType(APP_FETCHING_USER)
+    .delay(1e3)
+    .flatMap(() =>
+      Observable.concat(
+        Observable.of(receiveUsers([user1, user2])),
+        Observable.of(appFetchingUserFinished())
+      )
+    )
+);
+
+export const app = combineReducers({
+  users,
+  isFetching,
+});

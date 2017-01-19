@@ -6,7 +6,6 @@ import React from 'react';
 
 const UserProfile = (props) => {
   const {
-    id,
     name,
     age,
     onDelete,

@@ -51,7 +51,7 @@ gulp.task('test', () => {
     .pipe(plumber.stop());
 });
 
-gulp.task('webpack', () => {
+gulp.task('webpack', ['lint'], () => {
   return gulp.src([])
     .pipe(plumber())
     .pipe(webpack_stream(webpack_config))
@@ -86,46 +86,51 @@ gulp.task('server', () => {
 });
 
 gulp.task('watch:client', () => {
-  return gulp.watch([
-    'app/**/*.js',
-    'app/**/*.jsx',
-    'app/**/*.sass',
-    '!app/**/*.test.js',
-  ], [
-      'webpack',
+  return gulp.watch(
+    [
+      'app/**/*.js',
+      'app/**/*.jsx',
+      'app/**/*.sass',
+      '!app/**/*.test.js',
+    ], [
+      'lint',
     ]);
 });
 
 gulp.task('watch:test', () => {
-  return gulp.watch([
-    'app/**/*.test.js',
-  ], [
+  return gulp.watch(
+    [
+      'app/**/*.test.js',
+    ], [
       'lint',
     ]);
 });
 
 gulp.task('watch:server', () => {
-  return gulp.watch([
-    'server.js',
-  ], [
+  return gulp.watch(
+    [
+      'server.js',
+    ], [
       'server',
     ]);
 });
 
-gulp.task('default', gulpSequence([
-  'clean',
-], [
+gulp.task('default', gulpSequence(
+  [
+    'clean',
+  ], [
     'lint',
   ], [
     //   'test',
     // ], [
     'server',
   ], [
-    'webpack',
-  ], [
+    //   'webpack',
+    // ], [
     'nodemon',
-  ], [
-    'watch:client',
-    'watch:test',
-    'watch:server',
-  ]));
+    // ], [
+    // 'watch:client',
+    // 'watch:test',
+    // 'watch:server',
+  ])
+);
