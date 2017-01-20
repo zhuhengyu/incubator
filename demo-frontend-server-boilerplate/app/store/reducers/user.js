@@ -22,8 +22,8 @@ import {
   appAddingUserFinished,
   appFetchingUserFinished,
   appDeletingUserFinished,
-} from './actions';
-import * as Api from './_api.config';
+} from '../actions/user';
+import * as Api from '../api.config';
 
 // user state reducer
 const users = (state = [], action) => {

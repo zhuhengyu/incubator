@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-const UserProfile = (props) => {
+const Profile = (props) => {
   const {
     name,
     age,
@@ -19,10 +19,10 @@ const UserProfile = (props) => {
   );
 };
 
-UserProfile.propTypes = {
+Profile.propTypes = {
   name: React.PropTypes.string.isRequired,
   age: React.PropTypes.string.isRequired,
   onDelete: React.PropTypes.func.isRequired,
 };
 
-export default UserProfile;
+export default Profile;

@@ -3,7 +3,7 @@
  */
 import React from 'react';
 
-const AddUser = (props) => {
+const Add = (props) => {
   let nameRef;
   let ageRef;
   const {
@@ -24,8 +24,8 @@ const AddUser = (props) => {
   );
 };
 
-AddUser.propTypes = {
+Add.propTypes = {
   onAdd: React.PropTypes.func.isRequired
 };
 
-export default AddUser;
+export default Add;

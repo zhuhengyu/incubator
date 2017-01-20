@@ -5,7 +5,7 @@
 import assert from 'assert';
 import request from 'request';
 
-import * as Api from '../app/store/_api.config';
+import * as Api from '../app/store/api.config';
 
 describe('Mock Server', () => {
   beforeEach(function () {

@@ -24,16 +24,24 @@ app.get('/data/user', (req, res) => {
     name: 'Qian',
     age: '24'
   };
+  const user3 = {
+    name: 'Sun',
+    age: '23'
+  };
+  const user4 = {
+    name: 'Li',
+    age: '22'
+  };
   // END
-  res.send(JSON.stringify([user1, user2]));
+  res.send(JSON.stringify([user1, user2, user3, user4]));
 });
 
 app.put('/data/user', (req, res) => {
-  res.send(JSON.stringify(JSON.stringify(req.body)));
+  res.send(JSON.stringify(JSON.stringify(req.query)));
 });
 
 app.delete('/data/user', (req, res) => {
-  res.send(JSON.stringify(JSON.stringify(req.body)));
+  res.send(JSON.stringify(JSON.stringify(req.query)));
 });
 
 app.listen(9000, () => {

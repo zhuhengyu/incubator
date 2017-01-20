@@ -113,8 +113,9 @@ const webpack_config = {
   entry: {
     client: './app/client.jsx',
   },
-  devtool: 'source-map',
-  // devtool: 'inline-eval-cheap-source-map',
+  // devtool: 'source-map',
+  // devtool: 'eval-source-map',
+  devtool: 'eval',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',

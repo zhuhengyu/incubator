@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import UserListContainer from './user/UserListContainer';
+import UserListContainer from './user/UserModuleContainer';
 
 import './App.sass';
 

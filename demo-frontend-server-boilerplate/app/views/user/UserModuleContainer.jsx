@@ -4,8 +4,8 @@
 
 import { connect } from 'react-redux';
 
-import { appAddingUser, appDeletingUser } from '../../store/actions';
-import UserList from './UserList';
+import { appAddingUser, appDeletingUser } from '../../store/actions/user';
+import UserModule from './UserModule';
 
 const mapStateToProps = (state) => {
   return { userList: state.users };
@@ -22,6 +22,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const UserListContainer = connect(mapStateToProps, mapDispatchToProps)(UserList);
+const UserListContainer = connect(mapStateToProps, mapDispatchToProps)(UserModule);
 
 export default UserListContainer;
