@@ -21,15 +21,19 @@ app.get('/data/user', (req, res) => {
     age: '25'
   };
   const user2 = {
-    name: 'Qiao',
+    name: 'Qian',
     age: '24'
   };
   // END
   res.send(JSON.stringify([user1, user2]));
 });
 
-app.post('/data/user', () => {
-  res.send(JSON.stringify({ status: 'OK' }));
+app.put('/data/user', (req, res) => {
+  res.send(JSON.stringify(JSON.stringify(req.body)));
+});
+
+app.delete('/data/user', (req, res) => {
+  res.send(JSON.stringify(JSON.stringify(req.body)));
 });
 
 app.listen(9000, () => {

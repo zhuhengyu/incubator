@@ -17,9 +17,11 @@ import {
   APP_DELETING_USER,
   APP_DELETING_USER_FINISHED,
   addUser,
+  deleteUser,
   receiveUsers,
   appAddingUserFinished,
   appFetchingUserFinished,
+  appDeletingUserFinished,
 } from './actions';
 import * as Api from './_api.config';
 
@@ -80,7 +82,7 @@ export const fetchingUserEpic = action$ => (
   action$.ofType(APP_FETCHING_USER)
     .switchMap(() =>
       Observable.ajax.get(Api.API_USER)
-        .flatMap(payload =>
+        .switchMap(payload =>
           Observable.concat(
             Observable.of(receiveUsers(payload.response)),
             Observable.of(appFetchingUserFinished())
@@ -88,19 +90,35 @@ export const fetchingUserEpic = action$ => (
         )
     )
 );
-
 export const addingUserEpic = action$ => (
   action$.ofType(APP_ADDING_USER)
     .switchMap(action =>
-      Observable.ajax.post(Api.API_USER, action.user)
-        .map(addUser)
-        .mapTo(Observable.of(appAddingUserFinished))
+      Observable.ajax.put(Api.API_USER, {
+        user: action.user
+      }).switchMap(() =>
+        Observable.concat(
+          Observable.of(addUser(action.user)),
+          Observable.of(appAddingUserFinished())
+        ))
+    )
+);
+export const deletingUserEpic = action$ => (
+  action$.ofType(APP_DELETING_USER)
+    .switchMap(action =>
+      Observable.ajax.delete(Api.API_USER, {
+        idx: action.idx
+      }).switchMap(() =>
+        Observable.concat(
+          Observable.of(deleteUser(action.idx)),
+          Observable.of(appDeletingUserFinished())
+        ))
     )
 );
 
 export const rootUserEpic = combineEpics(
   fetchingUserEpic,
-  addingUserEpic
+  addingUserEpic,
+  deletingUserEpic
 );
 
 export const userReducers = {

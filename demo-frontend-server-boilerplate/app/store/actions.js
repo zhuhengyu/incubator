@@ -51,10 +51,10 @@ export const appAddingUserFinished = () => {
     type: APP_ADDING_USER_FINISHED,
   });
 };
-export const appDeletingUser = () => {
+export const appDeletingUser = (idx) => {
   return Object.assign({}, {
     type: APP_DELETING_USER,
-  });
+  }, { idx });
 };
 export const appDeletingUserFinished = () => {
   return Object.assign({}, {
