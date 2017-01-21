@@ -11,7 +11,8 @@ const nodemon_config = {
     NODE_ENV: 'development',
   },
   tasks: [],
-  stdout: false,
+  stdout: true,
+  stderr: true,
 };
 
 export default nodemon_config;

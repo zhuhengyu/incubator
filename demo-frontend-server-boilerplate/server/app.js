@@ -4,11 +4,19 @@
 
 import path from 'path';
 import express from 'express';
+import bodyParser from 'body-parser';
 
 const app = express();
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
+
+// static files
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
 
+// default file
 app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client', 'index.html'));
 });
@@ -37,6 +45,7 @@ app.get('/data/user', (req, res) => {
 });
 
 app.put('/data/user', (req, res) => {
+  console.log(JSON.stringify(req.body));
   res.send(JSON.stringify(JSON.stringify(req.query)));
 });
 

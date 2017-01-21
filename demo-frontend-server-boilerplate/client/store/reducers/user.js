@@ -113,13 +113,13 @@ export const fetchingUserEpic = action$ => (
 export const addingUserEpic = action$ => (
   action$.ofType(APP_ADDING_USER)
     .switchMap(action =>
-      Observable.ajax.put(Api.API_USER, {
-        user: action.user
-      }).switchMap(() =>
-        Observable.concat(
-          Observable.of(addUser(action.user)),
-          Observable.of(appAddingUserFinished())
-        ))
+      Observable.ajax.put(Api.API_USER, action.user)
+        .switchMap(() =>
+          Observable.concat(
+            Observable.of(addUser(action.user)),
+            Observable.of(appAddingUserFinished())
+          )
+        )
     )
 );
 export const deletingUserEpic = action$ => (

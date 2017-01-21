@@ -63,7 +63,7 @@ gulp.task('nodemon', () => {
     port: 35729,
   });
   return nodemon(nodemon_config)
-    .on('readable', () => {
+    .on('restart', () => {
       setTimeout(() => {
         gulp.src(['server/server.js'])
           .pipe(plumber())
@@ -124,8 +124,8 @@ gulp.task('default', gulpSequence(
     // ], [
     'server',
   ], [
-    //   'webpack',
-    // ], [
+    'webpack',
+  ], [
     'nodemon',
     // ], [
     // 'watch:client',
