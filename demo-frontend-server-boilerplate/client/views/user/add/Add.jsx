@@ -11,6 +11,7 @@ const Add = (props) => {
   } = props;
   return (
     <div>
+      <h2>Add User</h2>
       <form
         onSubmit={e => {
           e.preventDefault();

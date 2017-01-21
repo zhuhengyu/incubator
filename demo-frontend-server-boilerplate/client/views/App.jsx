@@ -4,17 +4,13 @@
 
 import React from 'react';
 
-import UserListContainer from './user/UserModuleContainer';
+import UserModuleContainer from './user/UserModuleContainer';
 
 import './App.sass';
 
 const App = () => (
   <div className="app">
-    <h2>
-      User Admin
-    </h2>
-    <hr />
-    <UserListContainer />
+    <UserModuleContainer />
   </div>
 );
 

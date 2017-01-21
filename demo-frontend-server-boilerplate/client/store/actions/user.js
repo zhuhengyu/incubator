@@ -6,12 +6,16 @@
 export const ADD_USER = 'ADD_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const MODIFY_USER = 'MODIFY_USER';
 export const APP_FETCHING_USER = 'APP_FETCHING_USER';
 export const APP_FETCHING_USER_FINISHED = 'APP_FETCHING_USER_FINISHED';
 export const APP_ADDING_USER = 'APP_ADDING_USER';
 export const APP_ADDING_USER_FINISHED = 'APP_ADDING_USER_FINISHED';
 export const APP_DELETING_USER = 'APP_DELETING_USER';
 export const APP_DELETING_USER_FINISHED = 'APP_DELETING_USER_FINISHED';
+export const APP_LOAD_USER_MODIFIER = 'APP_LOAD_USER_MODIFIER';
+export const APP_MODIFYING_USER = 'APP_MODIFYING_USER';
+export const APP_MODIFYING_USER_FINISHED = 'APP_MODIFYING_USER_FINISHED';
 
 // data action
 export const addUser = (user) => {
@@ -28,6 +32,11 @@ export const receiveUsers = (users) => {
   return Object.assign({}, {
     type: RECEIVE_USERS,
   }, { users });
+};
+export const modifyUser = (idx, user) => {
+  return Object.assign({}, {
+    type: MODIFY_USER,
+  }, { idx, user });
 };
 
 // app action
@@ -59,5 +68,20 @@ export const appDeletingUser = (idx) => {
 export const appDeletingUserFinished = () => {
   return Object.assign({}, {
     type: APP_DELETING_USER_FINISHED,
+  });
+};
+export const appLoadUserModifier = (modifyIdx) => {
+  return Object.assign({}, {
+    type: APP_LOAD_USER_MODIFIER,
+  }, { modifyIdx });
+};
+export const appModifyingUser = (idx, user) => {
+  return Object.assign({}, {
+    type: APP_MODIFYING_USER,
+  }, { idx, user });
+};
+export const appModifyingUserFinished = () => {
+  return Object.assign({}, {
+    type: APP_MODIFYING_USER_FINISHED
   });
 };

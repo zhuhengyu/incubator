@@ -19,13 +19,12 @@ import webpack_config from './config/webpack.config.babel';
 
 gulp.task('clean', () => {
   del('dist');
-  del('server');
 });
 
 gulp.task('lint', () => {
   return gulp.src([
-    'app/**/*.js',
-    'app/**/*.jsx',
+    'client/**/*.js',
+    'client/**/*.jsx',
   ])
     .pipe(plumber())
     .pipe(eslint())
@@ -56,7 +55,7 @@ gulp.task('webpack', ['lint'], () => {
     .pipe(plumber())
     .pipe(webpack_stream(webpack_config))
     .pipe(plumber.stop())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/client'));
 });
 
 gulp.task('nodemon', () => {
@@ -76,22 +75,22 @@ gulp.task('nodemon', () => {
 
 gulp.task('server', () => {
   return gulp.src([
-    'server.js',
+    'server/app.js',
   ])
     .pipe(plumber())
     .pipe(babel())
     .pipe(uglify())
     .pipe(plumber.stop())
-    .pipe(gulp.dest('server'));
+    .pipe(gulp.dest('dist/server'));
 });
 
 gulp.task('watch:client', () => {
   return gulp.watch(
     [
-      'app/**/*.js',
-      'app/**/*.jsx',
-      'app/**/*.sass',
-      '!app/**/*.test.js',
+      'client/**/*.js',
+      'client/**/*.jsx',
+      'client/**/*.sass',
+      '!client/**/*.test.js',
     ], [
       'lint',
     ]);
@@ -100,7 +99,7 @@ gulp.task('watch:client', () => {
 gulp.task('watch:test', () => {
   return gulp.watch(
     [
-      'app/**/*.test.js',
+      'client/**/*.test.js',
     ], [
       'lint',
     ]);

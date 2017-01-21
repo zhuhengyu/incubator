@@ -36,7 +36,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
     'client',
     // 'lib',
   ],
-  template: path.resolve(__dirname, '..', 'app', 'index.html'),
+  template: path.resolve(__dirname, '..', 'client', 'index.html'),
   minify: {
     collapseWhitespace: true,
     removeComments: true,
@@ -111,13 +111,13 @@ loaders.push({
 const webpack_config = {
   cache: true,
   entry: {
-    client: './app/client.jsx',
+    client: './client/client.jsx',
   },
   // devtool: 'source-map',
   // devtool: 'eval-source-map',
   devtool: 'eval',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist/client'),
     filename: '[name].js',
     // filename: '[chunkhash].js',
   },

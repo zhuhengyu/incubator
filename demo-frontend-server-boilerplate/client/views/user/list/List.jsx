@@ -9,9 +9,11 @@ const List = props => {
   const {
     list,
     onUserDelete,
+    onLoadModifier,
   } = props;
   return (
     <div>
+      <h2>User List</h2>
       <table>
         <thead>
           <th>Name</th>
@@ -24,7 +26,8 @@ const List = props => {
               key={idx}
               name={user.name}
               age={user.age}
-              onDelete={() => onUserDelete(idx)} />);
+              onDelete={() => onUserDelete(idx)}
+              onLoadModifier={() => onLoadModifier(idx)} />);
           })}
         </tbody>
       </table>
@@ -38,6 +41,7 @@ List.propTypes = {
     age: React.PropTypes.number.isRequired,
   }).isRequired).isRequired,
   onUserDelete: React.PropTypes.func.isRequired,
+  onLoadModifier: React.PropTypes.func.isRequired,
 };
 
 export default List;

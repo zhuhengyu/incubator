@@ -3,10 +3,9 @@
  */
 
 const nodemon_config = {
-  script: 'server/server.js',
+  script: 'dist/server/app.js',
   watch: [
     'dist/**/*',
-    'server/**/*',
   ],
   env: {
     NODE_ENV: 'development',
