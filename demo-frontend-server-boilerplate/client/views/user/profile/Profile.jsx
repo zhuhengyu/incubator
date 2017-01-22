@@ -9,7 +9,7 @@ const Profile = (props) => {
     name,
     age,
     onDelete,
-    onLoadModifier,
+    onLoadEditForm,
   } = props;
   return (
     <tr>
@@ -18,7 +18,7 @@ const Profile = (props) => {
       <td>
         <a href="javascript:;" onClick={onDelete}>Delete</a>
         &nbsp;|&nbsp;
-        <a href="javascript:;" onClick={onLoadModifier}>Modify</a>
+        <a href="javascript:;" onClick={onLoadEditForm}>Modify</a>
       </td>
     </tr>
   );
@@ -28,7 +28,7 @@ Profile.propTypes = {
   name: React.PropTypes.string.isRequired,
   age: React.PropTypes.string.isRequired,
   onDelete: React.PropTypes.func.isRequired,
-  onLoadModifier: React.PropTypes.func.isRequired,
+  onLoadEditForm: React.PropTypes.func.isRequired,
 };
 
 export default Profile;

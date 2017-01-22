@@ -17,7 +17,6 @@ import {
   APP_ADDING_USER_FINISHED,
   APP_DELETING_USER,
   APP_DELETING_USER_FINISHED,
-  APP_LOAD_USER_MODIFIER,
   APP_MODIFYING_USER,
   APP_MODIFYING_USER_FINISHED,
   addUser,
@@ -27,13 +26,13 @@ import {
   appAddingUserFinished,
   appFetchingUserFinished,
   appDeletingUserFinished,
-  appLoadUserModifier,
   appModifyingUserFinished,
 } from '../actions/user';
 import * as Api from '../api.config';
 
 // user state reducer
 const users = (state = [], action) => {
+  
   switch (action.type) {
     case ADD_USER:
       return [
@@ -41,14 +40,14 @@ const users = (state = [], action) => {
         action.user
       ];
     case DELETE_USER:
-      return state.filter((user, idx) => idx !== action.idx);
+      return state.filter((user) => user.id !== action.id);
     case RECEIVE_USERS:
       return [
         ...state,
         ...action.users,
       ];
     case MODIFY_USER:
-      return state.map((user, idx) => idx === action.idx ? action.user : user);
+      return state.map((user, id) => id === action.id ? action.user : user);
     default:
       return state;
   }
@@ -60,7 +59,6 @@ const appUsers = (state = {
   addingUser: false,
   deletingUser: false,
   modifyingUser: false,
-  modifyIdx: -1,
 }, action) => {
   // don't edit state directly, Redux needs a new state
   state = Object.assign({}, state);
@@ -82,9 +80,6 @@ const appUsers = (state = {
       return state;
     case APP_DELETING_USER_FINISHED:
       state.deletingUser = false;
-      return state;
-    case APP_LOAD_USER_MODIFIER:
-      state.modifyIdx = action.modifyIdx;
       return state;
     case APP_MODIFYING_USER:
       state.modifyingUser = true;
@@ -126,10 +121,10 @@ export const deletingUserEpic = action$ => (
   action$.ofType(APP_DELETING_USER)
     .switchMap(action =>
       Observable.ajax.delete(Api.API_USER, {
-        idx: action.idx
+        id: action.id
       }).switchMap(() =>
         Observable.concat(
-          Observable.of(deleteUser(action.idx)),
+          Observable.of(deleteUser(action.id)),
           Observable.of(appDeletingUserFinished())
         ))
     )
@@ -141,7 +136,7 @@ export const modifyingUserEpic = action$ => (
         user: action.user
       }).switchMap(() =>
         Observable.concat(
-          Observable.of(modifyUser(action.idx, action.user)),
+          Observable.of(modifyUser(action.id, action.user)),
           Observable.of(appModifyingUserFinished()),
           Observable.of(appLoadUserModifier(-1))
         ))

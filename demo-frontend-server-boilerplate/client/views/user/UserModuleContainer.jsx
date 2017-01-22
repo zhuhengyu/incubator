@@ -4,31 +4,32 @@
 
 import { connect } from 'react-redux';
 
-import { appAddingUser, appDeletingUser, appLoadUserModifier, appModifyingUser } from '../../store/actions/user';
+import { appAddingUser, appDeletingUser, appModifyingUser } from '../../store/actions/user';
+import { loadUserEditForm } from '../../store/actions/editForm';
 import UserModule from './UserModule';
 
 const mapStateToProps = (state) => {
   return {
     userList: state.users,
-    modifyIdx: state.appUsers.modifyIdx,
+    editFormInitData: state.editForm.userForm,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onUserAdd: (user) => {
+    handleUserAdd: (user) => {
       dispatch(appAddingUser(user));
     },
-    onUserDelete: (idx) => {
+    handleUserDelete: (idx) => {
       dispatch(appDeletingUser(idx));
     },
-    onLoadModifier: (idx) => {
-      dispatch(appLoadUserModifier(idx));
+    handleLoadEditForm: (user) => {
+      dispatch(loadUserEditForm(user));
     },
-    onModifyCancel: () => {
-      dispatch(appLoadUserModifier(-1));
+    handleResetEditForm: () => {
+      dispatch(loadUserEditForm({}));
     },
-    onUserModify: (idx, user) => {
+    handleUserModify: (idx, user) => {
       dispatch(appModifyingUser(idx, user));
     },
   };

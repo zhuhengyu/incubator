@@ -13,6 +13,31 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+// let's mock up some data
+// BEGIN
+const user1 = {
+  id: '1',
+  name: 'Zhao',
+  age: '25'
+};
+const user2 = {
+  id: '2',
+  name: 'Qian',
+  age: '24'
+};
+const user3 = {
+  id: '3',
+  name: 'Sun',
+  age: '23'
+};
+const user4 = {
+  id: '4',
+  name: 'Li',
+  age: '22'
+};
+const users = [user1, user2, user3, user4];
+// END
+
 // static files
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
 
@@ -22,26 +47,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/data/user', (req, res) => {
-  // let's mock up some data
-  // BEGIN
-  const user1 = {
-    name: 'Zhao',
-    age: '25'
-  };
-  const user2 = {
-    name: 'Qian',
-    age: '24'
-  };
-  const user3 = {
-    name: 'Sun',
-    age: '23'
-  };
-  const user4 = {
-    name: 'Li',
-    age: '22'
-  };
-  // END
-  res.send(JSON.stringify([user1, user2, user3, user4]));
+  res.send(JSON.stringify(users));
 });
 
 app.put('/data/user', (req, res) => {

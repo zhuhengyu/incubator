@@ -5,7 +5,7 @@
 const nodemon_config = {
   script: 'dist/server/app.js',
   watch: [
-    'dist/**/*',
+    'dist/server/**/*',
   ],
   env: {
     NODE_ENV: 'development',

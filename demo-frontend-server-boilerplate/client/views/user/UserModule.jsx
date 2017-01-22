@@ -3,21 +3,23 @@
  */
 import React from 'react';
 
+import AddForm from './form/AddForm';
+import EditForm from './form/EditForm';
 import List from './list/List';
-import Add from './add/Add';
-import Modify from './modify/Modify';
 
 import './UserModule.sass';
 
 const UserModule = props => {
   const {
     userList,
-    modifyIdx,
-    onUserAdd,
-    onUserDelete,
-    onUserModify,
-    onModifyCancel,
-    onLoadModifier,
+    editFormInitData,
+    handleUserAdd,
+    handleUserDelete,
+    handleLoadEditForm,
+    handleResetEditForm,
+    handleUserEdit,
+    // handleFormCancel,
+    // handleLoad,
   } = props;
   return (
     <div>
@@ -25,26 +27,42 @@ const UserModule = props => {
         User Admin
       </h1>
       <hr />
-      <List list={userList} onUserDelete={onUserDelete} onLoadModifier={onLoadModifier} />
+      <List list={userList} handleUserDelete={handleUserDelete} handleLoadEditForm={handleLoadEditForm} />
       <hr />
-      <Add onAdd={onUserAdd} />
+      <AddForm onSubmit={() => { handleUserAdd(); } } />
       <hr />
-      <Modify list={userList} modifyIdx={modifyIdx} onModify={onUserModify} onCancel={onModifyCancel} />
+      <EditForm
+        initialValues={editFormInitData}
+        onSubmit={() => { handleUserEdit(); } }
+        onReset={() => { handleResetEditForm(); } } />
     </div>
   );
 };
 
 UserModule.propTypes = {
+  // STATEs:
+  // user list data
   userList: React.PropTypes.arrayOf(React.PropTypes.shape({
     name: React.PropTypes.string.isRequired,
     age: React.PropTypes.number.isRequired
   }).isRequired).isRequired,
-  modifyIdx: React.PropTypes.number.isRequired,
-  onUserAdd: React.PropTypes.func.isRequired,
-  onUserDelete: React.PropTypes.func.isRequired,
-  onUserModify: React.PropTypes.func.isRequired,
-  onModifyCancel: React.PropTypes.func.isRequired,
-  onLoadModifier: React.PropTypes.func.isRequired,
+  // user data to be editing
+  editFormInitData: React.PropTypes.shape({
+    id: React.PropTypes.string.isRequired,
+    name: React.PropTypes.string.isRequired,
+    age: React.PropTypes.number.isRequired,
+  }),
+  // FUNCTIONs:
+  // handle adding
+  handleUserAdd: React.PropTypes.func.isRequired,
+  // handle deleting
+  handleUserDelete: React.PropTypes.func.isRequired,
+  // handle modifying
+  handleUserEdit: React.PropTypes.func.isRequired,
+  // reset form
+  handleResetEditForm: React.PropTypes.func.isRequired,
+  // load data to form
+  handleLoadEditForm: React.PropTypes.func.isRequired,
 };
 
 export default UserModule;

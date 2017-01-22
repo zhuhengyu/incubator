@@ -8,8 +8,8 @@ import Profile from '../profile/Profile';
 const List = props => {
   const {
     list,
-    onUserDelete,
-    onLoadModifier,
+    handleUserDelete,
+    handleLoadEditForm,
   } = props;
   return (
     <div>
@@ -26,8 +26,8 @@ const List = props => {
               key={idx}
               name={user.name}
               age={user.age}
-              onDelete={() => onUserDelete(idx)}
-              onLoadModifier={() => onLoadModifier(idx)} />);
+              onDelete={() => handleUserDelete(user.id)}
+              onLoadEditForm={() => handleLoadEditForm(user)} />);
           })}
         </tbody>
       </table>
@@ -40,8 +40,8 @@ List.propTypes = {
     name: React.PropTypes.string.isRequired,
     age: React.PropTypes.number.isRequired,
   }).isRequired).isRequired,
-  onUserDelete: React.PropTypes.func.isRequired,
-  onLoadModifier: React.PropTypes.func.isRequired,
+  handleUserDelete: React.PropTypes.func.isRequired,
+  handleLoadEditForm: React.PropTypes.func.isRequired,
 };
 
 export default List;
