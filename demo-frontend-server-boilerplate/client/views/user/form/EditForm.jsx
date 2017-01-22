@@ -5,15 +5,18 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import './EditForm.sass';
+
 let EditForm = props => {
   const {
-    onSubmit,
+    initialValues,
+    handleSubmit,
     onReset,
   } = props;
   return (
-    <div>
+    <div className={initialValues.id ? 'editing' : 'editingFinished'}>
       <h2>Edit User</h2>
-      <form onSubmit={onSubmit} onReset={onReset}>
+      <form onSubmit={handleSubmit} onReset={onReset}>
         <Field name="id" component="input" type="hidden" />
         <div>
           <label>Name: </label>
@@ -25,7 +28,7 @@ let EditForm = props => {
         </div>
         <div>
           <button type="submit">Submit</button>
-          <button type="reset">Reset</button>
+          <button type="reset">Cancel</button>
         </div>
       </form>
     </div>
@@ -33,14 +36,10 @@ let EditForm = props => {
 };
 
 EditForm.propTypes = {
-  // user info to be loaded into form
-  // user: React.PropTypes.shape({
-  //   id: React.PropTypes.string.isRequired,
-  //   name: React.PropTypes.string.isRequired,
-  //   age: React.PropTypes.number.number.isRequired,
-  // }),
+  // need to check if initialized
+  initialValues: React.PropTypes.object,
   // on submit event handler
-  onSubmit: React.PropTypes.func.isRequired,
+  handleSubmit: React.PropTypes.func.isRequired,
   // handle event handler
   onReset: React.PropTypes.func.isRequired,
 };

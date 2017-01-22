@@ -42,10 +42,10 @@ export const receiveUsers = (users) => {
     type: RECEIVE_USERS,
   }, { users });
 };
-export const modifyUser = (idx, user) => {
+export const modifyUser = (user) => {
   return Object.assign({}, {
     type: MODIFY_USER,
-  }, { idx, user });
+  }, { user });
 };
 
 // app action
@@ -98,10 +98,10 @@ export const appDeletingUserFailed = () => {
   });
 };
 // modifying user
-export const appModifyingUser = (idx, user) => {
+export const appModifyingUser = (user) => {
   return Object.assign({}, {
     type: APP_MODIFYING_USER,
-  }, { idx, user });
+  }, { user });
 };
 export const appModifyingUserFinished = () => {
   return Object.assign({}, {

@@ -20,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
     handleUserAdd: (user) => {
       dispatch(appAddingUser(user));
     },
-    handleUserDelete: (idx) => {
-      dispatch(appDeletingUser(idx));
+    handleUserDelete: (id) => {
+      dispatch(appDeletingUser(id));
     },
     handleLoadEditForm: (user) => {
       dispatch(loadUserEditForm(user));
@@ -29,8 +29,8 @@ const mapDispatchToProps = (dispatch) => {
     handleResetEditForm: () => {
       dispatch(loadUserEditForm({}));
     },
-    handleUserModify: (idx, user) => {
-      dispatch(appModifyingUser(idx, user));
+    handleUserEdit: (user) => {
+      dispatch(appModifyingUser(user));
     },
   };
 };

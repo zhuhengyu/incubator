@@ -33,7 +33,7 @@ const UserModule = props => {
       <hr />
       <EditForm
         initialValues={editFormInitData}
-        onSubmit={() => { handleUserEdit(); } }
+        onSubmit={handleUserEdit}
         onReset={() => { handleResetEditForm(); } } />
     </div>
   );

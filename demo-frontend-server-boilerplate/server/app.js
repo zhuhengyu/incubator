@@ -24,20 +24,25 @@ app.get('/', (req, res) => {
 });
 
 app.get('/data/users', (req, res) => {
-  res.send(JSON.stringify(db.users));
+  res.send(db.users);
 });
 
 app.put('/data/users', (req, res) => {
   const user = Object.assign({}, {
     id: db.generateUuid(),
   }, req.body);
-  res.send(user);
+  res.send({ user });
   // res.sendStatus(404);
 });
 
 app.delete('/data/users/:id', (req, res) => {
-  res.send(JSON.stringify(JSON.stringify(req.params.id)));
+  res.send({ id: req.params.id });
 });
+
+app.post('/data/users', (req, res) => {
+  const user = req.body;
+  res.send({ user });
+})
 
 app.listen(9000, () => {
 });

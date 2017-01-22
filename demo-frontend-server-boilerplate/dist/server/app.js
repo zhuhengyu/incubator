@@ -38,19 +38,24 @@ app.get('/', function (req, res) {
 });
 
 app.get('/data/users', function (req, res) {
-  res.send(JSON.stringify(_database2.default.users));
+  res.send(_database2.default.users);
 });
 
 app.put('/data/users', function (req, res) {
   var user = Object.assign({}, {
     id: _database2.default.generateUuid()
   }, req.body);
-  // res.send(user);
-  res.sendStatus(404);
+  res.send({ user: user });
+  // res.sendStatus(404);
 });
 
 app.delete('/data/users/:id', function (req, res) {
-  res.send(JSON.stringify(JSON.stringify(req.params.id)));
+  res.send({ id: req.params.id });
+});
+
+app.post('/data/users', function (req, res) {
+  var user = req.body;
+  res.send({ user: user });
 });
 
 app.listen(9000, function () {});
