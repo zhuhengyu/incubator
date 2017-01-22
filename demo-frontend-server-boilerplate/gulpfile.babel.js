@@ -76,10 +76,11 @@ gulp.task('nodemon', () => {
 gulp.task('server', () => {
   return gulp.src([
     'server/app.js',
+    'server/database.js',
   ])
     .pipe(plumber())
     .pipe(babel())
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(plumber.stop())
     .pipe(gulp.dest('dist/server'));
 });

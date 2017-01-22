@@ -1,1 +1,56 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}var _path=require("path"),_path2=_interopRequireDefault(_path),_express=require("express"),_express2=_interopRequireDefault(_express),_bodyParser=require("body-parser"),_bodyParser2=_interopRequireDefault(_bodyParser),app=(0,_express2.default)();app.use(_bodyParser2.default.urlencoded({extended:!1})),app.use(_bodyParser2.default.json());var user1={id:"1",name:"Zhao",age:"25"},user2={id:"2",name:"Qian",age:"24"},user3={id:"3",name:"Sun",age:"23"},user4={id:"4",name:"Li",age:"22"},users=[user1,user2,user3,user4];app.use(_express2.default.static(_path2.default.resolve(__dirname,"..","client"))),app.get("/",function(e,r){r.sendFile(_path2.default.resolve(__dirname,"..","client","index.html"))}),app.get("/data/user",function(e,r){r.send(JSON.stringify(users))}),app.put("/data/user",function(e,r){console.log(JSON.stringify(e.body)),r.send(JSON.stringify(JSON.stringify(e.query)))}),app.delete("/data/user",function(e,r){r.send(JSON.stringify(JSON.stringify(e.query)))}),app.listen(9e3,function(){});
+'use strict';
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _express = require('express');
+
+var _express2 = _interopRequireDefault(_express);
+
+var _bodyParser = require('body-parser');
+
+var _bodyParser2 = _interopRequireDefault(_bodyParser);
+
+var _database = require('./database');
+
+var _database2 = _interopRequireDefault(_database);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Created by 欧阳 超 on 2017/01/07.
+ */
+
+var app = (0, _express2.default)();
+
+// parse application/x-www-form-urlencoded
+app.use(_bodyParser2.default.urlencoded({ extended: false }));
+// parse application/json
+app.use(_bodyParser2.default.json());
+
+// static files
+app.use(_express2.default.static(_path2.default.resolve(__dirname, '..', 'client')));
+
+// default file
+app.get('/', function (req, res) {
+  res.sendFile(_path2.default.resolve(__dirname, '..', 'client', 'index.html'));
+});
+
+app.get('/data/users', function (req, res) {
+  res.send(JSON.stringify(_database2.default.users));
+});
+
+app.put('/data/users', function (req, res) {
+  var user = Object.assign({}, {
+    id: _database2.default.generateUuid()
+  }, req.body);
+  // res.send(user);
+  res.sendStatus(404);
+});
+
+app.delete('/data/users/:id', function (req, res) {
+  res.send(JSON.stringify(JSON.stringify(req.params.id)));
+});
+
+app.listen(9000, function () {});

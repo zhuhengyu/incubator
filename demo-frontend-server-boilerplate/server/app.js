@@ -6,37 +6,14 @@ import path from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 
+import db from './database';
+
 const app = express();
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
-
-// let's mock up some data
-// BEGIN
-const user1 = {
-  id: '1',
-  name: 'Zhao',
-  age: '25'
-};
-const user2 = {
-  id: '2',
-  name: 'Qian',
-  age: '24'
-};
-const user3 = {
-  id: '3',
-  name: 'Sun',
-  age: '23'
-};
-const user4 = {
-  id: '4',
-  name: 'Li',
-  age: '22'
-};
-const users = [user1, user2, user3, user4];
-// END
 
 // static files
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
@@ -46,17 +23,20 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'client', 'index.html'));
 });
 
-app.get('/data/user', (req, res) => {
-  res.send(JSON.stringify(users));
+app.get('/data/users', (req, res) => {
+  res.send(JSON.stringify(db.users));
 });
 
-app.put('/data/user', (req, res) => {
-  console.log(JSON.stringify(req.body));
-  res.send(JSON.stringify(JSON.stringify(req.query)));
+app.put('/data/users', (req, res) => {
+  const user = Object.assign({}, {
+    id: db.generateUuid(),
+  }, req.body);
+  res.send(user);
+  // res.sendStatus(404);
 });
 
-app.delete('/data/user', (req, res) => {
-  res.send(JSON.stringify(JSON.stringify(req.query)));
+app.delete('/data/users/:id', (req, res) => {
+  res.send(JSON.stringify(JSON.stringify(req.params.id)));
 });
 
 app.listen(9000, () => {

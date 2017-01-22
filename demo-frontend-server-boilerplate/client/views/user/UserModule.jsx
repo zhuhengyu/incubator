@@ -29,7 +29,7 @@ const UserModule = props => {
       <hr />
       <List list={userList} handleUserDelete={handleUserDelete} handleLoadEditForm={handleLoadEditForm} />
       <hr />
-      <AddForm onSubmit={() => { handleUserAdd(); } } />
+      <AddForm onSubmit={handleUserAdd} />
       <hr />
       <EditForm
         initialValues={editFormInitData}
