@@ -5,7 +5,7 @@
 import { connect } from 'react-redux';
 
 import { appAddingUser, appDeletingUser, appModifyingUser } from '../../store/actions/user';
-import { loadUserEditForm } from '../../store/actions/editForm';
+import { loadUserEditForm, clearUserEditForm } from '../../store/actions/editForm';
 import UserModule from './UserModule';
 
 const mapStateToProps = (state) => {
@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(loadUserEditForm(user));
     },
     handleResetEditForm: () => {
-      dispatch(loadUserEditForm({}));
+      dispatch(clearUserEditForm());
     },
     handleUserEdit: (user) => {
       dispatch(appModifyingUser(user));

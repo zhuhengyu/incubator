@@ -5,6 +5,7 @@
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { combineEpics } from 'redux-observable';
+import { reset } from 'redux-form';
 
 import * as _ACTIONS from '../actions/user';
 import * as _EDITFORM_ACTIONS from '../actions/editForm';
@@ -96,7 +97,8 @@ export const addingUserEpic = action$ => (
         .switchMap(payload =>
           Observable.concat(
             Observable.of(_ACTIONS.addUser(payload.response.user)),
-            Observable.of(_ACTIONS.appAddingUserFinished())
+            Observable.of(_ACTIONS.appAddingUserFinished()),
+            Observable.of(reset('userAddForm'))
           )
         )
         .catch(() => Observable.of(_ACTIONS.appAddingUserFailed()))
