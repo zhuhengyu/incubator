@@ -1,5 +1,5 @@
 /**
- * Created by ouyangcharles on 2017/01/01.
+ * Created by 欧阳 超 on 2017/01/01.
  */
 
 const Immutable = require('immutable');
