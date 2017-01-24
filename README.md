@@ -13,16 +13,19 @@
 ## 目录
 
 1. **[demo-backend-faker][2]** 为前端开发提供模拟数据的后端系统。
-2. **[demo-immutable][3]** 开源库[ImmutableJS](https://facebook.github.io/immutable-js/)基本示例。
-3. **[demo-frontend-static-boilerplate][4]** 基于ES6，[Gulp](http://gulpjs.com/)，[Webpack](https://webpack.github.io/)的基本前端静态模板。
-4. **[demo-frontend-server-boilerplate][5]** 基于ES6，Gulp，Webpack，[Express](http://expressjs.com/)的基本前端服务器模板。
-5. **[demo-redux][6]** 不含其它任何库的纯[Redux](http://redux.js.org/)示例。 
-6. demo-gulp 已移除。
-7. demo-webpack 已移除。
+2. **[demo-immutable][3]** 开源库ImmutableJS基本示例。
+3. **[demo-frontend-static-boilerplate][4]** 基于ES6，Gulp，Webpack的基本前端静态模板。
+4. **[demo-react-redux][5]** 基于ES6，Gulp，Webpack，Express，React，Redux，以及相关库的基本前端的用户列表CRUD示例。
+5. **[demo-redux][6]** Redux和Redux-Observable示例。 
+6. **[demo-functional-progamming][7]** 函数式编程。（柯里化函数示例）。
+7. demo-gulp 已移除。
+8. demo-webpack 已移除。
 
 [1]: https://github.com/oychao/incubator/blob/master/README-en.md
 [2]: https://github.com/oychao/incubator/tree/master/demo-backend-faker
 [3]: https://github.com/oychao/incubator/tree/master/demo-immutable
 [4]: https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate
-[5]: https://github.com/oychao/incubator/tree/master/demo-frontend-server-boilerplate
+[5]: https://github.com/oychao/incubator/tree/master/demo-react-redux
 [6]: https://github.com/oychao/incubator/tree/master/demo-redux
+[7]: https://github.com/oychao/incubator/tree/master/demo-functional-programming
+
