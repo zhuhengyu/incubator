@@ -3,13 +3,16 @@
  */
 
 import { handleAction } from 'redux-actions';
+import { fromJS } from 'immutable';
 
 import { LOAD_USER_EDIT_FORM } from '../actions/editForm';
 
 const editForm = handleAction(
   LOAD_USER_EDIT_FORM,
-  (state, action) => (state.userForm = action.payload) && state,
-  { userForm: {} }
+  (state, action) => {
+    return state.set('userForm', fromJS(action.payload));
+  },
+  fromJS({ userForm: {} })
 );
 
 export const editFormReducers = { editForm };

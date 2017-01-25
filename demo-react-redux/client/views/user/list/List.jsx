@@ -21,9 +21,9 @@ const List = props => {
           <th>Actions</th>
         </thead>
         <tbody>
-          {list.map((user, idx) => {
+          {list.map(user => {
             return (<Profile
-              key={idx}
+              key={user.id}
               name={user.name}
               age={user.age}
               onDelete={() => handleUserDelete(user.id)}

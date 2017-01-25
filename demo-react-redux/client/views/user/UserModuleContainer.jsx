@@ -9,33 +9,18 @@ import { appAddingUser, appDeletingUser, appModifyingUser } from '../../store/ac
 import { loadUserEditForm } from '../../store/actions/editForm';
 import UserModule from './UserModule';
 
-const mapStateToProps = (state) => {
-  console.log(state);
-  return {
-    userList: state.users,
-    editFormInitData: state.editForm.userForm,
-  };
-};
+const mapStateToProps = (state) => ({
+  userList: state.users.toJS(),
+  editFormInitData: state.editForm.get('userForm').toJS(),
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleUserAdd: (user) => {
-      dispatch(appAddingUser(user));
-    },
-    handleUserDelete: (id) => {
-      dispatch(appDeletingUser(id));
-    },
-    handleLoadEditForm: (user) => {
-      dispatch(loadUserEditForm(user));
-    },
-    handleResetEditForm: () => {
-      dispatch(reset('userEditForm'));
-    },
-    handleUserEdit: (user) => {
-      dispatch(appModifyingUser(user));
-    },
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  handleUserAdd: user => dispatch(appAddingUser(user)),
+  handleUserDelete: id => dispatch(appDeletingUser(id)),
+  handleLoadEditForm: user => dispatch(loadUserEditForm(user)),
+  handleResetEditForm: () => dispatch(reset('userEditForm')),
+  handleUserEdit: user => dispatch(appModifyingUser(user)),
+});
 
 const UserModuleContainer = connect(mapStateToProps, mapDispatchToProps)(UserModule);
 

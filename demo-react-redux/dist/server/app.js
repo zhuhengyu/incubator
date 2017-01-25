@@ -45,6 +45,7 @@ app.put('/data/users', function (req, res) {
   var user = Object.assign({}, {
     id: _database2.default.generateUuid()
   }, req.body);
+  console.log(user);
   res.send({ user: user });
   // res.sendStatus(404);
 });
