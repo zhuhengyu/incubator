@@ -2,27 +2,14 @@
  * Created by 欧阳 超 on 2017/01/22
  */
 
-import {
+import { handleAction } from 'redux-actions';
+
+import { LOAD_USER_EDIT_FORM } from '../actions/editForm';
+
+const editForm = handleAction(
   LOAD_USER_EDIT_FORM,
-  CLEAR_USER_EDIT_FORM,
-} from '../actions/editForm';
+  (state, action) => (state.userForm = action.payload) && state,
+  { userForm: {} }
+);
 
-export const editForm = (state = {
-  userForm: {},
-}, action) => {
-  state = Object.assign({}, state);
-  switch (action.type) {
-    case LOAD_USER_EDIT_FORM:
-      state.userForm = action.user;
-      return state;
-    case CLEAR_USER_EDIT_FORM:
-      state.userForm = {};
-      return state;
-    default:
-      return state;
-  }
-};
-
-export const editFormReducers = {
-  editForm,
-};
+export const editFormReducers = { editForm };

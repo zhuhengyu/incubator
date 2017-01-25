@@ -113,9 +113,9 @@ const webpack_config = {
   entry: {
     client: './client/client.jsx',
   },
-  // devtool: 'source-map',
+  devtool: 'source-map',
   // devtool: 'eval-source-map',
-  devtool: 'eval',
+  // devtool: 'eval',
   output: {
     path: path.resolve(__dirname, 'dist/client'),
     filename: '[name].js',

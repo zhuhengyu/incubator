@@ -11,9 +11,9 @@ import db from './database';
 const app = express();
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 // static files
 app.use(express.static(path.resolve(__dirname, '..', 'client')));
@@ -42,7 +42,7 @@ app.delete('/data/users/:id', (req, res) => {
 app.post('/data/users', (req, res) => {
   const user = req.body;
   res.send({ user });
-})
+});
 
 app.listen(9000, () => {
 });
