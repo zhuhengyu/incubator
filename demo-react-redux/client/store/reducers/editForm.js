@@ -9,7 +9,7 @@ import * as _ACTIONS from '../actions/editForm';
 
 const editForm = handleActions({
   [_ACTIONS.LOAD_USER_EDIT_FORM]: (state, action) => state.set('userForm', fromJS(action.payload)),
-  [_ACTIONS.CLEAR_USER_EDIT_FORM]: state => state.set('userForm', fromJS({})),
+  [_ACTIONS.CLEAR_USER_EDIT_FORM]: state => state.set('userForm', fromJS({ id: '', name: '', age: 0 })),
 }, fromJS({ userForm: {} }));
 
 export const editFormReducers = { editForm };
