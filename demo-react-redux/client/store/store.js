@@ -16,7 +16,7 @@ const app = combineReducers(Object.assign(
   { form: reduxFormReducer },
   { routing: routerReducer },
   userReducers,
-  editFormReducers,
+  editFormReducers
 ));
 const rootEpic = combineEpics(
   rootUserEpic
