@@ -22,7 +22,7 @@ const users = handleActions({
 }, List([]));
 
 // app state reducer
-const users_ = handleActions({
+const $users = handleActions({
   [_ACTIONS.APP_FETCHING_USER]: state => state.set('fetchingUser', true),
   [combineActions(_ACTIONS.APP_FETCHING_USER_FAILED, _ACTIONS.APP_FETCHING_USER_FULFILLED)]: state => state.set('fetchingUser', false),
   [_ACTIONS.APP_ADDING_USER]: state => (state.set('addingUser', true)),
@@ -41,7 +41,7 @@ const users_ = handleActions({
 // export user reducers
 export const userReducers = {
   users,
-  users_,
+  $users,
 };
 
 // epics
@@ -93,8 +93,7 @@ export const modifyingUserEpic = action$ => (
           Observable.concat(
             Observable.of(_ACTIONS.modifyUser(payload.response.user)),
             Observable.of(_ACTIONS.appModifyingUserFulfilled()),
-            Observable.of(_EDITFORM_ACTION.loadUserEditForm({})),
-            Observable.of(reset('userEditForm'))
+            Observable.of(_EDITFORM_ACTION.clearUserEditForm())
           )
         )
         .catch(() => Observable.of(_ACTIONS.appModifyingUserFailed()))

@@ -31,7 +31,6 @@ app.put('/data/users', (req, res) => {
   const user = Object.assign({}, {
     id: db.generateUuid(),
   }, req.body);
-  console.log(user);
   res.send({ user });
   // res.sendStatus(404);
 });

@@ -3,7 +3,6 @@
  */
 
 import { connect } from 'react-redux';
-import { reset } from 'redux-form';
 
 import { appAddingUser, appDeletingUser, appModifyingUser } from '../../store/actions/user';
 import { loadUserEditForm } from '../../store/actions/editForm';
@@ -18,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   handleUserAdd: user => dispatch(appAddingUser(user)),
   handleUserDelete: id => dispatch(appDeletingUser(id)),
   handleLoadEditForm: user => dispatch(loadUserEditForm(user)),
-  handleResetEditForm: () => dispatch(reset('userEditForm')),
+  handleResetEditForm: () => dispatch(appModifyingUser({})),
   handleUserEdit: user => dispatch(appModifyingUser(user)),
 });
 
