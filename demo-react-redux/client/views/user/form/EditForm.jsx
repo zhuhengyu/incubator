@@ -15,7 +15,7 @@ let EditForm = props => {
   } = props;
   return (
     <div className={initialValues.id ? 'editing' : 'editingFinished'}>
-      <h2>Edit User</h2>
+      <h4>Edit User</h4>
       <form onSubmit={handleSubmit} onReset={onReset}>
         <Field name="id" component="input" type="hidden" />
         <div>

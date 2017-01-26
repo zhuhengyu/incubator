@@ -11,7 +11,7 @@ let AddForm = props => {
   } = props;
   return (
     <div>
-      <h2>Add User</h2>
+      <h4>Add User</h4>
       <form onSubmit={handleSubmit}>
         <Field name="id" component="input" type="hidden" />
         <div>

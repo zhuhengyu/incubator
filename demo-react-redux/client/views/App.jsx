@@ -12,16 +12,19 @@ const App = props => (
     <h1>Boilerplate</h1>
     <ul>
       <li>
-        <Link to="/">Home</Link>
+        <Link to="/">Dashboard</Link>
       </li>
       <li>
         <Link to="/users">Users</Link>
       </li>
     </ul>
+    <hr />
     {props.children}
   </div>
 );
 
-App.propTypes = {};
+App.propTypes = {
+  children: React.PropTypes.object.isRequired,
+};
 
 export default App;

@@ -9,16 +9,19 @@ import {
 import {
   Router,
   Route,
+  IndexRoute,
   browserHistory,
 } from 'react-router';
 
 import App from './views/App';
 import UserModuleContainer from './views/user/UserModuleContainer';
+import Dashboard from './views/dashboard/Dashboard';
 
 const Root = ({store}) => (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
+        <IndexRoute component={Dashboard} />
         <Route path="users" component={UserModuleContainer} />
       </Route>
     </Router>

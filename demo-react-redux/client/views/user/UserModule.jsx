@@ -23,9 +23,9 @@ const UserModule = props => {
   } = props;
   return (
     <div>
-      <h1>
+      <h3>
         User Admin
-      </h1>
+      </h3>
       <hr />
       <List list={userList} handleUserDelete={handleUserDelete} handleLoadEditForm={handleLoadEditForm} />
       <hr />
