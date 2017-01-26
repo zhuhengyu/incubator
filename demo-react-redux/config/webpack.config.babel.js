@@ -53,7 +53,7 @@ const uglifyJsPlugin = new webpack.optimize.UglifyJsPlugin({
 });
 const productionPlugin = new webpack.DefinePlugin({
   'process.env': {
-    NODE_ENV: JSON.stringify('production'),
+    NODE_ENV: JSON.stringify('development'),
   }
 });
 const commonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin({

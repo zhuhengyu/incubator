@@ -8,10 +8,16 @@ import { appAddingUser, appDeletingUser, appModifyingUser } from '../../store/ac
 import { loadUserEditForm } from '../../store/actions/editForm';
 import UserModule from './UserModule';
 
-const mapStateToProps = (state) => ({
-  userList: state.users.toJS(),
-  editFormInitData: state.editForm.get('userForm').toJS(),
-});
+const mapStateToProps = state => {
+  let editFormInitData = state.editForm.get('userForm').toJS();
+  editFormInitData.age = +editFormInitData.age;
+  let userList = state.users.toJS();
+  userList.forEach(user => user.age = + user.age);
+  return {
+    userList,
+    editFormInitData,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   handleUserAdd: user => dispatch(appAddingUser(user)),

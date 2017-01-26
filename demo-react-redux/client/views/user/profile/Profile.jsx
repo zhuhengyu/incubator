@@ -26,7 +26,7 @@ const Profile = (props) => {
 
 Profile.propTypes = {
   name: React.PropTypes.string.isRequired,
-  age: React.PropTypes.string.isRequired,
+  age: React.PropTypes.number.isRequired,
   onDelete: React.PropTypes.func.isRequired,
   onLoadEditForm: React.PropTypes.func.isRequired,
 };

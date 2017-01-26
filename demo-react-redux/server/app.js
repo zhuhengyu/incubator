@@ -44,5 +44,9 @@ app.post('/data/users', (req, res) => {
   res.send({ user });
 });
 
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'client', 'index.html'));
+});
+
 app.listen(9000, () => {
 });

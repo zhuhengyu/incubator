@@ -13,11 +13,14 @@ import {
 } from 'react-router';
 
 import App from './views/App';
+import UserModuleContainer from './views/user/UserModuleContainer';
 
 const Root = ({store}) => (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={App} />
+      <Route path="/" component={App}>
+        <Route path="users" component={UserModuleContainer} />
+      </Route>
     </Router>
   </Provider>
 );

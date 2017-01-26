@@ -16,9 +16,11 @@ const List = props => {
       <h2>User List</h2>
       <table>
         <thead>
-          <th>Name</th>
-          <th>Age</th>
-          <th>Actions</th>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Actions</th>
+          </tr>
         </thead>
         <tbody>
           {list.map(user => {

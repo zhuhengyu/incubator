@@ -48,10 +48,10 @@ UserModule.propTypes = {
   }).isRequired).isRequired,
   // user data to be editing
   editFormInitData: React.PropTypes.shape({
-    id: React.PropTypes.string.isRequired,
-    name: React.PropTypes.string.isRequired,
-    age: React.PropTypes.number.isRequired,
-  }),
+    id: React.PropTypes.string,
+    name: React.PropTypes.string,
+    age: React.PropTypes.number,
+  }).isRequired,
   // FUNCTIONs:
   // handle adding
   handleUserAdd: React.PropTypes.func.isRequired,

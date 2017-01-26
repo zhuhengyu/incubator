@@ -3,14 +3,22 @@
  */
 
 import React from 'react';
-
-import UserModuleContainer from './user/UserModuleContainer';
+import { Link } from 'react-router';
 
 import './App.sass';
 
-const App = () => (
+const App = props => (
   <div className="app">
-    <UserModuleContainer />
+    <h1>Boilerplate</h1>
+    <ul>
+      <li>
+        <Link to="/">Home</Link>
+      </li>
+      <li>
+        <Link to="/users">Users</Link>
+      </li>
+    </ul>
+    {props.children}
   </div>
 );
 

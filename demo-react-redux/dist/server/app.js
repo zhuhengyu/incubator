@@ -58,4 +58,8 @@ app.post('/data/users', function (req, res) {
   res.send({ user: user });
 });
 
+app.get('/*', function (req, res) {
+  res.sendFile(_path2.default.resolve(__dirname, '..', 'client', 'index.html'));
+});
+
 app.listen(9000, function () {});
