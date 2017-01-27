@@ -7,9 +7,9 @@ import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
-import App from './views/App';
-import UserModuleContainer from './views/user/UserModuleContainer';
-import Dashboard from './views/dashboard/Dashboard';
+import App from './components/App';
+import UserModuleContainer from './components/user/UserModuleContainer';
+import Dashboard from './components/dashboard/Dashboard';
 
 const Root = ({store}) => (
   <Provider store={store}>
