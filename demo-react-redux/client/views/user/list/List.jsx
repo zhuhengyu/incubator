@@ -1,6 +1,7 @@
 /**
  * Created by 欧阳 超 on 2017/01/20
  */
+
 import React from 'react';
 
 import Profile from '../profile/Profile';
@@ -21,7 +22,7 @@ const List = props => {
           <div className="panel-body">
             <div className="row">
               <div className="col-sm-12">
-                <table className="table table-bordered table-striped table-hover">
+                <table className="table table-bordered table-striped table-hover table-less-margin-bottom">
                   <thead>
                     <tr>
                       <th>Name</th>
@@ -42,6 +43,10 @@ const List = props => {
                 </table>
               </div>
             </div>
+            <row>
+              <div className="col-sm-6 footnote">Showing 1 to 10 of 57 entries</div>
+              <div className="col-sm-6"></div>
+            </row>
           </div>
         </div>
       </div>

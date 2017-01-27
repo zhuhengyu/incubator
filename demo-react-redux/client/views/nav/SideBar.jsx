@@ -5,8 +5,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import './SideBar.css';
-
 const SideBar = () => (
   <div className="navbar-default sidebar" role="navigation">
     <div className="sidebar-nav navbar-collapse">

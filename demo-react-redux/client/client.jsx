@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import Root from './Root';
 import store from './store/store';
 
-import './global.sass';
+import './stylesheets/root.sass';
 
 ReactDOM.render((
   <Root store={store} />

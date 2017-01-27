@@ -6,8 +6,6 @@ import React from 'react';
 
 import Nav from './nav/Nav';
 
-import './App.sass';
-
 const App = props => (
   <div className="wrapper">
     <Nav />

@@ -7,8 +7,6 @@ import AddForm from './form/AddForm';
 import EditForm from './form/EditForm';
 import List from './list/List';
 
-import './UserModule.sass';
-
 const UserModule = props => {
   const {
     userList,
@@ -18,8 +16,6 @@ const UserModule = props => {
     handleLoadEditForm,
     handleResetEditForm,
     handleUserEdit,
-    // handleFormCancel,
-    // handleLoad,
   } = props;
   return (
     <div className="page-wrapper">
@@ -31,9 +27,7 @@ const UserModule = props => {
         </div>
       </div>
       <List list={userList} handleUserDelete={handleUserDelete} handleLoadEditForm={handleLoadEditForm} />
-      <hr />
       <AddForm onSubmit={handleUserAdd} />
-      <hr />
       <EditForm
         initialValues={editFormInitData}
         onSubmit={handleUserEdit}

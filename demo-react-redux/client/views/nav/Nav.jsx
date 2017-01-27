@@ -6,8 +6,6 @@ import React from 'react';
 
 import SideBar from './SideBar';
 
-import './Nav.sass';
-
 const Nav = () => (
   <nav className="navbar navbar-default navbar-static-top" role="navigation">
     <div className="navbar-header">

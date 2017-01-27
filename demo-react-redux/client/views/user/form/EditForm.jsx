@@ -5,8 +5,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import './EditForm.sass';
-
 let EditForm = props => {
   const {
     initialValues,
