@@ -14,23 +14,35 @@ let EditForm = props => {
     onReset,
   } = props;
   return (
-    <div className={initialValues.id ? 'editing' : 'editingFinished'}>
-      <h4>Edit User</h4>
-      <form onSubmit={handleSubmit} onReset={onReset}>
-        <Field name="id" component="input" type="hidden" />
-        <div>
-          <label>Name: </label>
-          <Field name="name" component="input" type="text" />
+    <div className={`row ${initialValues.id ? 'editing' : 'editingFinished'}`}>
+      <div className="col-sm-12">
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            Edit User
+          </div>
+          <div className="panel-body">
+            <div className="row">
+              <div className="col-sm-12">
+                <form role="form" onSubmit={handleSubmit} onReset={onReset}>
+                  <Field name="id" component="input" type="hidden" />
+                  <div className="form-group">
+                    <label>Name</label>
+                    <Field className="form-control" name="name" component="input" type="text" />
+                  </div>
+                  <div className="form-group">
+                    <label>Age: </label>
+                    <Field className="form-control" name="age" component="input" type="number" />
+                  </div>
+                  <div>
+                    <button className="btn btn-primary" type="submit">Submit</button>
+                    <button className="btn btn-default" type="reset">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label>Age: </label>
-          <Field name="age" component="input" type="number" />
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-          <button type="reset">Cancel</button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };

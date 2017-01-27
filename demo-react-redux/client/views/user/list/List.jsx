@@ -12,27 +12,39 @@ const List = props => {
     handleLoadEditForm,
   } = props;
   return (
-    <div>
-      <b>User List</b>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {list.map(user => {
-            return (<Profile
-              key={user.id}
-              name={user.name}
-              age={user.age}
-              onDelete={() => handleUserDelete(user.id)}
-              onLoadEditForm={() => handleLoadEditForm(user)} />);
-          })}
-        </tbody>
-      </table>
+    <div className="row">
+      <div className="col-sm-12">
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            User List
+          </div>
+          <div className="panel-body">
+            <div className="row">
+              <div className="col-sm-12">
+                <table className="table table-bordered table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Age</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {list.map(user => {
+                      return (<Profile
+                        key={user.id}
+                        name={user.name}
+                        age={user.age}
+                        onDelete={() => handleUserDelete(user.id)}
+                        onLoadEditForm={() => handleLoadEditForm(user)} />);
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

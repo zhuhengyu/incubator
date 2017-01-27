@@ -10,22 +10,33 @@ let AddForm = props => {
     handleSubmit,
   } = props;
   return (
-    <div>
-      <h4>Add User</h4>
-      <form onSubmit={handleSubmit}>
-        <Field name="id" component="input" type="hidden" />
-        <div>
-          <label>Name: </label>
-          <Field name="name" component="input" type="text" />
+    <div className="row">
+      <div className="col-sm-12">
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            Add User
+          </div>
+          <div className="panel-body">
+            <div className="row">
+              <div className="col-sm-12">
+                <form role="form" onSubmit={handleSubmit}>
+                  <div className="form-group">
+                    <label>Name</label>
+                    <Field className="form-control" name="name" component="input" type="text" />
+                  </div>
+                  <div className="form-group">
+                    <label>Age: </label>
+                    <Field className="form-control" name="age" component="input" type="number" />
+                  </div>
+                  <div>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <label>Age: </label>
-          <Field name="age" component="input" type="number" />
-        </div>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };
