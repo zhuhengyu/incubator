@@ -18,6 +18,7 @@ const app = combineReducers(Object.assign(
   userReducers,
   editFormReducers
 ));
+
 const rootEpic = combineEpics(
   rootUserEpic
 );

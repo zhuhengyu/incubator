@@ -2,13 +2,18 @@
  * Created by 欧阳 超 on 2017/01/12.
  */
 
-$font-stack: Helvetica, sans-serif
-$primary-color: #333
+#wrapper
+  width: 100%
 
-body
-  padding: 8px
-  background-color: darkcyan
+.page-wrapper
+  padding: 0 15px
+  height: calc(100vh - 134px)
+  background-color: white
 
-.app
-  font: 100% $font-stack
-  color: $primary-color
+@media (min-width: 768px)
+  .page-wrapper
+    height: calc(100vh - 51px)
+    position: inherit
+    margin: 0 0 0 250px
+    padding: 0 30px
+    border-left: 1px solid #e7e7e7

@@ -5,8 +5,14 @@
 import React from 'react';
 
 const Dashboard = () => (
-  <div>
-    Dashboard
+  <div className="page-wrapper">
+    <div className="row">
+      <div className="col-lg-12">
+        <h3 className="page-header">
+          Dashboard
+          </h3>
+      </div>
+    </div>
   </div>
 );
 

@@ -13,7 +13,7 @@ const List = props => {
   } = props;
   return (
     <div>
-      <h4>User List</h4>
+      <b>User List</b>
       <table>
         <thead>
           <tr>

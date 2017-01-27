@@ -5,20 +5,13 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import Nav from './nav/Nav';
+
 import './App.sass';
 
 const App = props => (
-  <div className="app">
-    <h1>Boilerplate</h1>
-    <ul>
-      <li>
-        <Link to="/">Dashboard</Link>
-      </li>
-      <li>
-        <Link to="/users">Users</Link>
-      </li>
-    </ul>
-    <hr />
+  <div className="wrapper">
+    <Nav />
     {props.children}
   </div>
 );

@@ -22,11 +22,14 @@ const UserModule = props => {
     // handleLoad,
   } = props;
   return (
-    <div>
-      <h3>
-        User Admin
-      </h3>
-      <hr />
+    <div className="page-wrapper">
+      <div className="row">
+        <div className="col-lg-12">
+          <h3 className="page-header">
+            User Admin
+          </h3>
+        </div>
+      </div>
       <List list={userList} handleUserDelete={handleUserDelete} handleLoadEditForm={handleLoadEditForm} />
       <hr />
       <AddForm onSubmit={handleUserAdd} />

@@ -100,7 +100,7 @@ loaders.push({
   // },
 });
 loaders.push({
-  test: /\.sass$/,
+  test: /(\.sass$|\.css$)/,
   loaders: [
     'style-loader',
     'css-loader',
