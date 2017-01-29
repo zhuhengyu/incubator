@@ -24,7 +24,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/data/users', (req, res) => {
-  res.send(db.users);
+  res.set('X-Total-Count', db.users.length);
+  if (+req.query.page === 1) {
+    res.send(db.users.slice(0, 10));
+  } else {
+    res.send(db.users.slice(10));
+  }
 });
 
 app.put('/data/users', (req, res) => {

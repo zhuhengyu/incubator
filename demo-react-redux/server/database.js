@@ -10,27 +10,26 @@ const generateUuid = () => {
 
 // let's mock up some data
 // BEGIN
-const user1 = {
-  id: generateUuid(),
-  name: 'Zhao',
-  age: '25'
-};
-const user2 = {
-  id: generateUuid(),
-  name: 'Qian',
-  age: '24'
-};
-const user3 = {
-  id: generateUuid(),
-  name: 'Sun',
-  age: '23'
-};
-const user4 = {
-  id: generateUuid(),
-  name: 'Li',
-  age: '22'
-};
-const users = [user1, user2, user3, user4];
+const ageFrom = 20;
+const ageRange = 30;
+const users = [
+  { id: generateUuid(), name: 'Zhao', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Qian', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Sun', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Li', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Zhou', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Wu', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Zheng', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Wang', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Feng', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Chen', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Chu', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Wei', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Jiang', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Shen', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Han', age: ageFrom + Math.floor(Math.random() * ageRange) },
+  { id: generateUuid(), name: 'Yang', age: ageFrom + Math.floor(Math.random() * ageRange) },
+];
 // END
 
 const db = {

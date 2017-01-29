@@ -83,21 +83,25 @@ plugins.push(htmlWebpackPlugin);
 plugins.push(uglifyJsPlugin);
 plugins.push(productionPlugin);
 // plugins.push(commonsChunkPlugin);
-plugins.push(happyPackPlugin);
+// plugins.push(happyPackPlugin);
 
 const loaders = [];
+// loaders.push({
+//   test: /(\.js$|\.jsx$)/,
+//   loader: 'happypack/loader',
+//   exclude: /(node_modules|bower_components)/,
+// });
 loaders.push({
   test: /(\.js$|\.jsx$)/,
-  // loader: 'babel-loader',
-  loader: 'happypack/loader',
-  // include: path.resolve(__dirname, '..', 'app'),
+  loader: 'babel-loader',
   exclude: /(node_modules|bower_components)/,
-  // query: {
-  //   presets: [
-  //     'react',
-  //     'es2015',
-  //   ],
-  // },
+  // include: path.resolve(__dirname, '..', 'app'),
+  query: {
+    presets: [
+      'react',
+      'es2015',
+    ],
+  },
 });
 loaders.push({
   test: /(\.sass$|\.css$)/,
