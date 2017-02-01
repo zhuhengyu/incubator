@@ -17,6 +17,7 @@ Valuable programmes or projects will be moved to a new repository, otherwise wil
 3. **[demo-react-redux](https://github.com/oychao/incubator/tree/master/demo-react-redux)** User CRUD frontend Demo boilerplate based on ES6, Gulp, Webpack, Express, React, Redux and other relative libraries.
 4. **[demo-redux](https://github.com/oychao/incubator/tree/master/demo-redux)** Redux Demo with Redux Observable.
 5. **[demo-functional-progamming](https://github.com/oychao/incubator/tree/master/demo-functional-programming)** Functional programming. (Curring function demo).
-6. demo-backend-faker Removed.
-7. demo-gulp Removed.
-8. demo-webpack Removed.
+6. **[javascript-interview-questions](https://github.com/oychao/incubator/tree/master/javascript-interview-questions)** JavaScript interview questions (Chinese only)。
+7. demo-backend-faker Removed.
+8. demo-gulp Removed.
+9. demo-webpack Removed.
