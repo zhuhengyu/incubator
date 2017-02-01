@@ -58,7 +58,7 @@ var myObject = {
 myObject.func();
 ```
 
-这道题考察的是对JavaScript中```this```的理解。```this```有很多种情况，但一般情况下，它指向当前对象，比如上述代码中，调用```func```的是```myObject```，所以这里的```this```就是```myObject```，```this.foo```就是```"bar"```了。```self```在被传入IIFE（立即调用函数表达式）中已经被赋值为IIFE外面的```this```，即```myObject```，因此```self.foo```也是```"bar"```。**而所有IIFE中的```this```，不是```undefined```（严格模式下），就是```global```（非严格模式下）**，因此这里的它指向```global```，而```global.foo```是```undefined```。
+这道题考察的是对JavaScript中```this```的理解。```this```有很多种情况，但一般情况下，它指向当前对象，比如上述代码中，调用```func```的是```myObject```，所以这里的```this```就是```myObject```，```this.foo```就是```"bar"```了。```self```在被传入IIFE（立即调用函数表达式）中之前，就已经被赋值为外面的```this```了，因此```self.foo```也是```"bar"```。**而所有IIFE中的```this```，不是```undefined```（严格模式下），就是```global```（非严格模式下）**，因此这里的它指向```global```，而```global.foo```是```undefined```。
 
 输出结果如下。
 
