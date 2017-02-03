@@ -9,7 +9,7 @@ import Pagination from './Pagination';
 
 const List = props => {
   const {
-    list,
+    users,
     handleUserDelete,
     handleLoadEditForm,
   } = props;
@@ -32,7 +32,7 @@ const List = props => {
                     </tr>
                   </thead>
                   <tbody>
-                    {list.map(user => {
+                    {users.list.map(user => {
                       return (<Profile
                         key={user.id}
                         name={user.name}
@@ -45,7 +45,7 @@ const List = props => {
               </div>
             </div>
             <row>
-              <div className="col-sm-6 footnote-left">Showing 1 to 10 of 57 entries</div>
+              <div className="col-sm-6 footnote-left">Showing 1 to 10 of {users.listInfo.count} entries</div>
               <div className="col-sm-6 footnote-right"><Pagination /></div>
             </row>
           </div>
@@ -56,10 +56,14 @@ const List = props => {
 };
 
 List.propTypes = {
-  list: React.PropTypes.arrayOf(React.PropTypes.shape({
-    name: React.PropTypes.string.isRequired,
-    age: React.PropTypes.number.isRequired,
-  }).isRequired).isRequired,
+  // user list data and info
+  users: React.PropTypes.shape(React.PropTypes.shape({
+    list: React.PropTypes.arrayOf(React.PropTypes.shape({
+      name: React.PropTypes.string.isRequired,
+      age: React.PropTypes.number.isRequired,
+    })).isRequired,
+    listInfo: React.PropTypes.object.isRequired,
+  }).isRequired),
   handleUserDelete: React.PropTypes.func.isRequired,
   handleLoadEditForm: React.PropTypes.func.isRequired,
 };

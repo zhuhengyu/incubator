@@ -9,7 +9,7 @@ import List from './list/List';
 
 const UserModule = props => {
   const {
-    userList,
+    users,
     editFormInitData,
     handleUserAdd,
     handleUserDelete,
@@ -26,22 +26,25 @@ const UserModule = props => {
           </h3>
         </div>
       </div>
-      <List list={userList} handleUserDelete={handleUserDelete} handleLoadEditForm={handleLoadEditForm} />
+      <List users={users} handleUserDelete={handleUserDelete} handleLoadEditForm={handleLoadEditForm} />
       <AddForm onSubmit={handleUserAdd} />
       <EditForm
         initialValues={editFormInitData}
         onSubmit={handleUserEdit}
-        onReset={() => { handleResetEditForm(); } } />
+        onReset={() => { handleResetEditForm(); }} />
     </div>
   );
 };
 
 UserModule.propTypes = {
   // STATEs:
-  // user list data
-  userList: React.PropTypes.arrayOf(React.PropTypes.shape({
-    name: React.PropTypes.string.isRequired,
-    age: React.PropTypes.number.isRequired
+  // user list data and info
+  users: React.PropTypes.shape(React.PropTypes.shape({
+    list: React.PropTypes.arrayOf(React.PropTypes.shape({
+      name: React.PropTypes.string.isRequired,
+      age: React.PropTypes.number.isRequired,
+    })).isRequired,
+    listInfo: React.PropTypes.object.isRequired,
   }).isRequired).isRequired,
   // user data to be editing
   editFormInitData: React.PropTypes.shape({

@@ -3,23 +3,33 @@
  */
 
 import 'rxjs/Rx';
+import { combineReducers } from 'redux-immutable';
 import { handleActions, combineActions } from 'redux-actions';
 import { List, Map } from 'immutable';
 import { Observable } from 'rxjs/Observable';
 import { combineEpics } from 'redux-observable';
 import { reset } from 'redux-form';
+import httpHeaders from 'http-headers';
 
 import * as _ACTIONS from '../actions/user';
 import * as _EDITFORM_ACTION from '../actions/editForm';
 import * as Api from '../api.config';
 
-// user state reducer
-const users = handleActions({
+// user list state reducer
+const list = handleActions({
   [_ACTIONS.RECEIVE_USERS]: (state, action) => state.merge(action.payload),
   [_ACTIONS.ADD_USER]: (state, action) => state.push(Map(action.payload)),
   [_ACTIONS.DELETE_USER]: (state, action) => state.filter(user => user.get('id') !== action.payload),
   [_ACTIONS.MODIFY_USER]: (state, action) => state.map(user => user.get('id') === action.payload.id ? Map(action.payload) : user),
 }, List([]));
+
+// user list info state reducer
+const listInfo = handleActions({
+  [_ACTIONS.SET_USER_COUNT]: (state, action) => state.set('count', action.payload),
+}, Map({
+  count: 0,
+  page: 1,
+}));
 
 // app state reducer
 const $users = handleActions({
@@ -40,64 +50,68 @@ const $users = handleActions({
 
 // export user reducers
 export const userReducers = {
-  users,
+  users: combineReducers({
+    list,
+    listInfo,
+  }),
   $users,
 };
 
 // epics
 export const fetchingUserEpic = action$ => (
   action$.ofType(_ACTIONS.APP_FETCHING_USER)
-    .switchMap(() =>
-      Observable.ajax.get(`${Api.API_USER}?page=1`)
-        .switchMap(payload =>
-          Observable.concat(
-            Observable.of(_ACTIONS.receiveUsers(payload.response)),
-            Observable.of(_ACTIONS.appFetchingUserFulfilled())
-          )
-        )
-        .catch(() => Observable.of(_ACTIONS.appFetchingUserFailed()))
+  .switchMap(() =>
+    Observable.ajax.get(`${Api.API_USER}?page=1`)
+    .switchMap(payload =>
+      Observable.concat(
+        Observable.of(_ACTIONS.receiveUsers(payload.response)),
+        Observable.of(_ACTIONS.setUserCount(httpHeaders(payload.xhr.getAllResponseHeaders())['x-total-count'])),
+        Observable.of(_ACTIONS.appFetchingUserFulfilled())
+      )
     )
+    .catch(() => Observable.of(_ACTIONS.appFetchingUserFailed()))
+  )
 );
 export const addingUserEpic = action$ => (
   action$.ofType(_ACTIONS.APP_ADDING_USER)
-    .switchMap(action =>
-      Observable.ajax.put(Api.API_USER, action.payload)
-        .switchMap(payload =>
-          Observable.concat(
-            Observable.of(_ACTIONS.addUser(payload.response.user)),
-            Observable.of(_ACTIONS.appAddingUserFulfilled()),
-            Observable.of(reset('userAddForm'))
-          )
-        )
-        .catch(() => Observable.of(_ACTIONS.appAddingUserFailed()))
+  .switchMap(action =>
+    Observable.ajax.put(Api.API_USER, action.payload)
+    .switchMap(payload =>
+      Observable.concat(
+        Observable.of(_ACTIONS.addUser(payload.response.user)),
+        Observable.of(_ACTIONS.appAddingUserFulfilled()),
+        Observable.of(reset('userAddForm'))
+      )
     )
+    .catch(() => Observable.of(_ACTIONS.appAddingUserFailed()))
+  )
 );
 export const deletingUserEpic = action$ => (
   action$.ofType(_ACTIONS.APP_DELETING_USER)
-    .switchMap(action =>
-      Observable.ajax.delete(`${Api.API_USER}/${action.payload}`)
-        .switchMap(payload =>
-          Observable.concat(
-            Observable.of(_ACTIONS.deleteUser(payload.response.id)),
-            Observable.of(_ACTIONS.appDeletingUserFulfilled())
-          )
-        )
-        .catch(() => Observable.of(_ACTIONS.appDeletingUserFailed()))
+  .switchMap(action =>
+    Observable.ajax.delete(`${Api.API_USER}/${action.payload}`)
+    .switchMap(payload =>
+      Observable.concat(
+        Observable.of(_ACTIONS.deleteUser(payload.response.id)),
+        Observable.of(_ACTIONS.appDeletingUserFulfilled())
+      )
     )
+    .catch(() => Observable.of(_ACTIONS.appDeletingUserFailed()))
+  )
 );
 export const modifyingUserEpic = action$ => (
   action$.ofType(_ACTIONS.APP_MODIFYING_USER)
-    .switchMap(action =>
-      Observable.ajax.post(Api.API_USER, action.payload)
-        .switchMap(payload =>
-          Observable.concat(
-            Observable.of(_ACTIONS.modifyUser(payload.response.user)),
-            Observable.of(_ACTIONS.appModifyingUserFulfilled()),
-            Observable.of(_EDITFORM_ACTION.clearUserEditForm())
-          )
-        )
-        .catch(() => Observable.of(_ACTIONS.appModifyingUserFailed()))
+  .switchMap(action =>
+    Observable.ajax.post(Api.API_USER, action.payload)
+    .switchMap(payload =>
+      Observable.concat(
+        Observable.of(_ACTIONS.modifyUser(payload.response.user)),
+        Observable.of(_ACTIONS.appModifyingUserFulfilled()),
+        Observable.of(_EDITFORM_ACTION.clearUserEditForm())
+      )
     )
+    .catch(() => Observable.of(_ACTIONS.appModifyingUserFailed()))
+  )
 );
 
 // export user epics

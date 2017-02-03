@@ -11,10 +11,10 @@ import UserModule from './UserModule';
 const mapStateToProps = state => {
   let editFormInitData = state.editForm.get('userForm').toJS();
   editFormInitData.age = +editFormInitData.age;
-  let userList = state.users.toJS();
-  userList.forEach(user => user.age = + user.age);
+  let users = state.users.toJS();
+  users.list.forEach(user => user.age = + user.age);
   return {
-    userList,
+    users,
     editFormInitData,
   };
 };

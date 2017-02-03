@@ -9,7 +9,7 @@ export const ADD_USER = 'ADD_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const MODIFY_USER = 'MODIFY_USER';
-// export const SET_USER_COUNT = 'SET_USER_COUNT';
+export const SET_USER_COUNT = 'SET_USER_COUNT';
 
 // app action types for AJAX action
 // fetching user
@@ -34,7 +34,7 @@ export const addUser = createAction(ADD_USER, user => user);
 export const deleteUser = createAction(DELETE_USER, id => id);
 export const modifyUser = createAction(MODIFY_USER, user => user);
 export const receiveUsers = createAction(RECEIVE_USERS, users => users);
-// export const setUserCount = createAction(SET_USER_COUNT, count => count);
+export const setUserCount = createAction(SET_USER_COUNT, count => count);
 
 // app action
 // fetching user list
