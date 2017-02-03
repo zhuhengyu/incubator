@@ -9,7 +9,10 @@ export const ADD_USER = 'ADD_USER';
 export const DELETE_USER = 'DELETE_USER';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const MODIFY_USER = 'MODIFY_USER';
-export const SET_USER_COUNT = 'SET_USER_COUNT';
+export const SET_USERS_COUNT = 'SET_USERS_COUNT';
+export const SET_PER_PAGE_5 = 'SET_PER_PAGE_5';
+export const SET_PER_PAGE_10 = 'SET_PER_PAGE_10';
+export const SET_CUR_PAGE = 'SET_CUR_PAGE';
 
 // app action types for AJAX action
 // fetching user
@@ -34,7 +37,10 @@ export const addUser = createAction(ADD_USER, user => user);
 export const deleteUser = createAction(DELETE_USER, id => id);
 export const modifyUser = createAction(MODIFY_USER, user => user);
 export const receiveUsers = createAction(RECEIVE_USERS, users => users);
-export const setUserCount = createAction(SET_USER_COUNT, count => count);
+export const setUsersCount = createAction(SET_USERS_COUNT, count => count);
+export const setPerPage5 = createAction(SET_PER_PAGE_5, () => 5);
+export const setPerPage10 = createAction(SET_PER_PAGE_10, () => 10);
+export const setCurPage = createAction(SET_CUR_PAGE, perPage => perPage);
 
 // app action
 // fetching user list

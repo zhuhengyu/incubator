@@ -57,13 +57,19 @@ const List = props => {
 
 List.propTypes = {
   // user list data and info
-  users: React.PropTypes.shape(React.PropTypes.shape({
-    list: React.PropTypes.arrayOf(React.PropTypes.shape({
-      name: React.PropTypes.string.isRequired,
-      age: React.PropTypes.number.isRequired,
-    })).isRequired,
-    listInfo: React.PropTypes.object.isRequired,
-  }).isRequired),
+  users: React.PropTypes.shape(
+    React.PropTypes.shape({
+      list: React.PropTypes.arrayOf(React.PropTypes.shape({
+        name: React.PropTypes.string.isRequired,
+        age: React.PropTypes.number.isRequired,
+      })).isRequired,
+      listInfo: React.PropTypes.shape({
+        count: React.PropTypes.number,
+        curPage: React.PropTypes.number,
+        perPage: React.PropTypes.number,
+      }).isRequired,
+    }).isRequired
+  ),
   handleUserDelete: React.PropTypes.func.isRequired,
   handleLoadEditForm: React.PropTypes.func.isRequired,
 };

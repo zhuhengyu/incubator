@@ -25,14 +25,18 @@ const list = handleActions({
 
 // user list info state reducer
 const listInfo = handleActions({
-  [_ACTIONS.SET_USER_COUNT]: (state, action) => state.set('count', action.payload),
+  [_ACTIONS.SET_USERS_COUNT]: (state, action) => state.set('count', action.payload),
+  [_ACTIONS.SET_PER_PAGE_5]: state => state.set('perPage', 5),
+  [_ACTIONS.SET_PER_PAGE_10]: state => state.set('perPage', 10),
+  [_ACTIONS.SET_CUR_PAGE]: (state, action) => state.set('curPage', action.payload),
 }, Map({
   count: 0,
-  page: 1,
+  curPage: 1,
+  perPage: 10,
 }));
 
 // app state reducer
-const $users = handleActions({
+const ui = handleActions({
   [_ACTIONS.APP_FETCHING_USER]: state => state.set('fetchingUser', true),
   [combineActions(_ACTIONS.APP_FETCHING_USER_FAILED, _ACTIONS.APP_FETCHING_USER_FULFILLED)]: state => state.set('fetchingUser', false),
   [_ACTIONS.APP_ADDING_USER]: state => (state.set('addingUser', true)),
@@ -49,13 +53,11 @@ const $users = handleActions({
 }));
 
 // export user reducers
-export const userReducers = {
-  users: combineReducers({
-    list,
-    listInfo,
-  }),
-  $users,
-};
+export const userReducers = combineReducers({
+  list,
+  listInfo,
+  ui,
+});
 
 // epics
 export const fetchingUserEpic = action$ => (
@@ -65,7 +67,7 @@ export const fetchingUserEpic = action$ => (
     .switchMap(payload =>
       Observable.concat(
         Observable.of(_ACTIONS.receiveUsers(payload.response)),
-        Observable.of(_ACTIONS.setUserCount(httpHeaders(payload.xhr.getAllResponseHeaders())['x-total-count'])),
+        Observable.of(_ACTIONS.setUsersCount(httpHeaders(payload.xhr.getAllResponseHeaders())['x-total-count'])),
         Observable.of(_ACTIONS.appFetchingUserFulfilled())
       )
     )

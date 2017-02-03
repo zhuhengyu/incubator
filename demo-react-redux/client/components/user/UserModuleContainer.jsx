@@ -9,7 +9,7 @@ import { loadUserEditForm } from '../../store/actions/editForm';
 import UserModule from './UserModule';
 
 const mapStateToProps = state => {
-  let editFormInitData = state.editForm.get('userForm').toJS();
+  let editFormInitData = state.editForm.toJS().userEditForm;
   editFormInitData.age = +editFormInitData.age;
   let users = state.users.toJS();
   users.list.forEach(user => user.age = + user.age);
