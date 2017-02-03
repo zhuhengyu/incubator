@@ -69,11 +69,6 @@ myObject.func();
 // inner func:  self.foo = bar
 ```
 
+#### 4.将一整个JavaScript代码段包进一个函数块中有什么原因或者意义？
 
-
-
-
-
-
-
-
+IIFE。
