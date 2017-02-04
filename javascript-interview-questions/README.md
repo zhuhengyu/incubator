@@ -149,6 +149,7 @@ console.log(typeof NaN); // number
 ```javascript
 console.log(Math.sqrt(-1)); //NaN
 console.log(+'foo'); // NaN
+console.log(0 / 0); // NaN
 ```
 
 JavaScript中提供了全局函数```isNaN()```来判断一个变量是否是NaN，但是并不是很可靠。
@@ -173,3 +174,5 @@ Number.isNaN({}); // false
 const foo = NaN;
 console.log(foo === foo);
 ```
+
+>注意0 / 0是NaN，但别的实数除零就不是NaN了，而是Infinity或者-Infinity。
