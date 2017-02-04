@@ -76,3 +76,100 @@ myObject.func();
 IIFE就是创建了一个闭包，并且立即执行，IIFE是一个表达式，并且是立即执行的。
 
 它的主要作用是创建一个私有命名空间，避免和其他模块和库产生明明冲突，也因此其在开发各种模块和库的时候经常用到。
+
+#### 5.在JavaScript文件开头使用'use strict'有什么好处或者意义？
+
+JavaScript中的```'use strict'```表示严格模式，由于一些历史原因，JavaScript在ES3时代有一些不合理的设计，在ES5中当然不能直接禁止这些不合理设计的存在，因为必须要考虑版本兼容性问题，于是在ES5中推出了严格模式来避免这些设计的使用。
+
+一般而言使用严格模式都是一种好的实践。
+
+1. 严格模式下变量必须先声明再使用，不存在默认给```global```定义属性；
+2. 对象属性禁止重复定义；
+3. 限定```this```，在严格模式下，嵌套函数的```this```只指向```undefined```（没有使用```bind()```或其他函数绑定的情况下）；
+4. ```eval()```函数变得更安全；
+5. 错误使用```delete```关键字时报错等等。
+
+严格模式可以放在全局环境下（文件开始处），也可以放在某个函数的开始处。
+
+```javascript
+function foo() {
+  'use strict'
+  // ...
+}
+```
+
+>应该避免eval()函数的使用，除非你非常清楚的知道你在干什么，并且除了eval()以外没有更好的做法。
+
+#### 6.下面两段代码是否输出同样内容？
+
+```javascript
+function foo1() {
+  return {
+    bar: 'hello'
+  };
+}
+```
+
+```javascript
+function foo2() {
+  return
+  {
+    bar: 'hello'
+  };
+}
+```
+
+结果是第一段代码返回了正确的对象，第二段代码返回的是```undefined```。
+
+这是JavaScript的和分号的一个坑，第一段代码很好解释，第二段代码实际上等价于：
+
+```javascript
+function foo2() {
+  return ;
+  {
+    bar: 'hello'
+  };
+}
+```
+
+>JavaScript中的函数、对象的左大括号的位置请永远放在和函数名、对象名同一行的位置（1TBS方式，即本例中的第一种），而不应该另起一行（Allman方式，常用于C语言中的对其方式，即本例中的第二种）。具体可以参考：[Indent Style](https://en.wikipedia.org/wiki/Indent_style#Placement_of_braces)。
+
+>请永远使用分号。JavaScript本身是一个规则比较弱的语言，如果编码不得当而自己对JavaScript理解又不深，经常会出现这种坑。可以借助ESLint等工具强制检查自己的代码。
+
+#### 7.NaN是什么？如何可靠的检测一个变量是否是NaN？
+
+JavaScript中的```NaN```是Not a Number的缩写，但实际上它又属于数字类型。
+
+```javascript
+console.log(typeof NaN); // number
+```
+
+它用于一些特殊情况，比如开方一个负数，或者转换一个无法被转换为数字的字符串。
+
+```javascript
+console.log(Math.sqrt(-1)); //NaN
+console.log(+'foo'); // NaN
+```
+
+JavaScript中提供了全局函数```isNaN()```来判断一个变量是否是NaN，但是并不是很可靠。
+
+```javascript
+isNaN(NaN); // true
+isNaN(undefined); // true
+isNaN({}); // true
+```
+
+如果想要更精确的结果，应该用ES6中的```Number.isNaN()```方法。
+
+```javascript
+Number.isNaN(NaN); // true
+Number.isNaN(undefined); // false
+Number.isNaN({}); // false
+```
+
+或者```NaN```自身不等于自身这一个特性。
+
+```javascript
+const foo = NaN;
+console.log(foo === foo);
+```
