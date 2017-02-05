@@ -2,7 +2,7 @@
 
 #### 1.typeof bar === 'object'会有什么潜在问题？如何避免这个潜在问题？
 
-如果```bar```确实是一个普通的对象类型，那```typeof bar === 'object'```会返回```true```，然而JavaScript中，但如果上面的```bar```是数组或者```null```，那上面的等式也是成立的。一种可行的做法是```Object.prototype.toString.apply(bar) === '[object Object]'```。注意这里不能直接调用```bar.toString()```，而是转换一下，使用上面的方式，因为如果当```bar```是```null```的时候将会有编译错误。
+如果```bar```确实是一个普通的对象类型，那```typeof bar === 'object'```会返回```true```，然而JavaScript中，但如果上面的```bar```是数组或者```null```，那上面的等式也是成立的。一种可行的做法是```Object.prototype.toString.apply(bar) === '[object Object]'```。
 
 ```javascript
 const foo = {};
@@ -13,6 +13,8 @@ console.log(Object.prototype.toString.apply(foo)); // [object Object]
 console.log(Object.prototype.toString.apply(bar)); // [object Array]
 console.log(Object.prototype.toString.apply(baz)); // [object Null]
 ```
+
+>注意这里不能直接调用```bar.toString()```，而是转换一下，使用上面的方式，因为如果当```bar```是```null```的时候将会有编译错误。
 
 #### 2.下面的代码将会输出什么？为什么？
 
@@ -38,7 +40,7 @@ console.log("b defined? " + (typeof b !== 'undefined'));
 
 注意这里，```b```实际上是一个全局变量，所以b的作用范围明显能在任何地方呗访问到（如果没有被子作用域覆盖掉的话）。所以输出的结果，第一行是```false```，第二行是```true```。
 
->注意，实际编码过程中不要这样声明变量，应该一次声明占一行，此外不推荐使用全局变量，比如上述代码，如果在严格模式下是会报错的。熟悉ES6的同学也应该尽量使用let和const来声明变量或者常量（不存在变量提升）。
+>注意，实际编码过程中不要这样声明变量，应该一次声明占一行，此外不推荐使用全局变量，比如上述代码，如果在严格模式下是会报错的。熟悉ES6的同学也应该尽量使用```let```和```const```来声明变量或者常量（不存在变量提升）。
 
 #### 3.下面的代码将会输出什么？为什么？
 
@@ -98,7 +100,7 @@ function foo() {
 }
 ```
 
->应该避免eval()函数的使用，除非你非常清楚的知道你在干什么，并且除了eval()以外没有更好的做法。
+>应该避免```eval()```函数的使用，除非你非常清楚的知道你在干什么，并且除了```eval()```以外没有更好的做法。
 
 #### 6.下面两段代码是否输出同样内容？
 
@@ -175,4 +177,4 @@ const foo = NaN;
 console.log(foo === foo);
 ```
 
->注意0 / 0是NaN，但别的实数除零就不是NaN了，而是Infinity或者-Infinity。
+>注意```0 / 0```是```NaN```，但别的实数除零就不是```NaN```了，而是```Infinity```或者```-Infinity```。
