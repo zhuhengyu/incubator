@@ -14,7 +14,7 @@ console.log(Object.prototype.toString.apply(bar)); // [object Array]
 console.log(Object.prototype.toString.apply(baz)); // [object Null]
 ```
 
->注意这里不能直接调用```bar.toString()```，而是转换一下，使用上面的方式，因为如果当```bar```是```null```的时候将会有编译错误。
+>注意这里不能直接调用```bar.toString()```，而是转换一下，使用上面的方式，因为如果当```bar```是```null```的时候将会报错误。
 
 #### 2.下面的代码将会输出什么？为什么？
 
