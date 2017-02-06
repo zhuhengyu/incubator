@@ -242,10 +242,10 @@ function isInteger(x) {
 
 ```javascript
 (function() {
-    console.log(1); 
-    setTimeout(function(){console.log(2)}, 1000); 
-    setTimeout(function(){console.log(3)}, 0); 
-    console.log(4);
+  console.log(1); 
+  setTimeout(function(){console.log(2)}, 1000); 
+  setTimeout(function(){console.log(3)}, 0); 
+  console.log(4);
 })();
 ```
 
@@ -445,12 +445,12 @@ console.log( "A" - "B" + 2); // NaN
 var list = readHugeList();
 
 var nextListItem = function() {
-    var item = list.pop();
+  var item = list.pop();
 
-    if (item) {
-        // process the list item...
-        nextListItem();
-    }
+  if (item) {
+    // process the list item...
+    nextListItem();
+  }
 };
 ```
 
@@ -460,12 +460,12 @@ var nextListItem = function() {
 var list = readHugeList();
 
 var nextListItem = function() {
-    var item = list.pop();
+  var item = list.pop();
 
-    if (item) {
-        // process the list item...
-        setTimeout(nextListItem, 0);
-    }
+  if (item) {
+    // process the list item...
+    setTimeout(nextListItem, 0);
+  }
 };
 ```
 
