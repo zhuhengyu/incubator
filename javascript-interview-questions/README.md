@@ -201,7 +201,7 @@ console.log((0.1 * TEN + 0.2 * TEN) / TEN);
 
 在ES6中，已经有这样的方法了：```Number.isInteger(x)```。
 
-1. 最干净简介的写法：
+- 最干净简介的写法：
 
 ```javascript
 function isInteger(x) {
@@ -209,7 +209,7 @@ function isInteger(x) {
 } 
 ```
 
-2. 取整法：
+- 取整法：
 
 ```javascript
 function isInteger(x) {
@@ -217,7 +217,7 @@ function isInteger(x) {
 }
 ```
 
-3. 取余法：
+- 取余法：
 
 ```javascript
 function isInteger(x) {
@@ -226,7 +226,7 @@ function isInteger(x) {
 ```
 
 
-错误写法：
+- **错误写法：**
 
 ```javascript
 function isInteger(x) {
@@ -285,7 +285,7 @@ console.log(sum(2)(3));  // Outputs 5
 
 这个题目的考察点有几个，实现的方式也有不同（这里不考虑参数类型的判断问题）。
 
-1. 直接理解，既然可能是一个参数，也可能是两个参数，那就直接写：
+- 直接理解，既然可能是一个参数，也可能是两个参数，那就直接写：
 
 ```javascript
 function sum(x, y) {
@@ -299,7 +299,7 @@ function sum(x, y) {
 }
 ```
 
-2. 使用```arguments```，和第一种方法类似：
+- 使用```arguments```，和第一种方法类似：
 
 ```javascript
 function sum() {
@@ -313,7 +313,7 @@ function sum() {
 }
 ```
 
-3. 函数柯里化，这个应该是面试官最想看到的答案，因为它适用于任何函数：
+- 函数柯里化，这个应该是面试官最想看到的答案，因为它适用于任何函数：
 
 ```javascript
 const curry = (() => {
@@ -361,7 +361,7 @@ for (var i = 0; i < 5; i++) {
 
 实际上当上面代码片段执行完成之后，所有绑定的事件处理函数中访问到的```i```都是同一个```i```，他们都访问的是同一个函数作用域。也就是说输出的都是```5```。
 
-1. 为了解决这个问题，我们需要为每一个事件添加一个作用域，以保存当前循环中的```i```。
+- 为了解决这个问题，我们需要为每一个事件添加一个作用域，以保存当前循环中的```i```。
 
 ```javascript
 for (var i = 0; i < 5; i++) {
@@ -374,7 +374,7 @@ for (var i = 0; i < 5; i++) {
 }
 ```
 
-2. 或者使用```forEach()```方法，```forEach()```每一次循环都是一个新的函数作用域。
+- 或者使用```forEach()```方法，```forEach()```每一次循环都是一个新的函数作用域。
 
 ```javascript
 ['a', 'b', 'c', 'd', 'e'].forEach(function (value, i) {
@@ -385,7 +385,7 @@ for (var i = 0; i < 5; i++) {
 });
 ```
 
-3. 又或者使用ES6中的```let```，```let```使用的是块级作用域。
+- 又或者使用ES6中的```let```，```let```使用的是块级作用域。
 
 ```javascript
 for (let i = 0; i < 5; i++) {
