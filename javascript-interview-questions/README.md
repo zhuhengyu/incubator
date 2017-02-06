@@ -1,5 +1,7 @@
 # 25道JavaScript必备面试题
 
+**原文：[25 Essential JavaScript Interview Questions](https://www.toptal.com/javascript/interview-questions)**
+
 ### 1.typeof bar === 'object'会有什么潜在问题？如何避免这个潜在问题？
 
 如果```bar```确实是一个普通的对象类型，那```typeof bar === 'object'```会返回```true```，然而JavaScript中，但如果上面的```bar```是数组或者```null```，那上面的等式也是成立的。一种可行的做法是```Object.prototype.toString.apply(bar) === '[object Object]'```。
