@@ -40,7 +40,8 @@ console.log("b defined? " + (typeof b !== 'undefined'));
 ```javascript
 (function(){
   b = 3;
-  var a = b;
+  var a;
+  a = b;
 })();
 
 // ...

@@ -38,8 +38,8 @@ export const deleteUser = createAction(DELETE_USER, id => id);
 export const modifyUser = createAction(MODIFY_USER, user => user);
 export const receiveUsers = createAction(RECEIVE_USERS, users => users);
 export const setUsersCount = createAction(SET_USERS_COUNT, count => count);
-export const setPerPage5 = createAction(SET_PER_PAGE_5, () => 5);
-export const setPerPage10 = createAction(SET_PER_PAGE_10, () => 10);
+export const setPerPage5 = createAction(SET_PER_PAGE_5);
+export const setPerPage10 = createAction(SET_PER_PAGE_10);
 export const setCurPage = createAction(SET_CUR_PAGE, perPage => perPage);
 
 // app action
