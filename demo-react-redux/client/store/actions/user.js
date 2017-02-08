@@ -48,11 +48,9 @@ export const {
   appFetchingUser,
   appFetchingUserFailed,
   appFetchingUserFulfilled,
-} = createActions(
-  APP_FETCHING_USER,
-  APP_FETCHING_USER_FAILED,
-  APP_FETCHING_USER_FULFILLED
-);
+} = createActions({
+  APP_FETCHING_USER: (page = 1) => page,
+}, APP_FETCHING_USER_FAILED, APP_FETCHING_USER_FULFILLED);
 // adding user
 export const {
   appAddingUser,

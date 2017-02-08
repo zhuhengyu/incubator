@@ -62,12 +62,13 @@ export const userReducers = combineReducers({
 // epics
 export const fetchingUserEpic = action$ => (
   action$.ofType(_ACTIONS.APP_FETCHING_USER)
-  .switchMap(() =>
-    Observable.ajax.get(`${Api.API_USER}?page=1`)
+  .switchMap(action =>
+    Observable.ajax.get(`${Api.API_USER}?page=${action.payload}`)
     .switchMap(payload =>
       Observable.concat(
+        Observable.of(_ACTIONS.setCurPage(action.payload)),
         Observable.of(_ACTIONS.receiveUsers(payload.response)),
-        Observable.of(_ACTIONS.setUsersCount(httpHeaders(payload.xhr.getAllResponseHeaders())['x-total-count'])),
+        Observable.of(_ACTIONS.setUsersCount(+httpHeaders(payload.xhr.getAllResponseHeaders())['x-total-count'])),
         Observable.of(_ACTIONS.appFetchingUserFulfilled())
       )
     )

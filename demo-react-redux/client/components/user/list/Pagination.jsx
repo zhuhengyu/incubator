@@ -4,7 +4,12 @@
 
 import React from 'react';
 
-const Pagination = () => {
+const Pagination = props => {
+  const {
+    count,
+    curPage,
+    perPage,
+  } = props;
   return (
     <nav>
       <ul className="pagination">
@@ -13,11 +18,11 @@ const Pagination = () => {
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
-        <li className="active"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
+        {curPage - 2 > 0 ? <li><a href="#">{curPage - 2}</a></li> : null}
+        {curPage - 1 > 0 ? <li><a href="#">{curPage - 1}</a></li> : null}
+        <li className="active"><a href="#">{curPage}</a></li>
+        {curPage + 1 < Math.ceil(count / perPage) + 1 ? <li><a href="#">{curPage + 1}</a></li> : null}
+        {curPage + 2 < Math.ceil(count / perPage) + 1 ? <li><a href="#">{curPage + 2}</a></li> : null}
         <li>
           <a href="#" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
@@ -28,6 +33,10 @@ const Pagination = () => {
   );
 };
 
-Pagination.propTypes = {};
+Pagination.propTypes = {
+  count: React.PropTypes.number.isRequired,
+  curPage: React.PropTypes.number.isRequired,
+  perPage: React.PropTypes.number.isRequired,
+};
 
 export default Pagination;

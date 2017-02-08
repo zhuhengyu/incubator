@@ -46,7 +46,9 @@ const List = props => {
             </div>
             <row>
               <div className="col-sm-6 footnote-left">Showing 1 to 10 of {users.listInfo.count} entries</div>
-              <div className="col-sm-6 footnote-right"><Pagination /></div>
+              <div className="col-sm-6 footnote-right">
+                <Pagination count={users.listInfo.count} curPage={users.listInfo.curPage} perPage={users.listInfo.perPage} />
+              </div>
             </row>
           </div>
         </div>
