@@ -12,12 +12,12 @@
 
 ## 目录
 
-1. **[demo-immutable](https://github.com/oychao/incubator/tree/master/demo-immutable)** 开源库ImmutableJS基本示例。
-2. **[demo-frontend-static-boilerplate](https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate)**基于ES6，Gulp，Webpack的基本前端静态模板。
-3. **[demo-react-redux](https://github.com/oychao/incubator/tree/master/demo-react-redux)**基于ES6，Gulp，Webpack，Express，React，Redux，以及相关库的基本前端的用户列表CRUD示例。
-4. **[demo-redux](https://github.com/oychao/incubator/tree/master/demo-redux)** Redux和Redux-Observable示例。
-5. **[demo-functional-progamming](https://github.com/oychao/incubator/tree/master/demo-functional-programming)** 函数式编程。（柯里化函数示例）。
-6. **[javascript-interview-questions](https://github.com/oychao/incubator/tree/master/javascript-interview-questions)** JavaScript面试题目。
-7. demo-backend-faker 已移除。
+1. **[demo-frontend-static-boilerplate](https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate)**基于ES6，Gulp，Webpack的基本前端静态模板。
+2. **[demo-react-redux](https://github.com/oychao/incubator/tree/master/demo-react-redux)**基于ES6，Gulp，Webpack，Express，React，Redux，以及相关库的基本前端的用户列表CRUD示例。
+3. **[demo-redux](https://github.com/oychao/incubator/tree/master/demo-redux)** Redux和Redux-Observable示例。
+4. **[javascript-interview-questions](https://github.com/oychao/incubator/tree/master/javascript-interview-questions)** JavaScript面试题目。
+5. demo-immutable 已移除。
+6. demo-functional-progamming 已移除。
+7. demo-mocker 已移除。
 8. demo-gulp 已移除。
 9. demo-webpack 已移除。
