@@ -14,23 +14,13 @@ const Pagination = props => {
   return (
     <div>
       <div className="col-sm-6 footnote-left">
-<<<<<<< HEAD
-        Showing {curPage * perPage - perPage + 1} to&nbsp;
-        {curPage * perPage > count ? count : curPage * perPage} of {count} entries,&nbsp;
-        {curPage} of {Math.ceil(count / perPage)} pages.
-              </div>
-      <div className="col-sm-6 footnote-right">
-        <nav>
-          <ul className="pagination pagination-sm">
-=======
         Showing {curPage * perPage - perPage + 1} to {curPage * perPage > count ? count : curPage * perPage}&nbsp;
         of {count} entries,&nbsp;
         {curPage} of {Math.ceil(count / perPage)} pages.
       </div>
       <div className="col-sm-6 footnote-right">
         <nav>
-          <ul className="pagination">
->>>>>>> a4bef0b341acf4d040ae703b0bde23c8f3eb7657
+          <ul className="pagination pagination-sm">
             <li>
               <a href="#" onClick={() => fetchUserList(1)} aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
