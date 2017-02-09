@@ -9,9 +9,17 @@ import Pagination from './Pagination';
 
 const List = props => {
   const {
-    users,
+    users: {
+      list,
+      listInfo: {
+        count,
+        curPage,
+        perPage,
+      },
+    },
     handleUserDelete,
     handleLoadEditForm,
+    fetchUserList,
   } = props;
   return (
     <div className="row">
@@ -32,7 +40,7 @@ const List = props => {
                     </tr>
                   </thead>
                   <tbody>
-                    {users.list.map(user => {
+                    {list.map(user => {
                       return (<Profile
                         key={user.id}
                         name={user.name}
@@ -45,10 +53,8 @@ const List = props => {
               </div>
             </div>
             <row>
-              <div className="col-sm-6 footnote-left">Showing 1 to 10 of {users.listInfo.count} entries</div>
-              <div className="col-sm-6 footnote-right">
-                <Pagination count={users.listInfo.count} curPage={users.listInfo.curPage} perPage={users.listInfo.perPage} />
-              </div>
+              <Pagination count={count} curPage={curPage}
+                perPage={perPage} fetchUserList={fetchUserList} />
             </row>
           </div>
         </div>
@@ -74,6 +80,7 @@ List.propTypes = {
   ),
   handleUserDelete: React.PropTypes.func.isRequired,
   handleLoadEditForm: React.PropTypes.func.isRequired,
+  fetchUserList: React.PropTypes.func.isRequired,
 };
 
 export default List;

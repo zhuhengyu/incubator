@@ -5,7 +5,7 @@
 import 'rxjs/Rx';
 import { combineReducers } from 'redux-immutable';
 import { handleActions, combineActions } from 'redux-actions';
-import { List, Map } from 'immutable';
+import { List, Map, fromJS } from 'immutable';
 import { Observable } from 'rxjs/Observable';
 import { combineEpics } from 'redux-observable';
 import { reset } from 'redux-form';
@@ -17,7 +17,7 @@ import * as Api from '../api.config';
 
 // user list state reducer
 const list = handleActions({
-  [_ACTIONS.RECEIVE_USERS]: (state, action) => state.merge(action.payload),
+  [_ACTIONS.RECEIVE_USERS]: (state, action) => fromJS(action.payload),
   [_ACTIONS.ADD_USER]: (state, action) => state.push(Map(action.payload)),
   [_ACTIONS.DELETE_USER]: (state, action) => state.filter(user => user.get('id') !== action.payload),
   [_ACTIONS.MODIFY_USER]: (state, action) => state.map(user => user.get('id') === action.payload.id ? Map(action.payload) : user),

@@ -10,7 +10,7 @@ import * as _ACTIONS from '../actions/editForm';
 
 const userEditForm = handleActions({
   [_ACTIONS.LOAD_USER_EDIT_FORM]: (state, action) => Map(action.payload),
-  [_ACTIONS.CLEAR_USER_EDIT_FORM]: () => Map({ id: '', name: '', age: 0 }),
+  [_ACTIONS.CLEAR_USER_EDIT_FORM]: () => Map({ id: null, name: null, age: 0 }),
 }, Map({}));
 
 export const editFormReducers = combineReducers({

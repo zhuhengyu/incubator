@@ -16,6 +16,7 @@ const UserModule = props => {
     handleLoadEditForm,
     handleResetEditForm,
     handleUserEdit,
+    fetchUserList,
   } = props;
   return (
     <div className="page-wrapper">
@@ -26,7 +27,8 @@ const UserModule = props => {
           </h3>
         </div>
       </div>
-      <List users={users} handleUserDelete={handleUserDelete} handleLoadEditForm={handleLoadEditForm} />
+      <List users={users} handleUserDelete={handleUserDelete}
+        handleLoadEditForm={handleLoadEditForm} fetchUserList={fetchUserList} />
       <AddForm onSubmit={handleUserAdd} />
       <EditForm
         initialValues={editFormInitData}
@@ -63,6 +65,8 @@ UserModule.propTypes = {
   handleResetEditForm: React.PropTypes.func.isRequired,
   // load data to form
   handleLoadEditForm: React.PropTypes.func.isRequired,
+  // fetch user list
+  fetchUserList: React.PropTypes.func.isRequired,
 };
 
 export default UserModule;

@@ -10,34 +10,49 @@ let AddForm = props => {
     handleSubmit,
   } = props;
   return (
-    <div className="row">
-      <div className="col-sm-12">
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            Add User
-          </div>
-          <div className="panel-body">
-            <div className="row">
-              <div className="col-sm-12">
-                <form role="form" onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label>Name</label>
-                    <Field className="form-control" name="name" component="input" type="text" />
-                  </div>
-                  <div className="form-group">
-                    <label>Age: </label>
-                    <Field className="form-control" name="age" component="input" type="number" />
-                  </div>
-                  <div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
-                  </div>
-                </form>
+    <div>
+      <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addUserForm">Large modal</button>
+      <div id="addUserForm" className="modal fade" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div className="modal-dialog modal-sm" role="document">
+          <div className="modal-content">
+            <form role="form" onSubmit={handleSubmit}>
+              <div className="modal-header">
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 className="modal-title" id="gridSystemModalLabel">Add User</h4>
               </div>
-            </div>
+              <div className="modal-body">
+                <div className="row">
+                  <div className="col-sm-12">
+                    <div className="panel panel-default">
+                      <div className="panel-body">
+                        <div className="row">
+                          <div className="col-sm-12">
+                            <div className="form-group">
+                              <label>Name</label>
+                              <Field className="form-control" name="name" component="input" type="text" />
+                            </div>
+                            <div className="form-group">
+                              <label>Age: </label>
+                              <Field className="form-control" name="age" component="input" type="number" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <div>
+                  <button type="submit" className="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
     </div>
+
   );
 };
 
