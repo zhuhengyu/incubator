@@ -28,9 +28,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   handleUserAdd: user => $('#addUserForm').modal('hide') && dispatch(appAddingUser(user)),
   handleUserDelete: id => dispatch(appDeletingUser(id)),
-  handleLoadEditForm: user => dispatch(loadUserEditForm(user)),
-  handleResetEditForm: () => dispatch(clearUserEditForm()),
-  handleUserEdit: user => dispatch(appModifyingUser(user)),
+  handleLoadEditForm: user => $('#editUserForm').modal('show') && dispatch(loadUserEditForm(user)),
+  handleResetEditForm: () => $('#editUserForm').modal('hide') && dispatch(clearUserEditForm()),
+  handleUserEdit: user => $('#editUserForm').modal('hide') && dispatch(appModifyingUser(user)),
   fetchUserList: page => dispatch(appFetchingUser(page)),
 });
 

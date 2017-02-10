@@ -7,37 +7,37 @@ import { Field, reduxForm } from 'redux-form';
 
 let EditForm = props => {
   const {
-    initialValues,
     handleSubmit,
     onReset,
   } = props;
   return (
-    <div className={`row ${initialValues.id ? 'editing' : 'editingFinished'}`}>
-      <div className="col-sm-12">
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            Edit User
-          </div>
-          <div className="panel-body">
-            <div className="row">
-              <div className="col-sm-12">
-                <form role="form" onSubmit={handleSubmit} onReset={onReset}>
-                  <Field name="id" component="input" type="hidden" />
-                  <div className="form-group">
-                    <label>Name</label>
-                    <Field className="form-control" name="name" component="input" type="text" />
-                  </div>
-                  <div className="form-group">
-                    <label>Age: </label>
-                    <Field className="form-control" name="age" component="input" type="number" />
-                  </div>
-                  <div>
-                    <button className="btn btn-primary" type="submit">Submit</button>
-                    <button className="btn btn-default" type="reset">Cancel</button>
-                  </div>
-                </form>
+    <div>
+      <div id="editUserForm" className="modal fade" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div className="modal-dialog modal-sm" role="document">
+          <div className="modal-content">
+            <form role="form" onSubmit={handleSubmit} onReset={onReset}>
+              <Field name="id" component="input" type="hidden" />
+              <div className="modal-header">
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 className="modal-title" id="gridSystemModalLabel">Edit User</h4>
               </div>
-            </div>
+              <div className="modal-body">
+                <div className="form-group">
+                  <label className="control-label">Name:</label>
+                  <Field className="form-control" name="name" component="input" type="text" />
+                </div>
+                <div className="form-group">
+                  <label className="control-label">Age:</label>
+                  <Field className="form-control" name="age" component="input" type="number" />
+                </div>
+              </div>
+              <div className="modal-footer">
+                <div>
+                  <button className="btn btn-primary" type="submit">Submit</button>
+                  <button className="btn btn-default" type="reset">Cancel</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -46,8 +46,6 @@ let EditForm = props => {
 };
 
 EditForm.propTypes = {
-  // need to check if initialized
-  initialValues: React.PropTypes.object,
   // on submit event handler
   handleSubmit: React.PropTypes.func.isRequired,
   // handle event handler

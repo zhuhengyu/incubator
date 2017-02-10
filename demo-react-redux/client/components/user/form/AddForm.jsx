@@ -13,7 +13,7 @@ let AddForm = props => {
   return (
     <div>
       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addUserForm">
-        Large modal
+        Add User
       </button>
       <div id="addUserForm" className="modal fade" tabIndex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
         <div className="modal-dialog modal-sm" role="document">
@@ -35,7 +35,7 @@ let AddForm = props => {
               </div>
               <div className="modal-footer">
                 <div>
-                  <button type="submit" className="btn btn-primary">Submit</button>
+                  <button className="btn btn-primary" type="submit">Submit</button>
                 </div>
               </div>
             </form>
