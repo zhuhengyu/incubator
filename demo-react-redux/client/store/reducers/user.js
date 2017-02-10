@@ -41,9 +41,9 @@ const ui = handleActions({
   [combineActions(_ACTIONS.APP_FETCHING_USER_FAILED, _ACTIONS.APP_FETCHING_USER_FULFILLED)]: state => state.set('fetchingUser', false),
   [_ACTIONS.APP_ADDING_USER]: state => (state.set('addingUser', true)),
   [combineActions(_ACTIONS.APP_ADDING_USER_FAILED, _ACTIONS.APP_ADDING_USER_FULFILLED)]: state => state.set('addingUser', false),
-  [_ACTIONS.APP_DELETING_USER]: state => (state.set('deletingUser', true)),
+  [_ACTIONS.APP_DELETING_USER]: state => state.set('deletingUser', true),
   [combineActions(_ACTIONS.APP_DELETING_USER_FAILED, _ACTIONS.APP_DELETING_USER_FULFILLED)]: state => state.set('deletingUser', false),
-  [_ACTIONS.APP_MODIFYING_USER]: state => (state.set('modifyUser', true)),
+  [_ACTIONS.APP_MODIFYING_USER]: state => state.set('modifyUser', true),
   [combineActions(_ACTIONS.APP_MODIFYING_USER_FAILED, _ACTIONS.APP_MODIFYING_USER_FULFILLED)]: state => state.set('modifyUser', false),
 }, Map({
   fetchingUser: false,

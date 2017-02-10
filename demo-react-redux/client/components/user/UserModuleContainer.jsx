@@ -3,12 +3,13 @@
  */
 
 import { connect } from 'react-redux';
+import $ from 'jquery';
 
 import {
   appFetchingUser,
   appAddingUser,
   appDeletingUser,
-  appModifyingUser
+  appModifyingUser,
 } from '../../store/actions/user';
 import { loadUserEditForm, clearUserEditForm } from '../../store/actions/editForm';
 import UserModule from './UserModule';
@@ -25,7 +26,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleUserAdd: user => dispatch(appAddingUser(user)),
+  handleUserAdd: user => $('#addUserForm').modal('hide') && dispatch(appAddingUser(user)),
   handleUserDelete: id => dispatch(appDeletingUser(id)),
   handleLoadEditForm: user => dispatch(loadUserEditForm(user)),
   handleResetEditForm: () => dispatch(clearUserEditForm()),

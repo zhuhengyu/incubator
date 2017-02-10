@@ -2,19 +2,22 @@
  * Created by 欧阳 超 on 2017/01/07.
  */
 
-import fs from 'fs';
+// import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 // import HappyPack from 'happypack';
 // import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-const modules = {};
-fs.readdirSync('node_modules')
-  .filter(_ => [
-    'jquery',
-  ].indexOf(_) !== -1)
-  .forEach(_ => modules[_] = `${_}`);
+const modules = {
+  'jquery': 'jQuery',
+};
+// const modules = {};
+// fs.readdirSync('node_modules')
+//   .filter(_ => [
+//     'jquery',
+//   ].indexOf(_) !== -1)
+//   .forEach(_ => modules[_] = `${_}`);
 
 const plugins = [];
 const htmlWebpackPlugin = new HtmlWebpackPlugin({

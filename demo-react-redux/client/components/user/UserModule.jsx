@@ -1,7 +1,7 @@
 /**
  * Created by 欧阳 超 on 2017/01/10.
  */
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import AddForm from './form/AddForm';
 import EditForm from './form/EditForm';
@@ -41,32 +41,36 @@ const UserModule = props => {
 UserModule.propTypes = {
   // STATEs:
   // user list data and info
-  users: React.PropTypes.shape(React.PropTypes.shape({
-    list: React.PropTypes.arrayOf(React.PropTypes.shape({
-      name: React.PropTypes.string.isRequired,
-      age: React.PropTypes.number.isRequired,
+  users: PropTypes.shape(PropTypes.shape({
+    list: PropTypes.arrayOf(PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      age: PropTypes.number.isRequired,
     })).isRequired,
-    listInfo: React.PropTypes.object.isRequired,
+    listInfo: PropTypes.shape({
+      count: PropTypes.number.isRequired,
+      curPage: PropTypes.number.isRequired,
+      perPage: PropTypes.number.isRequired,
+    }).isRequired,
   }).isRequired).isRequired,
   // user data to be editing
-  editFormInitData: React.PropTypes.shape({
-    id: React.PropTypes.string,
-    name: React.PropTypes.string,
-    age: React.PropTypes.number,
+  editFormInitData: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    age: PropTypes.number,
   }).isRequired,
   // FUNCTIONs:
   // handle adding
-  handleUserAdd: React.PropTypes.func.isRequired,
+  handleUserAdd: PropTypes.func.isRequired,
   // handle deleting
-  handleUserDelete: React.PropTypes.func.isRequired,
+  handleUserDelete: PropTypes.func.isRequired,
   // handle modifying
-  handleUserEdit: React.PropTypes.func.isRequired,
+  handleUserEdit: PropTypes.func.isRequired,
   // reset form
-  handleResetEditForm: React.PropTypes.func.isRequired,
+  handleResetEditForm: PropTypes.func.isRequired,
   // load data to form
-  handleLoadEditForm: React.PropTypes.func.isRequired,
+  handleLoadEditForm: PropTypes.func.isRequired,
   // fetch user list
-  fetchUserList: React.PropTypes.func.isRequired,
+  fetchUserList: PropTypes.func.isRequired,
 };
 
 export default UserModule;
