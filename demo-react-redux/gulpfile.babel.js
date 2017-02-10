@@ -9,23 +9,24 @@ import nodemon from 'gulp-nodemon';
 import eslint from 'gulp-eslint';
 import mocha from 'gulp-mocha';
 import babel from 'gulp-babel';
-import uglify from 'gulp-uglify';
 import gulpSequence from 'gulp-sequence';
 import livereload from 'gulp-livereload';
 import del from 'del';
 
 import nodemon_config from './config/nodemon.config.babel';
-import webpack_config from './config/webpack.config.babel';
+import webpack_server_config from './config/webpack.server.config.babel';
+import webpack_client_config from './config/webpack.client.config.babel';
 
 gulp.task('clean', () => {
   del('dist');
 });
 
 gulp.task('lint', () => {
-  return gulp.src([
+  const src = [
     'client/**/*.js',
     'client/**/*.jsx',
-  ])
+  ];
+  return gulp.src(src)
     .pipe(plumber())
     .pipe(eslint())
     .pipe(eslint.format())
@@ -33,9 +34,10 @@ gulp.task('lint', () => {
 });
 
 gulp.task('test', () => {
-  return gulp.src([
+  const src = [
     'test/**/*.test.js',
-  ])
+  ];
+  return gulp.src(src)
     .pipe(plumber())
     .pipe(babel({
       'presets': [
@@ -50,12 +52,20 @@ gulp.task('test', () => {
     .pipe(plumber.stop());
 });
 
-gulp.task('webpack', () => {
+gulp.task('webpack.client', () => {
   return gulp.src([])
     .pipe(plumber())
-    .pipe(webpack_stream(webpack_config))
+    .pipe(webpack_stream(webpack_client_config))
     .pipe(plumber.stop())
     .pipe(gulp.dest('dist/client'));
+});
+
+gulp.task('webpack.server', () => {
+  return gulp.src([])
+    .pipe(plumber())
+    .pipe(webpack_stream(webpack_server_config))
+    .pipe(plumber.stop())
+    .pipe(gulp.dest('dist/server'));
 });
 
 gulp.task('nodemon', () => {
@@ -71,18 +81,6 @@ gulp.task('nodemon', () => {
           .pipe(plumber.stop());
       }, 8e2);
     });
-});
-
-gulp.task('server', () => {
-  return gulp.src([
-    'server/app.js',
-    'server/database.js',
-  ])
-    .pipe(plumber())
-    .pipe(babel())
-    // .pipe(uglify())
-    .pipe(plumber.stop())
-    .pipe(gulp.dest('dist/server'));
 });
 
 gulp.task('watch:client', () => {
@@ -123,14 +121,12 @@ gulp.task('default', gulpSequence(
   ], [
     //   'test',
     // ], [
-    'server',
-  ], [
-    'webpack',
+    'webpack.client',
+    'webpack.server',
   ], [
     'nodemon',
     // ], [
     // 'watch:client',
     // 'watch:test',
     // 'watch:server',
-  ])
-);
+  ]));

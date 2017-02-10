@@ -109,11 +109,12 @@ loaders.push({
   ],
 });
 
-const webpack_config = {
+const webpack_client_config = {
   cache: true,
   entry: {
     client: './client/client.jsx',
   },
+  target: 'web',
   // devtool: 'source-map',
   // devtool: 'eval-source-map',
   devtool: 'eval',
@@ -132,4 +133,4 @@ const webpack_config = {
   plugins,
 };
 
-export default webpack_config;
+export default webpack_client_config;
