@@ -6,30 +6,15 @@ import fs from 'fs';
 import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import HappyPack from 'happypack';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+// import HappyPack from 'happypack';
+// import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-// const modules = {};
-// fs.readdirSync('node_modules')
-//   .filter(_ => [
-//     '.bin',
-//     'react',
-//     'react-dom',
-//     'object-assign',
-//     'react-router',
-//     'redux',
-//     'react-redux',
-//     'redux-observable',
-//     'setimmediate',
-//     'rxjs',
-//     'invariant',
-//     'warning',
-//     'hoist-non-react-statics',
-//     'query-string',
-//     'strict-uri-encode',
-//     'symbol-observable',
-//   ].indexOf(_) === -1)
-//   .forEach(_ => modules[_] = `commonjs ${_}`);
+const modules = {};
+fs.readdirSync('node_modules')
+  .filter(_ => [
+    'jquery',
+  ].indexOf(_) !== -1)
+  .forEach(_ => modules[_] = `${_}`);
 
 const plugins = [];
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
@@ -57,29 +42,29 @@ const productionPlugin = new webpack.DefinePlugin({
     NODE_ENV: JSON.stringify('development'),
   }
 });
-const commonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin({
-  name: 'lib',
-  minChunks: module => {
-    const userRequest = module.userRequest;
-    if (typeof userRequest !== 'string') {
-      return false;
-    }
-    return userRequest.indexOf('bower_components') >= 0 ||
-      userRequest.indexOf('node_modules') >= 0 ||
-      userRequest.indexOf('libraries') >= 0;
-  }
-});
-const happyPackPlugin = new HappyPack({
-  loaders: [{
-    path: 'babel-loader',
-    query: {
-      presets: [
-        'react',
-        'es2015',
-      ],
-    },
-  }],
-});
+// const commonsChunkPlugin = new webpack.optimize.CommonsChunkPlugin({
+//   name: 'lib',
+//   minChunks: module => {
+//     const userRequest = module.userRequest;
+//     if (typeof userRequest !== 'string') {
+//       return false;
+//     }
+//     return userRequest.indexOf('bower_components') >= 0 ||
+//       userRequest.indexOf('node_modules') >= 0 ||
+//       userRequest.indexOf('libraries') >= 0;
+//   }
+// });
+// const happyPackPlugin = new HappyPack({
+//   loaders: [{
+//     path: 'babel-loader',
+//     query: {
+//       presets: [
+//         'react',
+//         'es2015',
+//       ],
+//     },
+//   }],
+// });
 // const bundleAnalyzerPlugin = new BundleAnalyzerPlugin({
 //   analyzerMode: 'server',
 //   analyzerPort: 8888,
@@ -137,7 +122,7 @@ const webpack_config = {
     filename: '[name].js',
     // filename: '[chunkhash].js',
   },
-  // externals: modules,
+  externals: modules,
   module: {
     loaders,
   },
