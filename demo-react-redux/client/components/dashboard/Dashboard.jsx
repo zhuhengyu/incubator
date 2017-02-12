@@ -8,15 +8,8 @@ import Spinner from '../common/Spinner';
 
 const Dashboard = () => (
   <div className="page-wrapper">
-    <div className="row">
-      <div className="col-lg-12">
-        <h3 className="page-header">
-          Dashboard
-        </h3>
-      </div>
-      <div className="col-lg-12">
-        <Spinner />
-      </div>
+    <div style={{ height: '100%', width: '100%', }}>
+      <Spinner />
     </div>
   </div>
 );
