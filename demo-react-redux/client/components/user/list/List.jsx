@@ -16,6 +16,9 @@ const List = props => {
         curPage,
         perPage,
       },
+      ui: {
+        fetchingUser,
+      },
     },
     handleUserDelete,
     handleLoadEditForm,
@@ -54,7 +57,7 @@ const List = props => {
             </div>
             <row>
               <Pagination count={count} curPage={curPage}
-                perPage={perPage} fetchUserList={fetchUserList} />
+                perPage={perPage} fetchUserList={fetchUserList} isFetchingUser={fetchingUser} />
             </row>
           </div>
         </div>

@@ -17,7 +17,7 @@ const modules = {
 //   .filter(_ => [
 //     'jquery',
 //   ].indexOf(_) !== -1)
-//   .forEach(_ => modules[_] = `${_}`);
+//   .forEach(_ => modules[_] = `commonjs ${_}`);
 
 const plugins = [];
 const htmlWebpackPlugin = new HtmlWebpackPlugin({

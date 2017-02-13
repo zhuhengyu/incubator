@@ -16,9 +16,13 @@ const Profile = (props) => {
       <td>{name}</td>
       <td>{age}</td>
       <td>
-        <a href="javascript:;" onClick={onDelete}>Delete</a>
+        <a href="javascript:;" onClick={onLoadEditForm}>
+          <span className="glyphicon glyphicon-edit"></span>
+        </a>
         &nbsp;|&nbsp;
-        <a href="javascript:;" onClick={onLoadEditForm}>Modify</a>
+        <a href="javascript:;" onClick={onDelete}>
+          <span className="glyphicon glyphicon-remove"></span>
+        </a>
       </td>
     </tr>
   );

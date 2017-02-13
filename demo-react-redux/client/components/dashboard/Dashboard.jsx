@@ -9,7 +9,7 @@ import Spinner from '../common/Spinner';
 const Dashboard = () => (
   <div className="page-wrapper">
     <div style={{ height: '100%', width: '100%', }}>
-      <Spinner />
+      <Spinner isInline={false} size={50} />
     </div>
   </div>
 );

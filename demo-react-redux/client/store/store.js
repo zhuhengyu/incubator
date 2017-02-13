@@ -30,6 +30,4 @@ const rootEpicMiddleware = createEpicMiddleware(rootEpic);
 
 let store = createStore(app, composeEnhancers(applyMiddleware(rootEpicMiddleware)));
 
-store.dispatch(appFetchingUser());
-
 export default store;

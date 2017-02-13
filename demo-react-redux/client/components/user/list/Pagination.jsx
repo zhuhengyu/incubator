@@ -2,21 +2,34 @@
  * Created by 欧阳 超 on 2017/01/27
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
+
+import Spinner from '../../common/Spinner';
 
 const Pagination = props => {
-  const {
+  let {
     count,
     curPage,
     perPage,
     fetchUserList,
+    isFetchingUser,
   } = props;
   return (
     <div>
       <div className="col-sm-6 footnote-left">
-        Showing {curPage * perPage - perPage + 1} to {curPage * perPage > count ? count : curPage * perPage}&nbsp;
-        of {count} entries,&nbsp;
-        {curPage} of {Math.ceil(count / perPage)} pages.
+        {
+          isFetchingUser ?
+            (
+              <span>
+                <Spinner isInline={true} size={16} /> Fetching user list.
+              </span>
+            ) : (
+              <span>
+                Showing {curPage * perPage - perPage + 1} to {curPage * perPage > count ? count : curPage * perPage}&nbsp;
+                  of {count} entries, {curPage} of {Math.ceil(count / perPage)} pages.
+              </span>
+            )
+        }
       </div>
       <div className="col-sm-6 footnote-right">
         <nav>
@@ -52,10 +65,11 @@ const Pagination = props => {
 };
 
 Pagination.propTypes = {
-  count: React.PropTypes.number.isRequired,
-  curPage: React.PropTypes.number.isRequired,
-  perPage: React.PropTypes.number.isRequired,
-  fetchUserList: React.PropTypes.func.isRequired,
+  count: PropTypes.number.isRequired,
+  curPage: PropTypes.number.isRequired,
+  perPage: PropTypes.number.isRequired,
+  fetchUserList: PropTypes.func.isRequired,
+  isFetchingUser: PropTypes.bool,
 };
 
 export default Pagination;

@@ -3,30 +3,27 @@
  */
 import React, { PropTypes } from 'react';
 
-import Spinner from '../common/Spinner';
 import AddForm from './form/AddForm';
 import EditForm from './form/EditForm';
 import List from './list/List';
 
-const UserModule = props => {
-  const {
-    users,
-    editFormInitData,
-    handleUserAdd,
-    handleUserDelete,
-    handleLoadEditForm,
-    handleResetEditForm,
-    handleUserEdit,
-    fetchUserList,
-  } = props;
-  return users.ui.fetchingUser ?
-    (
-      <div className="page-wrapper">
-        <div style={{ height: '100%', width: '100%', }}>
-          <Spinner />
-        </div>
-      </div>
-    ) : (
+class UserModule extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    const {
+      users,
+      editFormInitData,
+      handleUserAdd,
+      handleUserDelete,
+      handleLoadEditForm,
+      handleResetEditForm,
+      handleUserEdit,
+      fetchUserList,
+    } = this.props;
+    return (
       <div className="page-wrapper">
         <div className="row">
           <div className="col-lg-12">
@@ -44,7 +41,15 @@ const UserModule = props => {
           onReset={() => { handleResetEditForm(); }} />
       </div>
     );
-};
+  }
+
+  componentDidMount() {
+    const {users, fetchUserList} = this.props;
+    if (users.list.length === 0) {
+      fetchUserList();
+    }
+  }
+}
 
 UserModule.propTypes = {
   // STATEs:
@@ -59,16 +64,15 @@ UserModule.propTypes = {
       curPage: PropTypes.number.isRequired,
       perPage: PropTypes.number.isRequired,
     }).isRequired,
+    ui: PropTypes.shape({
+      fetchingUser: PropTypes.bool.isRequired,
+    }).isRequired,
   }).isRequired).isRequired,
   // user data to be editing
   editFormInitData: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
     age: PropTypes.number,
-  }).isRequired,
-  // ui state
-  ui: PropTypes.shape({
-    fetchingUser: PropTypes.bool.isRequired,
   }).isRequired,
   // FUNCTIONs:
   // handle adding
