@@ -9,7 +9,6 @@ import { routerReducer } from 'react-router-redux';
 
 import { userReducers, rootUserEpic } from './reducers/user';
 import { editFormReducers } from './reducers/editForm';
-import { appFetchingUser } from './actions/user';
 
 const app = combineReducers(
   Object.assign({

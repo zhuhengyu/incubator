@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import swal from 'sweetalert2';
 
 const Profile = (props) => {
   const {
@@ -20,7 +21,20 @@ const Profile = (props) => {
           <span className="glyphicon glyphicon-edit"></span>
         </a>
         &nbsp;|&nbsp;
-        <a href="javascript:;" onClick={onDelete}>
+        <a href="javascript:;" onClick={
+          () => {
+            swal({
+              title: 'Are you sure?',
+              text: 'You won\'t be able to revert this!',
+              type: 'warning',
+              showCancelButton: true,
+              width: '400px',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Delete'
+            }).then(onDelete);
+          }
+        }>
           <span className="glyphicon glyphicon-remove"></span>
         </a>
       </td>

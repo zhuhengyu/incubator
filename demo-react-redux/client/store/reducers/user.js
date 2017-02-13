@@ -14,6 +14,7 @@ import httpHeaders from 'http-headers';
 import * as _ACTIONS from '../actions/user';
 import * as _EDITFORM_ACTION from '../actions/editForm';
 import * as Api from '../api.config';
+import { success, error } from '../../tools/notifications';
 
 // user list state reducer
 const list = handleActions({
@@ -79,41 +80,56 @@ export const addingUserEpic = action$ => (
   action$.ofType(_ACTIONS.APP_ADDING_USER)
   .switchMap(action =>
     Observable.ajax.put(Api.API_USER, action.payload)
-    .switchMap(payload =>
-      Observable.concat(
+    .switchMap(payload => {
+      const obs = Observable.concat(
         Observable.of(_ACTIONS.addUser(payload.response.user)),
         Observable.of(_ACTIONS.appAddingUserFulfilled()),
         Observable.of(reset('userAddForm'))
-      )
-    )
-    .catch(() => Observable.of(_ACTIONS.appAddingUserFailed()))
+      );
+      success();
+      return obs;
+    })
+    .catch(() => {
+      error();
+      Observable.of(_ACTIONS.appAddingUserFailed());
+    })
   )
 );
 export const deletingUserEpic = action$ => (
   action$.ofType(_ACTIONS.APP_DELETING_USER)
   .switchMap(action =>
     Observable.ajax.delete(`${Api.API_USER}/${action.payload}`)
-    .switchMap(payload =>
-      Observable.concat(
+    .switchMap(payload => {
+      const obs = Observable.concat(
         Observable.of(_ACTIONS.deleteUser(payload.response.id)),
         Observable.of(_ACTIONS.appDeletingUserFulfilled())
-      )
-    )
-    .catch(() => Observable.of(_ACTIONS.appDeletingUserFailed()))
+      );
+      success();
+      return obs;
+    })
+    .catch(() => {
+      error();
+      return Observable.of(_ACTIONS.appDeletingUserFailed());
+    })
   )
 );
 export const modifyingUserEpic = action$ => (
   action$.ofType(_ACTIONS.APP_MODIFYING_USER)
   .switchMap(action =>
     Observable.ajax.post(Api.API_USER, action.payload)
-    .switchMap(payload =>
-      Observable.concat(
+    .switchMap(payload => {
+      const obs = Observable.concat(
         Observable.of(_ACTIONS.modifyUser(payload.response.user)),
         Observable.of(_ACTIONS.appModifyingUserFulfilled()),
         Observable.of(_EDITFORM_ACTION.clearUserEditForm())
-      )
-    )
-    .catch(() => Observable.of(_ACTIONS.appModifyingUserFailed()))
+      );
+      success();
+      return obs;
+    })
+    .catch(() => {
+      error();
+      Observable.of(_ACTIONS.appModifyingUserFailed());
+    })
   )
 );
 
