@@ -3,6 +3,7 @@
  */
 import React, { PropTypes } from 'react';
 
+import Spinner from '../common/Spinner';
 import AddForm from './form/AddForm';
 import EditForm from './form/EditForm';
 import List from './list/List';
@@ -18,24 +19,31 @@ const UserModule = props => {
     handleUserEdit,
     fetchUserList,
   } = props;
-  return (
-    <div className="page-wrapper">
-      <div className="row">
-        <div className="col-lg-12">
-          <h3 className="page-header">
-            User Admin
-          </h3>
+  return users.ui.fetchingUser ?
+    (
+      <div className="page-wrapper">
+        <div style={{ height: '100%', width: '100%', }}>
+          <Spinner />
         </div>
       </div>
-      <List users={users} handleUserDelete={handleUserDelete}
-        handleLoadEditForm={handleLoadEditForm} fetchUserList={fetchUserList} />
-      <AddForm onSubmit={handleUserAdd} />
-      <EditForm
-        initialValues={editFormInitData}
-        onSubmit={handleUserEdit}
-        onReset={() => { handleResetEditForm(); }} />
-    </div>
-  );
+    ) : (
+      <div className="page-wrapper">
+        <div className="row">
+          <div className="col-lg-12">
+            <h3 className="page-header">
+              User Admin
+          </h3>
+          </div>
+        </div>
+        <List users={users} handleUserDelete={handleUserDelete}
+          handleLoadEditForm={handleLoadEditForm} fetchUserList={fetchUserList} />
+        <AddForm onSubmit={handleUserAdd} />
+        <EditForm
+          initialValues={editFormInitData}
+          onSubmit={handleUserEdit}
+          onReset={() => { handleResetEditForm(); }} />
+      </div>
+    );
 };
 
 UserModule.propTypes = {
@@ -57,6 +65,10 @@ UserModule.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     age: PropTypes.number,
+  }).isRequired,
+  // ui state
+  ui: PropTypes.shape({
+    fetchingUser: PropTypes.bool.isRequired,
   }).isRequired,
   // FUNCTIONs:
   // handle adding
