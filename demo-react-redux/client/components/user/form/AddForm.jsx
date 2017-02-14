@@ -5,13 +5,12 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import RenderField from './common/RenderField';
+import RenderField, { required, isInt } from './common/RenderField';
 
 let AddForm = props => {
   const {
     handleSubmit,
   } = props;
-  const required = value => value ? undefined : 'Required';
   return (
     <div>
       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#addUserForm">
@@ -27,7 +26,7 @@ let AddForm = props => {
               </div>
               <div className="modal-body">
                 <Field className="form-control" name="name" type="text" label="Name" component={RenderField} validate={[required]} />
-                <Field className="form-control" name="age" type="number" label="Age" component={RenderField} validate={[required]} />
+                <Field className="form-control" name="age" type="text" label="Age" component={RenderField} validate={[required, isInt]} />
               </div>
               <div className="modal-footer">
                 <div>

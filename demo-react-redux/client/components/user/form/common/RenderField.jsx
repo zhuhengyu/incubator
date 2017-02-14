@@ -3,6 +3,7 @@
  */
 
 import React, { PropTypes } from 'react';
+import validator from 'validator';
 
 const RenderField = props => {
   const {
@@ -43,3 +44,16 @@ RenderField.propTypes = {
 };
 
 export default RenderField;
+
+export const required = value => value ? undefined : 'Required';
+export const isEmail = value => {
+  value += '';
+  return validator.isEmail(value) ? undefined : 'Invalid email';
+};
+export const isInt = value => {
+  value += '';
+  return validator.isInt(value, {
+    min: 18,
+    max: 60,
+  }) ? undefined : 'Invalid integer';
+};

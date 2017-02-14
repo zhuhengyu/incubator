@@ -5,6 +5,8 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
+import RenderField, { required, isInt } from './common/RenderField';
+
 let EditForm = props => {
   const {
     handleSubmit,
@@ -22,14 +24,8 @@ let EditForm = props => {
                 <h4 className="modal-title" id="gridSystemModalLabel">Edit User</h4>
               </div>
               <div className="modal-body">
-                <div className="form-group">
-                  <label className="control-label">Name:</label>
-                  <Field className="form-control" name="name" component="input" type="text" />
-                </div>
-                <div className="form-group">
-                  <label className="control-label">Age:</label>
-                  <Field className="form-control" name="age" component="input" type="number" />
-                </div>
+                <Field className="form-control" name="name" type="text" label="Name" component={RenderField} validate={[required]} />
+                <Field className="form-control" name="age" type="text" label="Age" component={RenderField} validate={[required, isInt]} />
               </div>
               <div className="modal-footer">
                 <div>
