@@ -29,6 +29,11 @@ const RenderField = props => {
         )
       ) : ''
     }
+    {
+      touched && hasError ? (
+        <div className="help-block">{error || warning}</div>
+      ) : ''
+    }
   </div>);
 };
 
@@ -55,5 +60,5 @@ export const isInt = value => {
   return validator.isInt(value, {
     min: 18,
     max: 60,
-  }) ? undefined : 'Invalid integer';
+  }) ? undefined : 'Integer needed, betwwen 18 and 60';
 };

@@ -5,7 +5,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import RenderField, { required, isInt } from './common/RenderField';
+import RenderField, { required, isInt } from '../../common/RenderField';
 
 let EditForm = props => {
   const {
