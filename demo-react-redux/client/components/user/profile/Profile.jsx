@@ -2,12 +2,13 @@
  * Created by ouyangcharles on 2017/01/10.
  */
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import swal from 'sweetalert2';
 
 const Profile = (props) => {
   const {
     name,
+    email,
     age,
     onDelete,
     onLoadEditForm,
@@ -15,6 +16,7 @@ const Profile = (props) => {
   return (
     <tr>
       <td>{name}</td>
+      <td>{email}</td>
       <td>{age}</td>
       <td>
         <a href="javascript:;" onClick={onLoadEditForm}>
@@ -43,10 +45,11 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  age: React.PropTypes.number.isRequired,
-  onDelete: React.PropTypes.func.isRequired,
-  onLoadEditForm: React.PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onLoadEditForm: PropTypes.func.isRequired,
 };
 
 export default Profile;

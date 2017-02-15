@@ -5,7 +5,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-import RenderField, { required, isInt } from '../../common/RenderField';
+import RenderField, { required, isWorkingAge, isEmail } from '../../common/RenderField';
 
 let AddForm = props => {
   const {
@@ -26,7 +26,8 @@ let AddForm = props => {
               </div>
               <div className="modal-body">
                 <Field name="name" type="text" label="Name" component={RenderField} validate={[required]} />
-                <Field name="age" type="text" label="Age" component={RenderField} validate={[required, isInt]} />
+                <Field name="email" type="text" label="Email" component={RenderField} validate={[required, isEmail]} />
+                <Field name="age" type="text" label="Age" component={RenderField} validate={[required, isWorkingAge]} />
               </div>
               <div className="modal-footer">
                 <div>

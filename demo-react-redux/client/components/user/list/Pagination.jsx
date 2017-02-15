@@ -50,7 +50,7 @@ const Pagination = props => {
               <li><a href="#" onClick={() => fetchUserList(curPage + 1)}>{curPage + 1}</a></li> :
               null}
             {curPage + 1 < Math.ceil(count / perPage) ?
-              <li><a href="#" onClick={() => fetchUserList(curPage + 1)}>{curPage + 2}</a></li> :
+              <li><a href="#" onClick={() => fetchUserList(curPage + 2)}>{curPage + 2}</a></li> :
               null}
             <li>
               <a href="#" onClick={() => fetchUserList(Math.ceil(count / perPage))} aria-label="Next">

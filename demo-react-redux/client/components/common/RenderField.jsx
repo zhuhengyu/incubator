@@ -55,7 +55,7 @@ export const isEmail = value => {
   value += '';
   return validator.isEmail(value) ? undefined : 'Invalid email';
 };
-export const isInt = value => {
+export const isWorkingAge = value => {
   value += '';
   return validator.isInt(value, {
     min: 18,

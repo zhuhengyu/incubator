@@ -26,12 +26,9 @@ app.get('/', (req, res) => {
 app.get('/data/users', (req, res) => {
   setTimeout(() => {
     res.set('X-Total-Count', db.users.length);
-    if (+req.query.page === 1) {
-      res.send(db.users.slice(0, 10));
-    } else {
-      res.send(db.users.slice(10));
-    }
-  }, 1e3);
+    const curPage = +req.query.page;
+    res.send(db.users.slice(curPage * 10 - 10, curPage * 10));
+  }, 0);
 });
 
 app.put('/data/users', (req, res) => {

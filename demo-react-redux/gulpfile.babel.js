@@ -79,7 +79,7 @@ gulp.task('nodemon', () => {
           .pipe(plumber())
           .pipe(livereload())
           .pipe(plumber.stop());
-      }, 8e2);
+      }, 1.3e3);
     });
 });
 

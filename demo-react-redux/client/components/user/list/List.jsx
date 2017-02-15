@@ -39,6 +39,7 @@ const List = props => {
                     <tr>
                       <th>Name</th>
                       <th>Age</th>
+                      <th>Email</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -46,8 +47,9 @@ const List = props => {
                     {list.map(user => {
                       return (<Profile
                         key={user.id}
-                        name={user.name}
                         age={user.age}
+                        name={user.name}
+                        email={user.email}
                         onDelete={() => handleUserDelete(user.id)}
                         onLoadEditForm={() => handleLoadEditForm(user)} />);
                     })}
