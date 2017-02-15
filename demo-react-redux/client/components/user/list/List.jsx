@@ -38,8 +38,8 @@ const List = props => {
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Age</th>
                       <th>Email</th>
+                      <th>Age</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
