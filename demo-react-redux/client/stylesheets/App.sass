@@ -11,17 +11,22 @@ body
   width: 100%
 
 .page-wrapper
-  padding: 0px 15px 15px 15px;
+  padding: 0px 15px;
   height: calc(100vh - 134px)
   background-color: white
   overflow-y: scroll
+
+.page-wrapper:after
+  content: ""
+  height: 15px
+  display: block
 
 @media (min-width: 768px)
   .page-wrapper
     height: calc(100vh - 51px)
     position: inherit
     margin: 0px 0px 0px 250px
-    padding: 0px 30px 15px 30px;
+    padding: 0px 30px;
     border-left: 1px solid #e7e7e7
 
 .swal2-modal
