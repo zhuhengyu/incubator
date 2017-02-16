@@ -9,11 +9,11 @@ const SideBar = () => (
   <div className="navbar-default sidebar" role="navigation">
     <div className="sidebar-nav navbar-collapse">
       <ul className="nav in" id="side-menu">
-        <li>
-          <Link to="/">Dashboard</Link>
+        <li className="active">
+          <Link to="/" activeClassName="active">Dashboard</Link>
         </li>
         <li>
-          <Link to="/users">Users</Link>
+          <Link to="/users" activeClassName="active">Users</Link>
         </li>
       </ul>
     </div>

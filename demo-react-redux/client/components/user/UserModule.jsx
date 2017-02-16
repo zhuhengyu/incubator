@@ -54,7 +54,7 @@ class UserModule extends React.Component {
 UserModule.propTypes = {
   // STATEs:
   // user list data and info
-  users: PropTypes.shape(PropTypes.shape({
+  users: PropTypes.shape({
     list: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
       age: PropTypes.number.isRequired,
@@ -67,7 +67,7 @@ UserModule.propTypes = {
     ui: PropTypes.shape({
       fetchingUser: PropTypes.bool.isRequired,
     }).isRequired,
-  }).isRequired).isRequired,
+  }).isRequired,
   // user data to be editing
   editFormInitData: PropTypes.shape({
     id: PropTypes.string,

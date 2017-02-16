@@ -4,17 +4,19 @@
 
 import React from 'react';
 
-import SideBar from './SideBar';
+import TabBar from './TabBar';
 
 const Nav = () => (
-  <nav className="navbar navbar-default navbar-static-top" role="navigation">
-    <div className="navbar-header">
-      <span className="navbar-brand">
-        boilerplate-react-redux
-      </span>
-    </div>
-    <SideBar />
-  </nav>
+  <div className="header">
+    <nav className="navbar navbar-default navbar-static-top my-navbar-header-color" role="navigation">
+      <div className="navbar-header">
+        <span className="my-navbar-brand">
+          boilerplate-react-redux
+        </span>
+      </div>
+    </nav>
+    <TabBar />
+  </div>
 );
 
 Nav.propTypes = {};
