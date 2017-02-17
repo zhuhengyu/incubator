@@ -11,7 +11,7 @@ const Nav = () => (
     <nav className="navbar navbar-default navbar-static-top my-navbar-header-color" role="navigation">
       <div className="navbar-header">
         <span className="my-navbar-brand">
-          boilerplate-react-redux
+          demo-react-redux
         </span>
       </div>
     </nav>

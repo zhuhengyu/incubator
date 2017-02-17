@@ -6,9 +6,9 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const TabBar = () => (
-  <ul className="nav nav-tabs">
+  <ul id="tabbar" className="nav nav-tabs">
     <li>
-      <Link to="/">Home</Link>
+      <Link to="/home">Home</Link>
     </li>
     <li>
       <Link to="/users">Users</Link>

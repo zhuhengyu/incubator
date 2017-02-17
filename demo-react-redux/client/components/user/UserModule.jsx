@@ -6,6 +6,7 @@ import React, { PropTypes } from 'react';
 import AddForm from './form/AddForm';
 import EditForm from './form/EditForm';
 import List from './list/List';
+import SideBar from '../nav/SideBar';
 
 class UserModule extends React.Component {
   constructor(props) {
@@ -24,21 +25,24 @@ class UserModule extends React.Component {
       fetchUserList,
     } = this.props;
     return (
-      <div className="page-wrapper">
-        <div className="row">
-          <div className="col-lg-12">
-            <h3 className="page-header">
-              User Admin
+      <div>
+        <SideBar />
+        <div className="page-wrapper">
+          <div className="row">
+            <div className="col-lg-12">
+              <h3 className="page-header">
+                User Admin
           </h3>
+            </div>
           </div>
+          <List users={users} handleUserDelete={handleUserDelete}
+            handleLoadEditForm={handleLoadEditForm} fetchUserList={fetchUserList} />
+          <AddForm onSubmit={handleUserAdd} />
+          <EditForm
+            initialValues={editFormInitData}
+            onSubmit={handleUserEdit}
+            onReset={() => { handleResetEditForm(); }} />
         </div>
-        <List users={users} handleUserDelete={handleUserDelete}
-          handleLoadEditForm={handleLoadEditForm} fetchUserList={fetchUserList} />
-        <AddForm onSubmit={handleUserAdd} />
-        <EditForm
-          initialValues={editFormInitData}
-          onSubmit={handleUserEdit}
-          onReset={() => { handleResetEditForm(); }} />
       </div>
     );
   }

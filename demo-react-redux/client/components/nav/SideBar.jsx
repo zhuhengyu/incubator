@@ -10,10 +10,10 @@ const SideBar = () => (
     <div className="sidebar-nav navbar-collapse">
       <ul className="nav in" id="side-menu">
         <li className="active">
-          <Link to="/" activeClassName="active">Dashboard</Link>
+          <Link to="/">Dashboard</Link>
         </li>
         <li>
-          <Link to="/users" activeClassName="active">Users</Link>
+          <Link to="/users">Users</Link>
         </li>
       </ul>
     </div>

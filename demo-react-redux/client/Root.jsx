@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, Redirect, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 
 import App from './components/App';
@@ -14,9 +14,12 @@ import Dashboard from './components/dashboard/Dashboard';
 const Root = ({store}) => (
   <Provider store={store}>
     <Router history={syncHistoryWithStore(browserHistory, store)}>
+      <Redirect from="/" to="/home" />
       <Route path="/" component={App}>
-        <IndexRoute component={Dashboard} />
-        <Route path="users" component={UserModuleContainer} />
+        <Route path="/home" component={Dashboard}>
+        </Route>
+        <Route path="/users" component={UserModuleContainer}>
+        </Route>
       </Route>
     </Router>
   </Provider>

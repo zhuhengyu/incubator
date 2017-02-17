@@ -15,8 +15,7 @@ const app = combineReducers(
     form: reduxFormReducer,
     routing: routerReducer
   }, {
-    users: userReducers
-  }, {
+    users: userReducers,
     editForm: editFormReducers
   })
 );
