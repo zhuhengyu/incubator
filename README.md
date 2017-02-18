@@ -15,9 +15,10 @@
 1. **[demo-frontend-static-boilerplate](https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate)**基于ES6，Gulp，Webpack的基本前端静态模板。
 2. **[demo-react-redux](https://github.com/oychao/incubator/tree/master/demo-react-redux)**基于ES6，Gulp，Webpack，Express，React，Redux，以及相关库的基本前端的用户列表CRUD示例。
 3. **[demo-redux](https://github.com/oychao/incubator/tree/master/demo-redux)** Redux和Redux-Observable示例。
-4. **[javascript-interview-questions](https://github.com/oychao/incubator/tree/master/javascript-interview-questions)** JavaScript面试题目。
-5. demo-immutable 已移除。
-6. demo-functional-progamming 已移除。
-7. demo-mocker 已移除。
-8. demo-gulp 已移除。
-9. demo-webpack 已移除。
+4. **[nginx-config](https://github.com/oychao/incubator/tree/master/nginx-config)** Nginx基本配置。
+5. **[javascript-interview-questions](https://github.com/oychao/incubator/tree/master/javascript-interview-questions)** JavaScript面试题目。
+6. demo-immutable 已移除。
+7. demo-functional-progamming 已移除。
+8. demo-mocker 已移除。
+9. demo-gulp 已移除。
+10. demo-webpack 已移除。
