@@ -3,18 +3,15 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router';
+
+import NavItem from './NavItem';
 
 const SideBar = () => (
   <div className="navbar-default sidebar" role="navigation">
     <div className="sidebar-nav navbar-collapse">
-      <ul className="nav in" id="side-menu">
-        <li className="active">
-          <Link to="/">Dashboard</Link>
-        </li>
-        <li>
-          <Link to="/users">Users</Link>
-        </li>
+      <ul className="nav in nav-sidebar" id="side-menu">
+        <NavItem to='/home' index={true}>Home</NavItem>
+        <NavItem to='/users'>Users</NavItem>
       </ul>
     </div>
   </div>

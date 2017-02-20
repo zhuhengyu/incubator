@@ -7,7 +7,7 @@ import React from 'react';
 import Spinner from '../common/Spinner';
 
 const Dashboard = () => (
-  <div className="page-wrapper">
+  <div className="my-page-wrapper-for-sidebar">
     <div style={{ height: '100%', width: '100%', }}>
       <Spinner isInline={false} size={50} />
     </div>

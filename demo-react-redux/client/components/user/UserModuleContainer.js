@@ -18,7 +18,7 @@ const mapStateToProps = state => {
   let editFormInitData = state.editForm.toJS().userEditForm;
   editFormInitData.age = +editFormInitData.age;
   let users = state.users.toJS();
-  users.list.forEach(user => user.age = + user.age);
+  users.list.forEach(user => user.age = +user.age);
   return {
     users,
     editFormInitData,
