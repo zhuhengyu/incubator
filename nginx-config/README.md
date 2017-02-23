@@ -10,10 +10,16 @@
             root /Users/ouyangchao/Documents/git/blog/public/; # 根目录
             index index.html; # 默认文档
         }
+        location /favicon.ico { # 无视favicon.ico的404错误
+            log_not_found off;
+            access_log off;
+        }
         access_log /Users/ouyangchao/Documents/log/nginx/blog.access.log; # 访问日志路径
         error_log /Users/ouyangchao/Documents/log/nginx/blog.error.log; # 错误日志路径
     }
+```
 
+```
     # demo-react-redux项目的前后端分离
     server {
         listen 4111; # 监听4111端口
@@ -26,6 +32,10 @@
         location /data { # 监听路径/data， 后端入口
             rewrite /data/(.*) /okrSystemBackEnd/data/$1 break; # 重写请求到指定路径
             proxy_pass http://127.0.0.1:8080; # 代理传递到指定服务器及端口
+        }
+        location /favicon.ico { # 无视favicon.ico的404错误
+            log_not_found off;
+            access_log off;
         }
         access_log /Users/ouyangchao/Documents/log/nginx/backend.access.log; # 访问日志路径
         error_log /Users/ouyangchao/Documents/log/nginx/backend.error.log; # 错误日志路径
