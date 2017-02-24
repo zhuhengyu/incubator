@@ -1,0 +1,22 @@
+{
+  "name": "my-curry",
+  "version": "1.0.0",
+  "description": "curry demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd test && node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oychao/incubator.git"
+  },
+  "keywords": [
+    "curry"
+  ],
+  "author": "ouyang chao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oychao/incubator/issues"
+  },
+  "homepage": "https://github.com/oychao/incubator#readme"
+}
