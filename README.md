@@ -14,6 +14,7 @@
 
 - **[demo-frontend-static-boilerplate](https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate)** 基于ES-Gulp，Webpack的基本前端静态模板。
 - **[demo-jersey](https://github.com/oychao/incubator/tree/master/demo-jersey)** Jersey REST API示例。
+- **[demo-latex](https://github.com/oychao/incubator/tree/master/demo-latex)** 在HTML中的Latex数学公式示例。
 - **[demo-npm-package](https://github.com/oychao/incubator/tree/master/demo-npm-package)** NPM包示例。
 - **[demo-react-redux](https://github.com/oychao/incubator/tree/master/demo-react-redux)** 基于ES-Gulp，Webpack，Express，React，Redux，以及相关库的基本前端的用户列表CRUD示例。
 - **[demo-redux](https://github.com/oychao/incubator/tree/master/demo-redux)** Redux和Redux-Observable示例。

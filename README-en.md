@@ -13,7 +13,8 @@ Valuable programmes or projects will be moved to a new repository, otherwise wil
 ## Contents
 
 - **[demo-frontend-static-boilerplate](https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate)** Demo frontend static boilerplate based on ES- Gulp and Webpack.
-- **[demo-jersey](https://github.com/oychao/incubator/tree/master/demo-jersey)** Jersey REST API demo。
+- **[demo-jersey](https://github.com/oychao/incubator/tree/master/demo-jersey)** Jersey REST API demo.
+- **[demo-latex](https://github.com/oychao/incubator/tree/master/demo-latex)** Latex math fomula demo in HTML.
 - **[demo-npm-package](https://github.com/oychao/incubator/tree/master/demo-npm-package)** NPM package demo。
 - **[demo-react-redux](https://github.com/oychao/incubator/tree/master/demo-react-redux)** User CRUD frontend Demo boilerplate based on ES- Gulp, Webpack, Express, React, Redux and other relative libraries.
 - **[demo-redux](https://github.com/oychao/incubator/tree/master/demo-redux)** Redux Demo with Redux Observable.
