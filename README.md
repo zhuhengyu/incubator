@@ -12,6 +12,7 @@
 
 ## 目录
 
+- **[basic-demos](https://github.com/oychao/incubator/tree/master/basic-demos)** 一些基本JS示例。
 - **[demo-frontend-static-boilerplate](https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate)** 基于ES-Gulp，Webpack的基本前端静态模板。
 - **[demo-jersey](https://github.com/oychao/incubator/tree/master/demo-jersey)** Jersey REST API示例。
 - **[demo-latex](https://github.com/oychao/incubator/tree/master/demo-latex)** 在HTML中的Latex数学公式示例。

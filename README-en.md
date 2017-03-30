@@ -12,6 +12,7 @@ Valuable programmes or projects will be moved to a new repository, otherwise wil
 
 ## Contents
 
+- **[basic-demos](https://github.com/oychao/incubator/tree/master/basic-demos)** Some basic JavaScript demos。
 - **[demo-frontend-static-boilerplate](https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate)** Demo frontend static boilerplate based on ES- Gulp and Webpack.
 - **[demo-jersey](https://github.com/oychao/incubator/tree/master/demo-jersey)** Jersey REST API demo.
 - **[demo-latex](https://github.com/oychao/incubator/tree/master/demo-latex)** Latex math fomula demo in HTML.
