@@ -1,5 +1,7 @@
 # PC在用的两个基本的Nginx配置
 
+### 配置本地静态文件
+
 ```
     # 博客本地静态文件
     server {
@@ -18,6 +20,8 @@
         error_log /Users/ouyangchao/Documents/log/nginx/blog.error.log; # 错误日志路径
     }
 ```
+
+### 拦截并转发到指定路径
 
 ```
     # demo-react-redux项目的前后端分离
