@@ -2,4 +2,4 @@
 
 ## Brief
 
-this crawler does not crawl for fiction content, it only crawl for fiction's basic information.
+this crawler does not crawl for fiction content, it only crawls for fiction's basic information.
