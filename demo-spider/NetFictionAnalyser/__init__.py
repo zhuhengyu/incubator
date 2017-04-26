@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 http = urllib3.PoolManager(maxsize=10)
 
 
-class QdNovelInfo:
+class QdFictionInfo:
     """
     QiDian novel info class
     """
@@ -131,6 +131,6 @@ class QdNovelInfo:
 
 if __name__ == '__main__':
     # novel = QdNovelInfo('http://book.qidian.com/info/1005235019')
-    novel = QdNovelInfo('http://book.qidian.com/info/1005207298')
+    novel = QdFictionInfo('http://book.qidian.com/info/1005207298')
 
     print(novel.__dict__)
