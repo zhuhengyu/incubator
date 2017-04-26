@@ -39,6 +39,11 @@ class QdFictionInfo:
         # vip week recommendations
         self.vipWeekRecommendations = 0
 
+        # category
+        self.category = ''
+        # sub category
+        self.subCategory = ''
+
         # updating timestamp
         self.updateTime = 0
 
@@ -106,6 +111,13 @@ class QdFictionInfo:
                 self.vipWeekRecommendations = float(self.vipWeekRecommendations[:-1])
                 self.vipWeekRecommendations *= 10000
             self.vipWeekRecommendations = int(self.vipWeekRecommendations)
+
+            # HTML category block
+            soup_crumbs_nav = soup.select('.crumbs-nav')[0]
+            # get category
+            self.category = soup_crumbs_nav.select('a')[1].get_text()
+            # get sub category
+            self.subCategory = soup_crumbs_nav.select('a')[2].get_text()
 
             # HTML last chapter block
             self.updateTime = soup.select('.volume')[-1].select('li')[-1].select('a')[0]['title'][5:24]
