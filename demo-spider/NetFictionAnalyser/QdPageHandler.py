@@ -5,16 +5,10 @@ class QdPageHandler:
 
     # http://a.qidian.com/?size=-1&sign=-1&tag=-1&chanId=-1&subCateId=-1&orderId=5&
     # update=-1&page=225&month=-1&style=2&action=-1&vip=-1
-    # http://a.qidian.com/?size=-1&sign=-1&tag=-1&chanId=-1&subCateId=-1&orderId=5&
-    # update=-1&page=1&month=-1&style=2&action=-1&vip=-1
-    # http://a.qidian.com/?size=-1&sign=-1&tag=-1&chanId=-1&subCateId=-1&orderId=5&
-    # update=-1&page=1&month=-1&style=1&action=-1&vip=-1
-    def __init__(self, start_page=1, end_page=10, size=-1, sign=-1, tag=-1, chan_id=-1, sub_cate_id=-1, order_id=5,
+    def __init__(self, size=-1, sign=-1, tag=-1, chan_id=-1, sub_cate_id=-1, order_id=5,
                  update=-1, page=1, month=-1, style=1, action=-1, vip=-1):
         """
         initialization function
-        :param start_page: start page number, 1 by default
-        :param end_page: end page number, by default is 10
         :param size: fiction size code, -1 means all size, 1 means below 300k characters, 2 means 300k to 500k, 3 means
         500k to 1m, 4 means 1m to 2m, 5 means more than 2m
         :param sign: fiction signed or not, -1 means both kinds, 1 means signed fictions, 2 means competitive fictions
@@ -30,8 +24,20 @@ class QdPageHandler:
         :param action: fiction finished or not, -1 by default, means both kinds, 0 means still working, 1 means finished
         :param vip: VIP author or not, -1 by default, means both kinds, 0 means free fictions, 1 means VIP fictions
         """
-        self.start_page = start_page
-        self.end_page = end_page
+        self.start_page = 0
+        self.end_page = 0
+        self.size = size
+        self.sign = sign
+        self.tag = tag
+        self.chan_id = chan_id
+        self.sub_cate_id = sub_cate_id
+        self.order_id = order_id
+        self.update = update
+        self.page = page
+        self.month = month
+        self.style = style
+        self.action = action
+        self.vip = vip
 
     def __analysis(self):
         self.base = 0
