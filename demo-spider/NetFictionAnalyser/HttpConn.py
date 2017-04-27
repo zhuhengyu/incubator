@@ -1,10 +1,12 @@
 import urllib3
 
+http = urllib3.PoolManager(maxsize=20)
+
 
 def conn_pool():
     """
-    static variable, connection pool
+    return global connection pool
     :return:
     """
-    http = urllib3.PoolManager(maxsize=20)
+    global http
     return http
