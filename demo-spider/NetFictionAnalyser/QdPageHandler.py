@@ -25,7 +25,7 @@ class QdPageHandler:
         :param update: update time, -1 means all, 1 updated in the past 3 days, 2 means in the past week, 3 means in the
         past 15 days, 4 means in the past month
         :param page: page number, page 1 by default
-        :param month: NOT CLEAR
+        :param month: fictions in 3 month or not, -1 by default, means all, 3 means yes
         :param style: list style, 1 by default, means images list, 2 means title list
         :param action: fiction finished or not, -1 by default, means both kinds, 0 means still working, 1 means finished
         :param vip: VIP author or not, -1 by default, means both kinds, 0 means free fictions, 1 means VIP fictions
