@@ -1,6 +1,6 @@
 class QdPageHandler:
     """
-    QiDian fiction page
+    QiDian fiction list page
     """
 
     def __init__(self, size=-1, sign=-1, tag=-1, chan_id=-1, sub_cate_id=-1, order_id=-1, update=-1, page=1, month=-1,
