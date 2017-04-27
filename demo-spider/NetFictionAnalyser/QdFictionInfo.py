@@ -154,7 +154,10 @@ class QdFictionInfo:
 
 
 def test():
-    # test static method to_id and to_url
+    """
+    test static method to_id and to_url
+    :return:
+    """
     url_str = 'http://book.qidian.com/info/1005207298'
     id_str = '1005207298'
     print(QdFictionInfo.to_id(id_str))
