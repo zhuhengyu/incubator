@@ -3,7 +3,6 @@ from bs4 import BeautifulSoup
 
 from NetFictionAnalyser.HttpConn import conn_pool
 from NetFictionAnalyser.QdFictionInfo import QdFictionInfo
-from NetFictionAnalyser.QdPageHandler import QdPageHandler
 
 
 class QdPageInfo:
@@ -74,12 +73,12 @@ class QdPageInfo:
                     fiction.updateTime = datetime.datetime.strptime(info_part_str, "%Y-%m-%d %H:%M:%S").timestamp()
 
                 # push into self.briefs
-                print(fiction.__dict__)
                 self.briefs.append(fiction)
 
 
 def test():
-    QdPageInfo(QdPageHandler(order_id=5, style=2).get_url())
+    QdPageInfo('http://a.qidian.com/?size=-1&sign=-1&tag=-1&chanId=-1&subCateId=-1&orderId=5&update=-1&page=1&month=-1'
+               '&style=2&action=-1&vip=-1')
 
 
 if __name__ == '__main__':
