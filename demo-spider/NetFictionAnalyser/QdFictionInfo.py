@@ -143,7 +143,7 @@ class QdFictionInfo:
                 self.authorTotalCharCount = float(temp_str_total_char_count[:-1])
                 self.authorTotalCharCount *= 10000
             self.authorTotalCharCount = int(self.authorTotalCharCount)
-            # get day numbers author has been producing
+            # get day numbers the author has been produced
             self.authorProducingDays = int(soup_work_state.select('em')[2].get_text())
 
 
