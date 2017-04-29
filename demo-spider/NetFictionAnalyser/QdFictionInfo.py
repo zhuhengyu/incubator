@@ -74,7 +74,7 @@ class QdFictionInfo:
         :return:
         """
         http = conn_pool()
-        self.retrieveTime = datetime.datetime.now()
+        self.retrieveTime = datetime.datetime.now().timestamp()
         req = http.request('GET', QdFictionInfo.to_url(self.id))
         if req.status == 200:
             soup = BeautifulSoup(req.data.decode('utf-8'), 'html.parser')
