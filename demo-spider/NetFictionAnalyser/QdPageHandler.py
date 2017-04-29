@@ -96,7 +96,7 @@ class QdPageHandler:
         :param output_file: if output to file, False by default
         :return:
         """
-        start_page = 1
+        start_page = 250
         end_page = 400
         now = datetime.datetime.now().timestamp()
         yesterday = now - 86400
@@ -108,6 +108,7 @@ class QdPageHandler:
                 # mark shortcut as taken
                 self.if_shortcut = True
                 return
+            time.sleep((self.sleep_base * 100 + self.sleep_range * random.random() * 100) / 100)
             page = QdPageInfo(self.get_url(i))
             if if_print:
                 print('page ' + str(i) + ':')
@@ -132,6 +133,7 @@ class QdPageHandler:
         if not self.if_shortcut:
             raise ShortcutNotTakenError()
         else:
+            # TBD
             return
 
     def print(self):
