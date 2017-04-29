@@ -5,6 +5,17 @@ import datetime
 from NetFictionAnalyser.QdPageInfo import QdPageInfo
 
 
+class ShortcutNotTakenError(Exception):
+    """Shortcut not taken"""
+
+    def __init__(self):
+        """
+        constructor
+        """
+        # Call the base class constructor with the parameters it needs
+        super(ShortcutNotTakenError, self).__init__('Shortcut not taken')
+
+
 class QdPageHandler:
     """
     QiDian fiction list page
@@ -44,8 +55,10 @@ class QdPageHandler:
         self.action = action
         self.vip = vip
 
-        # store fiction briefs
-        self.pages = []
+        # if shortcut taken
+        self.if_shortcut = False
+        # store fiction info
+        self.fictions = []
 
         # pages to crawl
         self.start_page = start_page
@@ -92,12 +105,14 @@ class QdPageHandler:
         should_stop = False
         for i in range(start_page, end_page):
             if should_stop:
+                # mark shortcut as taken
+                self.if_shortcut = True
                 return
             page = QdPageInfo(self.get_url(i))
-            self.pages.append(page)
             if if_print:
                 print('page ' + str(i) + ':')
             for brief in page.briefs:
+                self.fictions.append(brief)
                 if if_print:
                     print(brief.__dict__)
                 if output_file:
@@ -105,39 +120,27 @@ class QdPageHandler:
                 # check if it's all fictions updated in 1 day have been scanned
                 if brief.updateTime - yesterday < 0:
                     should_stop = True
+        # mark shortcut as taken
+        self.if_shortcut = True
 
-    def handle(self, if_detailed=False, if_print=False):
+    def handle(self, if_print=False):
         """
         get data from start page to end page
-        :param if_detailed: if fetch detailed info
         :param if_print: if print to console
         :return:
         """
-        now = datetime.datetime.now()
-        tomorrow0 = datetime.datetime(now.year, now.month, now.day, 0, 0, 0).timestamp() + 86400
-        end_page = self.end_page if self.end_page != -1 else 400
-        for i in range(self.start_page, end_page):
-            page = QdPageInfo(self.get_url(i))
-            self.pages.append(page)
-            if if_detailed:
-                for brief in page.briefs:
-                    time.sleep((self.sleep_base * 100 + self.sleep_range * random.random() * 100) / 100)
-                    brief.retrieve()
-                    if if_print:
-                        print(brief.__dict__)
-                    if self.end_page == -1 and tomorrow0 - brief.updateTime > 86400:
-                        return
-            if if_print:
-                self.print()
+        if not self.if_shortcut:
+            raise ShortcutNotTakenError()
+        else:
+            return
 
     def print(self):
         """
         print all fiction brief info
         :return:
         """
-        for page in self.pages:
-            for fiction_info in page.briefs:
-                print(fiction_info.__dict__)
+        for fiction in self.fictions:
+            print(fiction.__dict__)
 
 
 def test():
