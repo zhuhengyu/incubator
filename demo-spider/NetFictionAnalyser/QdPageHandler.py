@@ -96,7 +96,7 @@ class QdPageHandler:
         :param output_file: if output to file, False by default
         :return:
         """
-        start_page = 250
+        start_page = 1
         end_page = 400
         now = datetime.datetime.now().timestamp()
         yesterday = now - 86400
