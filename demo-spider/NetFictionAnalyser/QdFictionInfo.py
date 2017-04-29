@@ -7,7 +7,7 @@ from NetFictionAnalyser.HttpConn import conn_pool
 
 class QdFictionInfo:
     """
-    QiDian fiction info class
+    QiDian fiction info
     """
 
     @staticmethod
@@ -27,7 +27,7 @@ class QdFictionInfo:
     def __init__(self, id_str):
         """
         constructor
-        :param id_str: fiction id
+        :param id_str: fiction id or fiction url
         """
         # novel url
         self.id = QdFictionInfo.to_id(id_str)

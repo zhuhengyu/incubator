@@ -24,12 +24,13 @@ class QdPageHandler:
         """
         self.start_page = 0
         self.end_page = 0
+
         self.size = size
         self.sign = sign
         self.tag = tag
-        self.chan_id = chan_id
-        self.sub_cate_id = sub_cate_id
-        self.order_id = order_id
+        self.chanId = chan_id
+        self.subCateId = sub_cate_id
+        self.orderId = order_id
         self.update = update
         self.page = page
         self.month = month
@@ -46,7 +47,7 @@ class QdPageHandler:
         page_number = self.page if page_number == -1 else page_number
         return ''.join(
             ['http://a.qidian.com/', '?size=', str(self.size), '&sign=', str(self.sign), '&tag=', str(self.tag),
-             '&chanId=', str(self.chan_id), '&subCateId=', str(self.sub_cate_id), '&orderId=', str(self.order_id),
+             '&chanId=', str(self.chanId), '&subCateId=', str(self.subCateId), '&orderId=', str(self.orderId),
              '&update=', str(self.update), '&page=', str(page_number), '&month=', str(self.month), '&style=',
              str(self.style), '&action=', str(self.action), '&vip=', str(self.vip)])
 
