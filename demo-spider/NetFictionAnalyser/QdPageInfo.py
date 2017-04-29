@@ -66,7 +66,7 @@ class QdPageInfo:
                 if info_part_str.find('今天') != -1:
                     fiction.updateTime = datetime.datetime(now.year, now.month, now.day, int(info_part_str[2:4]),
                                                            int(info_part_str[5:7])).timestamp()
-                elif info_part_str.find('昨天') != -1:
+                elif info_part_str.find('昨日') != -1:
                     fiction.updateTime = datetime.datetime(now.year, now.month, now.day, int(info_part_str[2:4]),
                                                            int(info_part_str[5:7])).timestamp() - 86400
                 else:

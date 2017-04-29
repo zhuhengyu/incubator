@@ -1,5 +1,6 @@
 import time
 import random
+import datetime
 
 from NetFictionAnalyser.QdPageInfo import QdPageInfo
 
@@ -10,7 +11,7 @@ class QdPageHandler:
     """
 
     def __init__(self, size=-1, sign=-1, tag=-1, chan_id=-1, sub_cate_id=-1, order_id=-1, update=-1, month=-1,
-                 style=1, action=-1, vip=-1, sleep_base=1, sleep_range=2):
+                 style=1, action=-1, vip=-1, start_page=1, end_page=2, sleep_base=1, sleep_range=2):
         """
         initialization function
         :param size: fiction size code, -1 means all size, 1 means below 300k characters, 2 means 300k to 500k, 3 means
@@ -26,12 +27,11 @@ class QdPageHandler:
         :param style: list style, 1 by default, means images list, 2 means title list
         :param action: fiction finished or not, -1 by default, means both kinds, 0 means still working, 1 means finished
         :param vip: VIP author or not, -1 by default, means both kinds, 0 means free fictions, 1 means VIP fictions
+        :param start_page: from where to crawl, 1 by default
+        :param end_page: to where to crawl, 2 by default. if -1 then keep crawling until first fiction updated today
         :param sleep_base: crawler sleep basic time, seconds
         :param sleep_range: crawler sleep range time, seconds
         """
-        self.start_page = 1
-        self.end_page = 2
-
         self.size = size
         self.sign = sign
         self.tag = tag
@@ -46,6 +46,10 @@ class QdPageHandler:
 
         # store fiction briefs
         self.pages = []
+
+        # pages to crawl
+        self.start_page = start_page
+        self.end_page = end_page
 
         # crawler sleep interval
         self.sleep_base = sleep_base
@@ -63,14 +67,44 @@ class QdPageHandler:
              '&update=', str(self.update), '&page=', str(page_number), '&month=', str(self.month), '&style=',
              str(self.style), '&action=', str(self.action), '&vip=', str(self.vip)])
 
-    def set_page_range(self, start_page=1, end_page=1):
+    def set_page_range(self, start_page=1, end_page=2):
         """
         :param start_page: start page number, 1 by default
-        :param end_page: end page number, by default is 10
+        :param end_page: end page number, by default is 2
         :return:
         """
         self.start_page = start_page
         self.end_page = end_page
+
+    def take_shortcut(self, if_print=False, output_file=False):
+        """
+        short cut for updated novel in 24 hours
+        :param if_print: if print to console
+        :param output_file: if output to file, False by default
+        :return:
+        """
+        start_page = 1
+        end_page = 400
+        now = datetime.datetime.now().timestamp()
+        yesterday = now - 86400
+        if output_file:
+            output_file = open(str(round(now)) + '.txt', 'w')
+        should_stop = False
+        for i in range(start_page, end_page):
+            if should_stop:
+                return
+            page = QdPageInfo(self.get_url(i))
+            self.pages.append(page)
+            if if_print:
+                print('page ' + str(i) + ':')
+            for brief in page.briefs:
+                if if_print:
+                    print(brief.__dict__)
+                if output_file:
+                    output_file.write('%s\n' % str(brief.__dict__))
+                # check if it's all fictions updated in 1 day have been scanned
+                if brief.updateTime - yesterday < 0:
+                    should_stop = True
 
     def handle(self, if_detailed=False, if_print=False):
         """
@@ -79,7 +113,10 @@ class QdPageHandler:
         :param if_print: if print to console
         :return:
         """
-        for i in range(self.start_page, self.end_page):
+        now = datetime.datetime.now()
+        tomorrow0 = datetime.datetime(now.year, now.month, now.day, 0, 0, 0).timestamp() + 86400
+        end_page = self.end_page if self.end_page != -1 else 400
+        for i in range(self.start_page, end_page):
             page = QdPageInfo(self.get_url(i))
             self.pages.append(page)
             if if_detailed:
@@ -88,6 +125,8 @@ class QdPageHandler:
                     brief.retrieve()
                     if if_print:
                         print(brief.__dict__)
+                    if self.end_page == -1 and tomorrow0 - brief.updateTime > 86400:
+                        return
             if if_print:
                 self.print()
 
