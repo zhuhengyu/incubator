@@ -38,7 +38,7 @@ class QdPageHandler:
         self.action = action
         self.vip = vip
 
-    def __get_url(self, page_number=-1):
+    def get_url(self, page_number=-1):
         """
         get list page url
         :param page_number: page number
@@ -65,7 +65,7 @@ class QdPageHandler:
 
 
 def test():
-    print(QdPageHandler(order_id=5, style=2).__dict__)
+    print(QdPageHandler(order_id=5, style=2).get_url())
 
 
 if __name__ == '__main__':

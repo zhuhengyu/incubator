@@ -1,4 +1,3 @@
-import time
 import datetime
 from bs4 import BeautifulSoup
 
@@ -40,7 +39,7 @@ class QdFictionInfo:
         self.author = ''
         # tags
         self.tags = []
-        # character count for now
+        # characters count for now
         self.charCountNow = 0
         # total clicks
         self.totalClicks = 0
@@ -69,18 +68,13 @@ class QdFictionInfo:
         # day numbers author has been producing
         self.authorProducingDays = 0
 
-        '''
-        start analysing
-        '''
-        self.__analysis()
-
-    def __analysis(self):
+    def retrieve(self):
         """
         get and analysis raw html
         :return:
         """
         http = conn_pool()
-        self.retrieveTime = time.time()
+        self.retrieveTime = datetime.datetime.now()
         req = http.request('GET', QdFictionInfo.to_url(self.id))
         if req.status == 200:
             soup = BeautifulSoup(req.data.decode('utf-8'), 'html.parser')
@@ -94,7 +88,7 @@ class QdFictionInfo:
             # get tags
             self.tags = soup_book_info.select('.tag')[0].get_text().split('\n')
             self.tags = list(filter(None, self.tags))
-            # get character count for now
+            # get characters count for now
             self.charCountNow = float(soup_book_info.select('em')[1].get_text())
             if soup_book_info.select('cite')[0].get_text() == '万字':
                 self.charCountNow *= 10000
@@ -133,7 +127,7 @@ class QdFictionInfo:
 
             # HTML last chapter block
             self.updateTime = soup.select('.volume')[-1].select('li')[-1].select('a')[0]['title'][5:24]
-            self.updateTime = time.mktime(datetime.datetime.strptime(self.updateTime, "%Y-%m-%d %H:%M:%S").timetuple())
+            self.updateTime = datetime.datetime.strptime(self.updateTime, "%Y-%m-%d %H:%M:%S").timestamp()
 
             # HTML self defined info block
             soup_self_tags = soup.select('.tag-wrap')[0].select('.tags')
