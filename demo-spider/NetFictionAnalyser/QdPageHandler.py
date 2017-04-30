@@ -108,7 +108,7 @@ class QdPageHandler:
                 # mark shortcut as taken
                 self.if_shortcut = True
                 return
-            time.sleep((self.sleep_base * 100 + self.sleep_range * random.random() * 100) / 100)
+            self.__sleep()
             page = QdPageInfo(self.get_url(i))
             if if_print:
                 print('page ' + str(i) + ':')
@@ -133,8 +133,19 @@ class QdPageHandler:
         if not self.if_shortcut:
             raise ShortcutNotTakenError()
         else:
-            # TBD
+            for fiction in self.fictions:
+                fiction.retrieve()
+                self.__sleep()
+                if if_print:
+                    print(fiction.__dict__)
             return
+
+    def __sleep(self):
+        """
+        sleep interval
+        :return:
+        """
+        time.sleep((self.sleep_base * 100 + self.sleep_range * random.random() * 100) / 100)
 
     def print(self):
         """
