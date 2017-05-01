@@ -77,6 +77,10 @@ class QdPageInfo:
 
 
 def test():
+    """
+    test if QdPageInfo working
+    :return:
+    """
     QdPageInfo('http://a.qidian.com/?size=-1&sign=-1&tag=-1&chanId=-1&subCateId=-1&orderId=5&update=-1&page=1&month=-1'
                '&style=2&action=-1&vip=-1')
 

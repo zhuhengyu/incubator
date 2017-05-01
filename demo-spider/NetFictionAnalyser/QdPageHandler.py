@@ -157,8 +157,13 @@ class QdPageHandler:
 
 
 def test():
+    """
+    test if QdPageHandler working
+    :return:
+    """
     page_handler = QdPageHandler(order_id=5, style=2)
     page_handler.set_page_range(1, 2)
+    page_handler.take_shortcut()
     page_handler.handle()
 
 
