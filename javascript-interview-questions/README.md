@@ -86,7 +86,7 @@ myObject.func();
 
 IIFE就是创建了一个闭包，一个表达式，并且是立即执行的。
 
-它的主要作用是创建一个私有命名空间，避免和其他模块和库产生明明冲突，也因此其在开发各种模块和库的时候经常用到。
+它的主要作用是创建一个私有命名空间，避免和其他模块和库产生命名冲突，也因此其在开发各种模块和库的时候经常用到。
 
 ### 5.在JavaScript文件开头使用'use strict'有什么好处或者意义？
 
@@ -147,7 +147,7 @@ function foo2() {
 >
 >请永远使用分号。JavaScript本身是一个规则比较弱的语言，如果编码不得当而自己对JavaScript理解又不深，经常会出现这种坑。可以借助ESLint等工具强制检查自己的代码。
 
-### 7.NaN是什么？如何可靠的检测一个变量是否是NaN？
+### 7.NaN是什么？如何可靠地检测一个变量是否是NaN？
 
 JavaScript中的```NaN```是Not a Number的缩写，但实际上它又属于数字类型。
 
@@ -206,7 +206,7 @@ const TEN = 10;
 console.log((0.1 * TEN + 0.2 * TEN) / TEN);
 ```
 
-### 9.讨论实现如何判断一个数是否是整数的函数isInteger(x)的实现方法。
+### 9.讨论如何判断一个数是否是整数的函数isInteger(x)的实现方法。
 
 在ES6中，已经有这样的方法了：```Number.isInteger(x)```。
 
@@ -350,7 +350,7 @@ console.log(sum(2, 3));  // Outputs 5
 console.log(sum(2)(3));  // Outputs 5
 ```
 
-理解curry函数的实现需要对闭包有比较清晰的理解，这里有一篇相关博客：[JavaScript函数柯里化 | 传不习乎](https://oychao.github.io/2017/01/25/JavaScript/Else/170125_currying/)。
+理解curry函数的实现需要对闭包有比较清晰的理解，这里有一篇相关博客：[JavaScript函数柯里化 | 传不习乎](https://oychao.github.io/2017/01/26/javascript/27_currying/)。
 
 ### 13.考虑下面的代码段。
 
