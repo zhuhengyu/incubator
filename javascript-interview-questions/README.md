@@ -1,10 +1,10 @@
-# 25道JavaScript必备面试题
+# 26道JavaScript必备面试题
 
-**原文：[25 Essential JavaScript Interview Questions](https://www.toptal.com/javascript/interview-questions)**
+**参考：[25 Essential JavaScript Interview Questions](https://www.toptal.com/javascript/interview-questions)**
 
-**注：题源来自上面的链接，至于具体内容，绝大多数题目基本都是按照笔者的思路都重写了一遍，也有几道题一开始没理解好的，根据原文大意重写的。**
+**注：主要题源来自上面的链接，至于具体内容，绝大多数题目基本都是按照笔者的思路都重写了一遍，也有几道题一开始没理解好的，根据原文大意重写的。**
 
-**建议有兴趣的同学将原文和本文都阅读一遍，收获更多。**
+**笔者会后续更新补充更多的面试题目，建议有兴趣的同学将原文和本文都阅读一遍，收获更多。**
 
 ---
 
