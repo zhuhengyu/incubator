@@ -627,3 +627,23 @@ function tranverse(ele, func) {
   ele.children.forEach(child => tranverse(child));
 }
 ```
+
+### 26.试使用闭包创建一个单例
+
+先声明一个变量，如果该变量没有被初始化（undefined），则新建一个对象，否则直接返回。闭包这里的作用就是限制该变量的访问，以免该变量被修改。
+
+```javascript
+const getInstance = (() => {
+  function Instance() { this.prop = 'instance'; }
+  let instance;
+  return () => {
+    if(instance === undefined) {
+      instance = new Instance();
+    }
+    return instance;
+  }
+})();
+const foo = getInstance();
+const bar = getInstance();
+console.log(foo === bar); // true
+```
