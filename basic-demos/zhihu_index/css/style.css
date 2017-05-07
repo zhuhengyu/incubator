@@ -1,0 +1,192 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a {
+	color: black;
+	text-decoration: none;
+}
+li {
+	list-style: none;
+}
+.container-fixed-width {
+	position: relative;
+	margin: 0 auto;
+	width: 960px;
+	height: 100%;
+	text-align: right;
+}
+.header {
+	position: fixed;
+	top: 0px;
+	height: 78px;
+	width: 100%;
+	background-color: white;
+	z-index: 50;
+}
+.top-nav-link {
+	float: right;
+	margin-right: -35px;
+}
+.top-nav-link a {
+	float: right;
+	height: 78px;
+	width: 140px;
+	text-decoration: none;
+	text-align: center;
+}
+.top-nav-link span {
+	display: block;
+	margin: 0px auto;
+	margin-top: 23px;
+	padding: 8px 0px;
+	line-height: 16px;
+	height: 16px;
+	width: 120px;
+}
+.top-nav-link a.active span {
+	color: #008bed;	
+	background-color: #f0f9ff;
+}
+.logo {
+	background: url(../images/top_logo.png) no-repeat 0px 13px	;
+	width: 220px;
+}
+.logo {
+	
+}
+.link-logo {
+	display: block;
+	height: 78px;
+}
+.download {
+	height: 460px;
+	margin-top: 78px;
+	background-color: #008bed;
+}
+.phone-sample-box {
+	height: 448px;
+	width: 409px;
+	position: absolute;
+	left: 31px;
+	top: 12px;
+	overflow: hidden;
+}
+.phone-sample {
+	height: 448px;
+	width: 409px;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background: url(../images/phone_sample.png);
+}
+.description {
+	float: right;
+	padding-top: 100px;
+	margin-right: 22px;
+	height: 403px;
+	width: 392px;
+	color: #99d1f8;
+	text-align: left;
+	font-size: 16px;
+}
+.description h2 {
+	height: 50px;
+	line-height: 40px;
+	background: url(../images/slogan.png) no-repeat;
+}
+.description .info {
+	line-height: 26px;
+	height: 100px;
+}
+.qr-top-box {
+	width: 145px;
+	height: 153px;
+	background-color: white;
+	border-radius: 4px;
+	float: left;
+}
+.qr-top {
+	width: 135px;
+	height: 135px;
+	margin: 9px 0px 0px 5px;
+	background: url(../images/qr_top2.png) no-repeat;
+}
+.link-buttons {
+	margin-left: 198px;
+	width: 194px;
+	height: 152px;
+}
+.link-buttons ul {
+	width: 100%;
+	height: 100%;
+}
+.link-buttons ul li {
+	width: 194px;
+	height: 64px;
+}
+.link-buttons ul li a {
+	width: 194px;
+	height: 64px;
+	display: block;
+	background-color: white;
+	border-radius: 4px;
+}
+.link-buttons i {
+	display: inline-block;
+	margin: 8px 0px 0px 5px;
+	height: 50px;
+	width: 50px;
+	vertical-align: top;
+}
+.link-buttons .iphone-logo {
+	background: url(../images/iphone_logo.png);
+}
+.link-buttons .android-logo {
+	background: url(../images/android_logo.png);
+}
+.link-buttons a span {
+	width: 108px;
+	height: 64px;
+	line-height: 64px;
+	display: inline-block;
+	text-align: center;
+	font-size: 22px;
+	color: #39442e;
+}
+.link-buttons ul .with-drop-menu {
+	margin-top: 24px;
+}
+.link-buttons ul .with-drop-menu a {
+	border-radius: 0px;
+}
+.link-buttons a:hover {
+	background-color: rgb(220, 220, 255);
+}
+.link-buttons .wandoujia-logo {
+	background: url(../images/icon_wandoujia.png);
+}
+.link-buttons .market-91-logo {
+	background: url(../images/icon_91market.png);
+}
+.link-buttons .market-360-logo {
+	background: url(../images/icon_360market.png);
+}
+.link-buttons ul .with-drop-menu ul {
+	visibility: hidden;
+}
+.link-buttons ul .with-drop-menu a.radius-first-item {
+	border-radius: 4px;
+}
+.link-buttons ul .with-drop-menu a.radius-last-item {
+	border-radius: 0px 0px 4px 4px / 0px 0px 4px 4px;
+}
+.link-buttons ul .with-drop-menu:hover a.radius-first-item {
+	border-radius: 4px 4px 0px 0px / 4px 4px 0px 0px;
+}
+.link-buttons ul .with-drop-menu:hover ul {
+	visibility: visible;
+}
