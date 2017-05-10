@@ -2,6 +2,7 @@ import time
 import random
 import datetime
 
+from NetFictionAnalyser.Conns import conn_db
 from NetFictionAnalyser.QdPageInfo import QdPageInfo
 
 
@@ -89,11 +90,12 @@ class QdPageHandler:
         self.start_page = start_page
         self.end_page = end_page
 
-    def take_shortcut(self, if_print=False, output_file=False):
+    def take_shortcut(self, if_print=False, output_file=False, to_db=False):
         """
         short cut for updated novel in 24 hours
         :param if_print: if print to console
         :param output_file: if output to file, False by default
+        :param to_db: if save to db, False by default
         :return:
         """
         start_page = 1
@@ -123,6 +125,13 @@ class QdPageHandler:
                     should_stop = True
         # mark shortcut as taken
         self.if_shortcut = True
+
+    def to_db(self):
+        """
+        insert fictions into database
+        :return:
+        """
+        conn_db().insert_many(self.fictions)
 
     def handle(self, if_print=False):
         """

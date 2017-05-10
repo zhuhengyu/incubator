@@ -1,7 +1,7 @@
 import datetime
 from bs4 import BeautifulSoup
 
-from NetFictionAnalyser.HttpConn import conn_pool
+from NetFictionAnalyser.Conns import conn_pool
 
 
 class QdFictionInfo:
