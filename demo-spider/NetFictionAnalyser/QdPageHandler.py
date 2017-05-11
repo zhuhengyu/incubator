@@ -101,7 +101,8 @@ class QdPageHandler:
         start_page = 1
         end_page = 400
         now = datetime.datetime.now().timestamp()
-        yesterday = now - 86400
+        # yesterday = now - 86400
+        yesterday = now - 60
         if output_file:
             output_file = open(str(round(now)) + '.txt', 'w')
         should_stop = False
@@ -115,7 +116,7 @@ class QdPageHandler:
             if if_print:
                 print('page ' + str(i) + ':')
             for brief in page.briefs:
-                self.fictions.append(brief)
+                self.fictions.append(brief.__dict__)
                 if if_print:
                     print(brief.__dict__)
                 if output_file:
