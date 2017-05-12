@@ -90,19 +90,18 @@ class QdPageHandler:
         self.start_page = start_page
         self.end_page = end_page
 
-    def take_shortcut(self, if_print=False, output_file=False, to_db=False):
+    def take_shortcut(self, if_print=False, output_file=False, from_when=86400):
         """
         short cut for updated novel in 24 hours
         :param if_print: if print to console
         :param output_file: if output to file, False by default
-        :param to_db: if save to db, False by default
+        :param from_when: second number before now, crawl back to this time
         :return:
         """
         start_page = 1
         end_page = 400
         now = datetime.datetime.now().timestamp()
-        # yesterday = now - 86400
-        yesterday = now - 60
+        from_when = now - from_when
         if output_file:
             output_file = open(str(round(now)) + '.txt', 'w')
         should_stop = False
@@ -116,13 +115,13 @@ class QdPageHandler:
             if if_print:
                 print('page ' + str(i) + ':')
             for brief in page.briefs:
-                self.fictions.append(brief.__dict__)
+                self.fictions.append(brief)
                 if if_print:
                     print(brief.__dict__)
                 if output_file:
                     output_file.write('%s\n' % str(brief.__dict__))
                 # check if it's all fictions updated in 1 day have been scanned
-                if brief.updateTime - yesterday < 0:
+                if brief.updateTime - from_when < 0:
                     should_stop = True
         # mark shortcut as taken
         self.if_shortcut = True
