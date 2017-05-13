@@ -126,8 +126,9 @@ class QdFictionInfo:
             self.subCategory = soup_crumbs_nav.select('a')[2].get_text()
 
             # HTML last chapter block
-            self.updateTime = soup.select('.volume')[-1].select('li')[-1].select('a')[0]['title'][5:24]
-            self.updateTime = datetime.datetime.strptime(self.updateTime, "%Y-%m-%d %H:%M:%S").timestamp()
+            if len(soup.select('.volume')) != 0:
+                self.updateTime = soup.select('.volume')[-1].select('li')[-1].select('a')[0]['title'][5:24]
+                self.updateTime = datetime.datetime.strptime(self.updateTime, "%Y-%m-%d %H:%M:%S").timestamp()
 
             # HTML self defined info block
             soup_self_tags = soup.select('.tag-wrap')[0].select('.tags')
@@ -146,18 +147,24 @@ class QdFictionInfo:
             # get day numbers the author has been produced
             self.authorProducingDays = int(soup_work_state.select('em')[2].get_text())
 
+    def __str__(self):
+        return str(self.__dict__)
+
 
 def test():
     """
     test static method to_id and to_url
     :return:
     """
-    url_str = 'http://book.qidian.com/info/1005207298'
-    id_str = '1005207298'
-    print(QdFictionInfo.to_id(id_str))
-    print(QdFictionInfo.to_id(url_str))
-    print(QdFictionInfo.to_url(id_str))
-    print(QdFictionInfo.to_url(url_str))
+    # url_str = 'http://book.qidian.com/info/1005207298'
+    id_str = '3367265'
+    # print(QdFictionInfo.to_id(id_str))
+    # print(QdFictionInfo.to_id(url_str))
+    # print(QdFictionInfo.to_url(id_str))
+    # print(QdFictionInfo.to_url(url_str))
+    fic = QdFictionInfo(id_str)
+    fic.retrieve()
+    print(fic)
 
 
 if __name__ == '__main__':
