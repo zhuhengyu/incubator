@@ -4,20 +4,21 @@ import datetime
 
 from NetFictionAnalyser.Conns import conn_db
 from NetFictionAnalyser.QdPageInfo import QdPageInfo
+from NetFictionAnalyser.QdFictionInfo import QdFictionInfo
 
 
-class ShortcutNotTakenError(Exception):
-    """Shortcut not taken"""
+class NoFictionError(Exception):
+    """No fiction error"""
 
     def __init__(self):
         """
         constructor
         """
         # Call the base class constructor with the parameters it needs
-        super(ShortcutNotTakenError, self).__init__('Shortcut not taken')
+        super(NoFictionError, self).__init__('Shortcut not taken')
 
 
-class QdPageHandler:
+class QdHandler:
     """
     QiDian fiction list page
     """
@@ -56,8 +57,6 @@ class QdPageHandler:
         self.action = action
         self.vip = vip
 
-        # if shortcut taken
-        self.if_shortcut = False
         # store fiction info
         self.fictions = []
 
@@ -107,8 +106,6 @@ class QdPageHandler:
         should_stop = False
         for i in range(start_page, end_page):
             if should_stop:
-                # mark shortcut as taken
-                self.if_shortcut = True
                 return
             self.__sleep()
             page = QdPageInfo(self.get_url(i))
@@ -123,15 +120,24 @@ class QdPageHandler:
                 # check if it's all fictions updated in 1 day have been scanned
                 if brief.updateTime - from_when < 0:
                     should_stop = True
-        # mark shortcut as taken
-        self.if_shortcut = True
 
     def to_db(self):
         """
         insert fictions into database
         :return:
         """
-        conn_db().insert_many(self.fictions)
+        fiction_str = []
+        for fiction in self.fictions:
+            fiction_str.append(fiction.__dict__)
+        conn_db().insert_many(fiction_str)
+
+    def from_db(self):
+        """
+
+        :return:
+        """
+        for fiction in conn_db().find():
+            self.fictions.append(QdFictionInfo(fiction))
 
     def handle(self, if_print=False):
         """
@@ -139,8 +145,8 @@ class QdPageHandler:
         :param if_print: if print to console
         :return:
         """
-        if not self.if_shortcut:
-            raise ShortcutNotTakenError()
+        if len(self.fictions) == 0:
+            raise NoFictionError()
         else:
             for fiction in self.fictions:
                 fiction.retrieve()
@@ -170,7 +176,7 @@ def test():
     test if QdPageHandler working
     :return:
     """
-    page_handler = QdPageHandler(order_id=5, style=2)
+    page_handler = QdHandler(order_id=5, style=2)
     page_handler.set_page_range(1, 2)
     page_handler.take_shortcut()
     page_handler.handle()

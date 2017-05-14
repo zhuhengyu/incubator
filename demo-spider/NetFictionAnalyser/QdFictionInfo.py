@@ -28,6 +28,10 @@ class QdFictionInfo:
         constructor
         :param id_str: fiction id or fiction url
         """
+        if isinstance(id_str, dict):
+            self.__dict__ = id_str
+            return
+
         # novel url
         self.id = QdFictionInfo.to_id(id_str)
         # retrieving timestamp
