@@ -131,12 +131,15 @@ class QdHandler:
             fiction_str.append(fiction.__dict__)
         conn_db().insert_many(fiction_str)
 
-    def from_db(self):
+    def from_db(self, if_print=True):
         """
-
+        get fictions from db
+        :param if_print:
         :return:
         """
         for fiction in conn_db().find():
+            if if_print:
+                print(fiction)
             self.fictions.append(QdFictionInfo(fiction))
 
     def handle(self, if_print=False):
@@ -154,6 +157,19 @@ class QdHandler:
                 if if_print:
                     print(fiction.__dict__)
             return
+
+    def statistics_cat(self):
+        """
+        calculate category statistics
+        :return:
+        """
+        result = {}
+        for fiction in self.fictions:
+            if fiction.category not in result:
+                result[fiction.category] = 1
+            else:
+                result[fiction.category] += 1
+        return result
 
     def __sleep(self):
         """
