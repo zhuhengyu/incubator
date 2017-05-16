@@ -1,4 +1,5 @@
 from NetFictionAnalyser.QdHandler import QdHandler
+from NetFictionAnalyser.StatisticsHandler import cat_pie
 
 
 def test():
@@ -8,7 +9,7 @@ def test():
     """
     page_handler = QdHandler(order_id=5, style=2, sleep_range=0.5)
     page_handler.from_db(if_print=True)
-    print(page_handler.statistics_cat())
+    cat_pie(page_handler.statistics_cat())
     # page_handler.handle(if_print=True)
 
     # page_handler = QdHandler(order_id=5, style=2, sleep_range=0.5)
