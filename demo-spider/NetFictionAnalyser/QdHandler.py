@@ -158,19 +158,6 @@ class QdHandler:
                     print(fiction.__dict__)
             return
 
-    def statistics_cat(self):
-        """
-        calculate category statistics
-        :return:
-        """
-        result = {}
-        for fiction in self.fictions:
-            if fiction.category not in result:
-                result[fiction.category] = 1
-            else:
-                result[fiction.category] += 1
-        return result
-
     def __sleep(self):
         """
         sleep interval
