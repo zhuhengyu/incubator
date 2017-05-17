@@ -126,10 +126,10 @@ class QdHandler:
         insert fictions into database
         :return:
         """
-        fiction_str = []
+        bulk = conn_db().initialize_ordered_bulk_op()
         for fiction in self.fictions:
-            fiction_str.append(fiction.__dict__)
-        conn_db().insert_many(fiction_str)
+            bulk.find({'id': fiction.id}).upsert().update({'$set': fiction.__dict__})
+        bulk.execute()
 
     def from_db(self, if_print=True):
         """
