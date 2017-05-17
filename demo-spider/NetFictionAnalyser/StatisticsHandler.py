@@ -11,13 +11,13 @@ def cat_pie(fictions_statistics):
     :param fictions_statistics:
     :return:
     """
-    labels = list(fictions_statistics.keys())
-    sizes = list(fictions_statistics.values())
+    labels = [k for k, v in fictions_statistics]
+    sizes = [v for k, v in fictions_statistics]
     explode = [0 for i in range(0, len(labels))]
 
     fig1, ax1 = plt.subplots()
     ax1.pie(sizes, explode=explode, labels=labels, colors=get_color_map(14), autopct='%1.1f%%', shadow=False,
-            startangle=90)
+            startangle=0)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
     plt.show()
 
@@ -36,6 +36,8 @@ def statistics_cat(from_when=86400):
             result[fiction['category']] = 1
         else:
             result[fiction['category']] += 1
+    sorted_keys = sorted(result, key=result.get, reverse=True)
+    result = [(k, result[k]) for k in sorted_keys]
     return result
 
 
@@ -47,7 +49,11 @@ def get_color_map(n):
     :return:
     """
     # color map
-    # jet viridis
-    color_map = plt.get_cmap('viridis')
+    # http://matplotlib.org/examples/color/colormaps_reference.html
+    color_map = plt.get_cmap('Wistia')
     colors = color_map(np.linspace(0, 1, n))
     return colors
+
+
+if __name__ == '__main__':
+    cat_pie(statistics_cat())
