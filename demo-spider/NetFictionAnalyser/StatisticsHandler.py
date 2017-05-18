@@ -4,6 +4,9 @@ import datetime
 
 from NetFictionAnalyser.Conns import conn_db
 
+plt.rcParams['font.sans-serif'] = ['SimHei']  # for Chinese characters
+# plt.rcParams['axes.unicode_minus'] = False  # for pos neg marks
+
 
 def cat_pie(fictions_statistics):
     """
@@ -13,13 +16,14 @@ def cat_pie(fictions_statistics):
     """
     labels = [k for k, v in fictions_statistics]
     sizes = [v for k, v in fictions_statistics]
-    explode = [0 for i in range(0, len(labels))]
+    explode = [0] * len(labels)
 
     fig1, ax1 = plt.subplots()
     ax1.pie(sizes, explode=explode, labels=labels, colors=get_color_map(14), autopct='%1.1f%%', shadow=False,
             startangle=0)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    plt.show()
+    plt.savefig('test.png')
+    # plt.show()
 
 
 def statistics_cat(from_when=86400):
