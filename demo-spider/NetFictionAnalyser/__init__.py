@@ -24,7 +24,7 @@ def pie_chart():
     page_handler = QdHandler(order_id=5, style=2, sleep_range=0.5)
     page_handler.from_db(if_print=False)
     # page_handler.handle(if_print=True)
-    cat_pie(statistics_cat(from_when=300000, to_when=220000))
+    cat_pie(statistics_cat(from_when=300000, to_when=220000, base_char_count=5000))
     # cat_pie(statistics_cat(from_when=86400))
 
 

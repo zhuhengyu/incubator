@@ -36,18 +36,22 @@ TBD
 """
 
 
-def statistics_cat(from_when=86400, to_when=0):
+def statistics_cat(from_when=86400, to_when=0, base_char_count=0):
     """
     calculate category statistics
     :param from_when:
     :param to_when:
+    :param base_char_count:
     :return:
     """
     now = datetime.datetime.now().timestamp()
     from_when = now - from_when
     to_when = now - to_when
     result = {}
-    fictions = conn_db().find({'updateTime': {'$gt': from_when, '$lt': to_when}})
+    fictions = conn_db().find({
+        'updateTime': {'$gt': from_when, '$lt': to_when},
+        'charCountNow': {'$gt': base_char_count}
+    })
     for fiction in fictions:
         if fiction['category'] not in result:
             result[fiction['category']] = 1
