@@ -20,10 +20,10 @@ def cat_pie(fictions_statistics):
     sizes = [v for k, v in fictions_statistics]
     explode = [0] * len(labels)
 
-    fig1, ax1 = plt.subplots()
-    ax1.pie(sizes, explode=explode, labels=labels, colors=get_color_map(14), autopct='%1.1f%%', shadow=False,
-            startangle=10)
-    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    plt.pie(sizes, explode=explode, labels=labels, colors=get_color_map(14), autopct='%1.1f%%', shadow=False,
+            startangle=10, pctdistance=0.9)
+
+    plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
     # plt.savefig('test.png')
     plt.show()
 
