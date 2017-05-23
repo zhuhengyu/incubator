@@ -28,14 +28,6 @@ def cat_pie(fictions_statistics):
     plt.show()
 
 
-"""
-TBD
-1. add to_when parameter to statistics_cat
-2. draw category details in cat_pie
-3. add base_char_count parameter to statistics_cat
-"""
-
-
 def statistics_cat(from_when=86400, to_when=0, base_char_count=0):
     """
     calculate category statistics
@@ -66,6 +58,19 @@ def statistics_cat(from_when=86400, to_when=0, base_char_count=0):
     return result
 
 
+def statistics_sub_cat(cat):
+    fictions = conn_db().find({
+        'category': cat
+    })
+    result = {}
+    for fiction in fictions:
+        if fiction['subCategory'] not in result:
+            result[fiction['subCategory']] = 1
+        else:
+            result[fiction['subCategory']] += 1
+    print(result)
+
+
 def get_color_map(n):
     """
     Returns a function that maps each index in 0, 1, ... N-1 to a distinct
@@ -81,4 +86,5 @@ def get_color_map(n):
 
 
 if __name__ == '__main__':
-    cat_pie(statistics_cat())
+    # cat_pie(statistics_cat())
+    statistics_sub_cat('游戏')
