@@ -21,7 +21,7 @@ def cat_pie(fictions_statistics):
     explode = [0] * len(labels)
 
     plt.pie(sizes, explode=explode, labels=labels, colors=get_color_map(14), autopct='%1.1f%%', shadow=False,
-            startangle=10, pctdistance=0.9)
+            startangle=0, pctdistance=0.9)
 
     plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
     # plt.savefig('test.png')
@@ -51,24 +51,33 @@ def statistics_cat(from_when=86400, to_when=0, base_char_count=0):
             result[fiction['category']] += 1
     sorted_keys = sorted(result, key=result.get, reverse=True)
     result = [(k, result[k]) for k in sorted_keys]
+
     count = 0
     for k, v in result:
         count += v
     print(count)
+
     return result
 
 
-def statistics_sub_cat(cat):
-    fictions = conn_db().find({
-        'category': cat
-    })
+def statistics_sub_cat(cat='玄幻'):
+    if cat is not None:
+        fictions = conn_db().find({
+            'category': cat
+        })
+    else:
+        fictions = conn_db().find()
     result = {}
     for fiction in fictions:
         if fiction['subCategory'] not in result:
             result[fiction['subCategory']] = 1
         else:
             result[fiction['subCategory']] += 1
+    sorted_keys = sorted(result, key=result.get, reverse=True)
+    result = [(k, result[k]) for k in sorted_keys]
+
     print(result)
+    return result
 
 
 def get_color_map(n):
@@ -87,4 +96,4 @@ def get_color_map(n):
 
 if __name__ == '__main__':
     # cat_pie(statistics_cat())
-    statistics_sub_cat('游戏')
+    cat_pie(statistics_sub_cat())
