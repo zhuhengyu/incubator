@@ -19,18 +19,30 @@
 <body>
 	<canvas id="webgl"></canvas>
 	<script type="text/javascript">
+		// get gl singleton function
+		const getGl = (function() {
+			let canvas;
+			let gl;
+			return function(selector) {
+				if (!canvas) {
+					canvas = document.querySelector(selector);
+					window.onresize = function() {
+						canvas.width = window.innerWidth;
+						canvas.height = window.innerHeight;
+					};
+				}
+				if (!gl) {
+					gl = canvas.getContext('webgl');
+				}
+				return gl;
+			};
+		})();
 		window.onload = function() {
-			const canvas = document.querySelector('#webgl');
-			const gl = canvas.getContext('webgl');
+			const gl = getGl('#webgl');
 			gl.clearColor(.0, .0, .0, 1.0);
 			gl.enable(gl.DEPTH_TEST);
 			gl.depthFunc(gl.LEQUAL);
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-
-			window.onresize = function() {
-				canvas.width = window.innerWidth;
-				canvas.height = window.innerHeight;
-			};
 		};
 	</script>
 </body>
