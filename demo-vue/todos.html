@@ -3,23 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<style type="text/css">
-		li {
-			cursor: pointer;
-		}
-		.done span {
-			text-decoration: line-through;
-			color: grey;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
 	<div id="app">
 		<ul>
 			<todo-item v-for="todo in todos" v-bind:todo="todo" :key="todo.id">
 		</ul>
+		<input-todo>
 	</div>
-	<script src="./javascripts/vue.js"></script>
 	<script type="text/x-template" id="todo-item">
 		<li v-bind:class="[{done: done}]">
 			<span>{{todo.title}}</span>
@@ -27,25 +19,17 @@
 			<button v-on:click="showContent">show</button>
 		</li>
 	</script>
-	<script type="text/javascript">
-		Vue.component('todo-item', {
-			props: ['todo'],
-			template: '#todo-item',
-			data() {
-				return {
-					done: false
-				};
-			},
-			methods: {
-				toggleDone(event) {
-					this.done = !this.done;
-				},
-				showContent() {
-					alert(this.todo.content);
-				}
-			}
-		});
+	<script type="text/x-template" id="input-todo">
+		<form>
+			<input type="text" v-model="title" placeholder="title">
+			<br>
+			<input type="text" v-model="content" placeholder="content">
+			<br>
+			<button>add</button>
+		</form>
 	</script>
+	<script src="./javascripts/vue.js"></script>
+	<script src="./javascripts/components.js"></script>
 	<script type="text/javascript">
 		const app = new Vue({
 			el: '#app',
