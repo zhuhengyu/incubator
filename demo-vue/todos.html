@@ -10,7 +10,7 @@
 		<ul>
 			<todo-item v-for="todo in todos" v-bind:todo="todo" :key="todo.id">
 		</ul>
-		<input-todo>
+		<input-todo v-on:addnewtodo="addNewTodo">
 	</div>
 	<script type="text/x-template" id="todo-item">
 		<li v-bind:class="[{done: done}]">
@@ -25,34 +25,10 @@
 			<br>
 			<input type="text" v-model="content" placeholder="content">
 			<br>
-			<button>add</button>
+			<input type="button" value="add" v-on:click="addNewTodo">
 		</form>
 	</script>
 	<script src="./javascripts/vue.js"></script>
 	<script src="./javascripts/components.js"></script>
-	<script type="text/javascript">
-		const app = new Vue({
-			el: '#app',
-			data: {
-				todos: [{
-					id: Math.floor(Math.random() * 1e10),
-					title: 'todo1',
-					content: 'eat breakfast'
-				},{
-					id: Math.floor(Math.random() * 1e10),
-					title: 'todo2',
-					content: 'eat lunch'
-				},{
-					id: Math.floor(Math.random() * 1e10),
-					title: 'todo3',
-					content: 'eat supper'
-				},{
-					id: Math.floor(Math.random() * 1e10),
-					title: 'todo4',
-					content: 'drink milk'
-				}]
-			},
-		});
-	</script>
 </body>
 </html>
