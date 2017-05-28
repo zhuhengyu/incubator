@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		li {
+			cursor: pointer;
+		}
+		.done {
+			text-decoration: line-through;
+			color: grey;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<ul>
+			<todo-item v-for="todo in todos" v-bind:todo="todo" :key="todo.id">
+		</ul>
+	</div>
+	<script src="./javascripts/vue.js"></script>
+	<script type="text/x-template" id="todo-item">
+		<li v-bind:class="[{done: done}]" v-on:click="toggleDone">{{todo.content}}</li>
+	</script>
+	<script type="text/javascript">
+		Vue.component('todo-item', {
+			props: ['todo'],
+			template: '#todo-item',
+			data() {
+				return {
+					done: false
+				};
+			},
+			methods: {
+				toggleDone(event) {
+					this.done = !this.done;
+				}
+			}
+		});
+		const app = new Vue({
+			el: '#app',
+			data: {
+				todos: [{
+					id: Math.floor(Math.random() * 1e10),
+					content: 'todo1'
+				},{
+					id: Math.floor(Math.random() * 1e10),
+					content: 'todo2'
+				},{
+					id: Math.floor(Math.random() * 1e10),
+					content: 'todo3'
+				},{
+					id: Math.floor(Math.random() * 1e10),
+					content: 'todo4'
+				}]
+			},
+		});
+	</script>
+</body>
+</html>
