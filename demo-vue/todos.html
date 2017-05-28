@@ -7,7 +7,7 @@
 		li {
 			cursor: pointer;
 		}
-		.done {
+		.done span {
 			text-decoration: line-through;
 			color: grey;
 		}
@@ -21,7 +21,11 @@
 	</div>
 	<script src="./javascripts/vue.js"></script>
 	<script type="text/x-template" id="todo-item">
-		<li v-bind:class="[{done: done}]" v-on:click="toggleDone">{{todo.content}}</li>
+		<li v-bind:class="[{done: done}]">
+			<span>{{todo.title}}</span>
+			<button v-on:click="toggleDone">done</button>
+			<button v-on:click="showContent">show</button>
+		</li>
 	</script>
 	<script type="text/javascript">
 		Vue.component('todo-item', {
@@ -35,24 +39,33 @@
 			methods: {
 				toggleDone(event) {
 					this.done = !this.done;
+				},
+				showContent() {
+					alert(this.todo.content);
 				}
 			}
 		});
+	</script>
+	<script type="text/javascript">
 		const app = new Vue({
 			el: '#app',
 			data: {
 				todos: [{
 					id: Math.floor(Math.random() * 1e10),
-					content: 'todo1'
+					title: 'todo1',
+					content: 'eat breakfast'
 				},{
 					id: Math.floor(Math.random() * 1e10),
-					content: 'todo2'
+					title: 'todo2',
+					content: 'eat lunch'
 				},{
 					id: Math.floor(Math.random() * 1e10),
-					content: 'todo3'
+					title: 'todo3',
+					content: 'eat supper'
 				},{
 					id: Math.floor(Math.random() * 1e10),
-					content: 'todo4'
+					title: 'todo4',
+					content: 'drink milk'
 				}]
 			},
 		});
