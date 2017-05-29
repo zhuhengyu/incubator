@@ -50,30 +50,33 @@ Vue.component('input-todo', {
 
 Vue.component('todo-list', {
 	template: '#todo-list',
-	props: ['todos'],
+	props: ['data']
 });
 
 
 const app = new Vue({
 	el: '#app',
 	data: {
-		todos: [{
-			id: Math.floor(Math.random() * 1e10),
-			title: 'todo1',
-			content: 'eat breakfast'
-		},{
-			id: Math.floor(Math.random() * 1e10),
-			title: 'todo2',
-			content: 'eat lunch'
-		},{
-			id: Math.floor(Math.random() * 1e10),
-			title: 'todo3',
-			content: 'eat supper'
-		},{
-			id: Math.floor(Math.random() * 1e10),
-			title: 'todo4',
-			content: 'drink milk'
-		}]
+		todoList: {
+			title: 'Zhao',
+			todos: [{
+				id: Math.floor(Math.random() * 1e10),
+				title: 'todo1',
+				content: 'eat breakfast'
+			},{
+				id: Math.floor(Math.random() * 1e10),
+				title: 'todo2',
+				content: 'eat lunch'
+			},{
+				id: Math.floor(Math.random() * 1e10),
+				title: 'todo3',
+				content: 'eat supper'
+			},{
+				id: Math.floor(Math.random() * 1e10),
+				title: 'todo4',
+				content: 'drink milk'
+			}]
+		}
 	},
 	methods: {
 		addNewTodo(todo) {
