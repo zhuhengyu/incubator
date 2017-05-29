@@ -37,7 +37,7 @@ Vue.component('input-todo', {
 	},
 	methods: {
 		addNewTodo() {
-			this.$emit('addnewtodo', {
+			this.$parent.$emit('addnewtodo', {
 				id: Math.floor(Math.random() * 1e10),
 				title: this.title,
 				content: this.content
