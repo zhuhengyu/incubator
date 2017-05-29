@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div id="app">
-		<todo-list v-bind:data="todoList" v-on:removetodo="removeTodo" v-on:addnewtodo="addNewTodo"></todo-list>
+		<todo-list v-for="todoList in todoLists" v-bind:data="todoList" :key="todoList.id" v-on:removetodo="removeTodo" v-on:addnewtodo="addNewTodo"></todo-list>
 	</div>
 	<script type="text/x-template" id="todo-item">
 		<li v-bind:class="[{done: done}]">
@@ -30,9 +30,9 @@
 		<div>
 			<h2>{{data.title}}</h2>
 			<ul>
-				<todo-item v-for="todo in data.todos" v-bind:todo="todo" :key="todo.id"></todo-item>
+				<todo-item v-for="todo in data.todos" v-bind:list-id="data.id" v-bind:todo="todo" :key="todo.id"></todo-item>
 			</ul>
-			<input-todo></input-todo>
+			<input-todo v-bind:list-id="data.id"></input-todo>
 		</div>
 	</script>
 	<script src="./javascripts/vue.js"></script>
