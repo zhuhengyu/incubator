@@ -61,8 +61,8 @@ Vue.component('todo-list-titles', {
 	template: '#todo-list-titles',
 	props: ['todoLists'],
 	methods: {
-		showList(id) {
-			console.log(id);
+		showList(index) {
+			this.$emit('showlist', index);
 		}
 	}
 });
@@ -70,6 +70,7 @@ Vue.component('todo-list-titles', {
 const app = new Vue({
 	el: '#app',
 	data: {
+		activeIndex: 0,
 		todoLists: [{
 			id: genId(),
 			title: 'Zhao',
@@ -128,6 +129,9 @@ const app = new Vue({
 					});
 				}
 			});
+		},
+		showList(index) {
+			this.activeIndex = index;
 		}
 	}
 });

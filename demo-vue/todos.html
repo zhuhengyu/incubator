@@ -7,8 +7,8 @@
 </head>
 <body>
 	<div id="app">
-		<todo-list-titles v-bind:todo-lists="todoLists"></todo-list-titles>
-		<todo-list v-for="todoList in todoLists" v-bind:data="todoList" :key="todoList.id" v-on:removetodo="removeTodo" v-on:addnewtodo="addNewTodo"></todo-list>
+		<todo-list-titles v-bind:todo-lists="todoLists" v-on:showlist="showList"></todo-list-titles>
+		<todo-list v-bind:data="todoLists[activeIndex]" :key="todoLists[activeIndex].id" v-on:removetodo="removeTodo" v-on:addnewtodo="addNewTodo"></todo-list>
 	</div>
 	<script type="text/x-template" id="todo-item">
 		<li v-bind:class="[{done: done}]">
@@ -39,7 +39,7 @@
 	<script type="text/x-template" id="todo-list-titles">
 		<div>
 			<ul>
-				<li v-for="todoList in todoLists" :key="todoList.id" v-on:click="showList(todoList.id)">{{todoList.title}}</li>
+				<li v-for="(todoList, index) in todoLists" :key="todoList.id" v-on:click="showList(index)">{{todoList.title}}</li>
 			</ul>
 		</div>
 	</script>
