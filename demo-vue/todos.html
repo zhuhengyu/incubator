@@ -7,6 +7,7 @@
 </head>
 <body>
 	<div id="app">
+		<todo-list-titles v-bind:todo-lists="todoLists"></todo-list-titles>
 		<todo-list v-for="todoList in todoLists" v-bind:data="todoList" :key="todoList.id" v-on:removetodo="removeTodo" v-on:addnewtodo="addNewTodo"></todo-list>
 	</div>
 	<script type="text/x-template" id="todo-item">
@@ -33,6 +34,13 @@
 				<todo-item v-for="todo in data.todos" v-bind:list-id="data.id" v-bind:todo="todo" :key="todo.id"></todo-item>
 			</ul>
 			<input-todo v-bind:list-id="data.id"></input-todo>
+		</div>
+	</script>
+	<script type="text/x-template" id="todo-list-titles">
+		<div>
+			<ul>
+				<li v-for="todoList in todoLists" :key="todoList.id" v-on:click="showList(todoList.id)">{{todoList.title}}</li>
+			</ul>
 		</div>
 	</script>
 	<script src="./javascripts/vue.js"></script>

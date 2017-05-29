@@ -57,6 +57,15 @@ Vue.component('todo-list', {
 	props: ['data']
 });
 
+Vue.component('todo-list-titles', {
+	template: '#todo-list-titles',
+	props: ['todoLists'],
+	methods: {
+		showList(id) {
+			console.log(id);
+		}
+	}
+});
 
 const app = new Vue({
 	el: '#app',
