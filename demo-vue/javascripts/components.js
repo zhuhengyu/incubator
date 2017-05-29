@@ -14,7 +14,7 @@ Vue.component('todo-item', {
 			alert(this.todo.content);
 		},
 		removeTodo() {
-			this.$emit('removetodo', this.todo.id);
+			this.$parent.$emit('removetodo', this.todo.id);
 		}
 	}
 });
@@ -46,6 +46,11 @@ Vue.component('input-todo', {
 			this.content = '';
 		}
 	}
+});
+
+Vue.component('todo-list', {
+	template: '#todo-list',
+	props: ['todos'],
 });
 
 
