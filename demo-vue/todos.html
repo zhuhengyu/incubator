@@ -8,7 +8,8 @@
 <body>
 	<div id="app">
 		<todo-list-titles v-bind:todo-lists="todoLists" v-on:showlist="showList"></todo-list-titles>
-		<todo-list v-bind:data="todoLists[activeIndex]" :key="todoLists[activeIndex].id" v-on:removetodo="removeTodo" v-on:addnewtodo="addNewTodo"></todo-list>
+		<todo-list v-bind:data="todoLists[activeIndex]" :key="todoLists[activeIndex].id" v-on:removetodo="removeTodo" v-on:addnewtodo="addNewTodo" v-on:showmessage="updateMessage"></todo-list>
+		<sys-message v-bind:message="sysMessage"></sys-message>
 	</div>
 	<script type="text/x-template" id="todo-item">
 		<li v-bind:class="[{done: done}]">
@@ -42,6 +43,9 @@
 				<li v-for="(todoList, index) in todoLists" :key="todoList.id" v-on:click="showList(index)">{{todoList.title}}</li>
 			</ul>
 		</div>
+	</script>
+	<script type="text/x-template" id="sys-message">
+		<div v-bind:class="[message.type]">{{message.content}}</div>
 	</script>
 	<script src="./javascripts/vue.js"></script>
 	<script src="./javascripts/components.js"></script>

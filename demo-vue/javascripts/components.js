@@ -38,6 +38,13 @@ Vue.component('input-todo', {
 	},
 	methods: {
 		addNewTodo() {
+			if (this.title === '' || this.content === '') {
+				this.$parent.$emit('showmessage', {
+					type: 'warning',
+					content: 'warning: cannot be empty'
+				});
+				return;
+			}
 			this.$parent.$emit('addnewtodo', {
 				listId: this.listId,
 				todo: {
@@ -45,6 +52,10 @@ Vue.component('input-todo', {
 					title: this.title,
 					content: this.content
 				}
+			});
+			this.$parent.$emit('showmessage', {
+				type: 'info',
+				content: 'info: success'
 			});
 			this.title = '';
 			this.content = '';
@@ -67,10 +78,19 @@ Vue.component('todo-list-titles', {
 	}
 });
 
+Vue.component('sys-message', {
+	template: '#sys-message',
+	props: ['message']
+});
+
 const app = new Vue({
 	el: '#app',
 	data: {
 		activeIndex: 0,
+		sysMessage: {
+			type: 'info',
+			content: ''
+		},
 		todoLists: [{
 			id: genId(),
 			title: 'Zhao',
@@ -132,6 +152,9 @@ const app = new Vue({
 		},
 		showList(index) {
 			this.activeIndex = index;
+		},
+		updateMessage(message) {
+			this.sysMessage = message;
 		}
 	}
 });

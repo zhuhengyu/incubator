@@ -1,7 +1,18 @@
+ul {
+	margin: 0px;
+	padding: 0px;
+}
 li {
+	list-style: none;
 	cursor: pointer;
 }
 .done span {
 	text-decoration: line-through;
 	color: grey;
+}
+.info {
+	color: green;
+}
+.warning {
+	color: red;
 }
