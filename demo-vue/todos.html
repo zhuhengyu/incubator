@@ -8,7 +8,7 @@
 <body>
 	<div id="app">
 		<ul>
-			<todo-item v-for="todo in todos" v-bind:todo="todo" :key="todo.id">
+			<todo-item v-for="todo in todos" v-bind:todo="todo" :key="todo.id" v-on:removetodo="removeTodo">
 		</ul>
 		<input-todo v-on:addnewtodo="addNewTodo">
 	</div>
@@ -17,6 +17,7 @@
 			<span>{{todo.title}}</span>
 			<button v-on:click="toggleDone">done</button>
 			<button v-on:click="showContent">show</button>
+			<button v-on:click="removeTodo">remove</button>
 		</li>
 	</script>
 	<script type="text/x-template" id="input-todo">

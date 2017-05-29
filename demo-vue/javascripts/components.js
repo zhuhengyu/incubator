@@ -12,6 +12,9 @@ Vue.component('todo-item', {
 		},
 		showContent() {
 			alert(this.todo.content);
+		},
+		removeTodo() {
+			this.$emit('removetodo', this.todo.id);
 		}
 	}
 });
@@ -70,6 +73,11 @@ const app = new Vue({
 	methods: {
 		addNewTodo(todo) {
 			this.todos.push(todo);
+		},
+		removeTodo(id) {
+			this.todos = this.todos.filter(function(todo) {
+				return todo.id !== id;
+			});
 		}
 	}
 });
