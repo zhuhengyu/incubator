@@ -45,9 +45,10 @@
 	</script>
 	<script type="text/x-template" id="todo-list-titles">
 		<div>
-			<ul>
-				<li v-for="(todoList, index) in todoLists" :key="todoList.id" v-on:click="showList(index)">{{todoList.title}}</li>
-			</ul>
+			<h2>Users</h2>
+			<md-button class="md-raised md-primary" v-for="(todoList, index) in todoLists" :key="todoList.id"  @click.native="showList(index)">
+				{{todoList.title}}
+			</md-button>
 		</div>
 	</script>
 	<script type="text/x-template" id="sys-message">
