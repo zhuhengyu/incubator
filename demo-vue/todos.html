@@ -15,9 +15,9 @@
 	<script type="text/x-template" id="todo-item">
 		<li v-bind:class="[{done: done}]">
 			<span>{{todo.title}}</span>
-			<md-button class="md-raised md-primary" v-on:click.native="toggleDone">done</md-button>
-			<md-button class="md-raised md-accent" v-on:click.native="showContent">show</md-button>
-			<md-button class="md-raised md-warn" v-on:click.native="removeTodo">remove</md-button>
+			<md-button class="md-raised md-primary" @click.native="toggleDone">done</md-button>
+			<md-button class="md-raised md-accent" @click.native="showContent">show</md-button>
+			<md-button class="md-raised md-warn" @click.native="removeTodo">remove</md-button>
 		</li>
 	</script>
 	<script type="text/x-template" id="input-todo">
@@ -26,7 +26,7 @@
 			<br>
 			<input type="text" v-model="content" placeholder="content">
 			<br>
-			<input type="button" value="add" v-on:click="addNewTodo">
+			<md-button class="md-raised md-primary" @click.native="addNewTodo">add</md-button>
 		</form>
 	</script>
 	<script type="text/x-template" id="todo-list">
