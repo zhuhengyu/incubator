@@ -22,10 +22,15 @@
 	</script>
 	<script type="text/x-template" id="input-todo">
 		<form>
-			<input type="text" v-model="title" placeholder="title">
-			<br>
-			<input type="text" v-model="content" placeholder="content">
-			<br>
+			<h2>New Todo</h2>
+			<md-input-container>
+				<label>Title</label>
+				<md-input v-model="title" placeholder="title"></md-input>
+			</md-input-container>
+			<md-input-container>
+				<label>Content</label>
+				<md-input v-model="content" placeholder="content"></md-input>
+			</md-input-container>
 			<md-button class="md-raised md-primary" @click.native="addNewTodo">add</md-button>
 		</form>
 	</script>
