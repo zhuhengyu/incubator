@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-material/dist/vue-material.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
@@ -14,9 +15,9 @@
 	<script type="text/x-template" id="todo-item">
 		<li v-bind:class="[{done: done}]">
 			<span>{{todo.title}}</span>
-			<button v-on:click="toggleDone">done</button>
-			<button v-on:click="showContent">show</button>
-			<button v-on:click="removeTodo">remove</button>
+			<md-button class="md-raised md-primary" v-on:click.native="toggleDone">done</md-button>
+			<md-button class="md-raised md-accent" v-on:click.native="showContent">show</md-button>
+			<md-button class="md-raised md-warn" v-on:click.native="removeTodo">remove</md-button>
 		</li>
 	</script>
 	<script type="text/x-template" id="input-todo">
@@ -47,7 +48,8 @@
 	<script type="text/x-template" id="sys-message">
 		<div v-bind:class="[message.type]">{{message.content}}</div>
 	</script>
-	<script src="./javascripts/vue.js"></script>
+	<script src="https://unpkg.com/vue"></script>
+	<script src="https://unpkg.com/vue-material"></script>
 	<script src="./javascripts/components.js"></script>
 </body>
 </html>

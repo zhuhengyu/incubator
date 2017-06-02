@@ -1,3 +1,5 @@
+Vue.use(VueMaterial);
+
 Vue.component('todo-item', {
 	props: ['listId', 'todo'],
 	template: '#todo-item',
