@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<foo :foo="foo"></foo>
+		<bar :bar="bar"></bar>
+	</div>
+	<script src="https://unpkg.com/vue"></script>
+	<script type="text/x-template" id="foo">
+		<button @click="handleClick">
+			{{dataFoo}}
+		</button>
+	</script>
+	<script type="text/x-template" id="bar">
+		<button>
+			{{dataBar}}
+		</button>
+	</script>
+	<script type="text/javascript">
+		const bus = new Vue();
+		Vue.component('foo', {
+			template: '#foo',
+			props: ['foo'],
+			data() {
+				return {
+					dataFoo: this.foo
+				};
+			},
+			methods: {
+				handleClick() {
+					console.log(this.foo);
+					bus.$emit('communicate', this.foo);
+				}
+			}
+		});
+		Vue.component('bar', {
+			template: '#bar',
+			props: ['bar'],
+			data() {
+				return {
+					dataBar: this.bar
+				};
+			},
+			created() {
+				const self = this;
+				bus.$on('communicate', function(info) {
+					console.log(info);
+					self.dataBar = info;
+				});
+			}
+		});
+		const app = new Vue({
+			el: '#app',
+			data: {
+				foo: 'd1',
+				bar: 'd2'
+			}
+		});
+	</script>
+</body>
+</html>
