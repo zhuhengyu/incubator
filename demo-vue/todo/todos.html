@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/vue-material/dist/vue-material.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header>Todo清单</header>
+    <nav></nav>
+    <todo-list-titles class="title-list" :todo-lists="todoLists" @showlist="showList" @addnewlist="addNewList"></todo-list-titles>
+    <todo-list class="todo-list" :data="todoLists[activeIndex]" :key="todoLists[activeIndex].id" @removetodo="removeTodo" @addnewtodo="addNewTodo" @removelist="removeList"></todo-list>
+  </div>
+  <script type="text/x-template" id="todo-item">
+    <li class="todo-item content-row" :class="[{done: todo.done}]">
+      <md-dialog-alert :md-content="todo.content" :md-ok-text="ok" ref="dialog-show-todo-content"></md-dialog-alert>
+      <md-icon @click.native="toggleDone">{{todo.done ? 'check_box' : 'check_box_outline_blank'}}</md-icon>
+      <span class="title" :class="[{done: todo.done}]">{{todo.title}}</span>
+      <span class="actions">
+        <md-icon @click.native="showContent('dialog-show-todo-content')">content_paste</md-icon>
+        <todo-editor :todo="todo">mode_edit</todo-editor>
+        <md-icon @click.native="removeTodo">delete_forever</md-icon>
+      </span>
+    </li>
+  </script>
+  <script type="text/x-template" id="input-todo">
+    <div>
+      <md-dialog ref="dialog-input-todo">
+        <md-dialog-title>创建一个新的Todo</md-dialog-title>
+        <md-dialog-content>
+          <form>
+            <md-input-container>
+              <label>Todo标题</label>
+              <md-input v-model="title"></md-input>
+            </md-input-container>
+            <md-input-container>
+              <label>详细内容</label>
+              <md-input v-model="content"></md-input>
+            </md-input-container>
+          </form>
+        </md-dialog-content>
+        <md-dialog-actions>
+          <md-button class="md-primary" @click.native="closeDialog('dialog-input-todo')">取消</md-button>
+          <md-button class="md-primary" @click.native="addNewTodo">创建</md-button>
+        </md-dialog-actions>
+      </md-dialog>
+      <md-button class="md-raised md-primary" @click.native="openDialog('dialog-input-todo')">添加任务</md-button>
+    </div>
+  </script>
+  <script type="text/x-template" id="todo-list">
+    <div class="todo-list">
+      <h2 class="content-row">
+        <span>{{data.title}}</span>
+        <span class="actions">
+          <list-editor :todolist="data"></list-editor>
+          <md-icon @click.native="removeList">delete_forever</md-icon>
+        </span>
+      </h2>
+      <span class="actions">
+        <input-todo :list-id="data.id"></input-todo>
+      </span>
+      <ul>
+        <todo-item v-for="todo in data.todos" :list-id="data.id" :todo="todo" :key="todo.id"></todo-item>
+      </ul>
+    </div>
+  </script>
+  <script type="text/x-template" id="todo-list-titles">
+    <div class="todo-list-titles">
+      <h2>
+        <span>清单</span>
+        <input-list></input-list>
+      </h2>
+      <md-list>
+        <md-list-item v-for="(todoList, index) in todoLists" :key="todoList.id" @click.native="showList(index)">
+          {{todoList.title}}
+        </md-list-item>
+      </md-list>
+    </div>
+  </script>
+  <script type="text/x-template" id="input-list">
+    <span>
+      <md-dialog ref="dialog-input-list">
+        <md-dialog-title>创建一个新的清单</md-dialog-title>
+        <md-dialog-content>
+          <form>
+            <md-input-container>
+              <label>清单标题</label>
+              <md-input v-model="title"></md-input>
+            </md-input-container>
+          </form>
+        </md-dialog-content>
+        <md-dialog-actions>
+          <md-button class="md-primary" @click.native="closeDialog('dialog-input-list')">取消</md-button>
+          <md-button class="md-primary" @click.native="addNewList">创建</md-button>
+        </md-dialog-actions>
+      </md-dialog>
+      <md-icon style="cursor: pointer; font-size: 22px; float: right; margin-right: 5px;" @click.native="openDialog('dialog-input-list')">add</md-icon>
+    </span>
+  </script>
+  <script type="text/x-template" id="todo-editor">
+    <span>
+      <md-dialog ref="dialog-todo-editor">
+        <md-dialog-title>编辑Todo</md-dialog-title>
+        <md-dialog-content>
+          <form>
+            <md-input-container>
+              <label>Todo标题</label>
+              <md-input v-model="title"></md-input>
+            </md-input-container>
+            <md-input-container>
+              <label>详细内容</label>
+              <md-input v-model="content"></md-input>
+            </md-input-container>
+          </form>
+        </md-dialog-content>
+        <md-dialog-actions>
+          <md-button class="md-primary" @click.native="closeDialog()">取消</md-button>
+          <md-button class="md-primary" @click.native="update">修改</md-button>
+        </md-dialog-actions>
+      </md-dialog>
+      <md-icon @click.native="openDialog('dialog-todo-editor')">mode_edit</md-icon>
+    </span>
+  </script>
+  <script type="text/x-template" id="list-editor">
+    <span>
+      <md-dialog ref="dialog-list-editor">
+        <md-dialog-title>编辑清单</md-dialog-title>
+        <md-dialog-content>
+          <form>
+            <md-input-container>
+              <label>清单标题</label>
+              <md-input v-model="title"></md-input>
+            </md-input-container>
+          </form>
+        </md-dialog-content>
+        <md-dialog-actions>
+          <md-button class="md-primary" @click.native="closeDialog('dialog-list-editor')">取消</md-button>
+          <md-button class="md-primary" @click.native="update">修改</md-button>
+        </md-dialog-actions>
+      </md-dialog>
+      <md-icon @click.native="openDialog('dialog-list-editor')">mode_edit</md-icon>
+    </span>
+  </script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vue-material"></script>
+  <script src="./javascripts/data.js"></script>
+  <script src="./javascripts/components.js"></script>
+</body>
+</html>

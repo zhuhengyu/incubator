@@ -1,0 +1,95 @@
+html, body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  background: url(../images/bg.jpg);
+  user-select: none;
+  cursor: default;
+}
+#app {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas: 'header nav' 'titlelist todolist';
+}
+header {
+  padding-left: 10px;
+  grid-area: header;
+  background: #495570;
+  font-size: 20px;
+  line-height: 50px;
+  color: white;
+}
+nav {
+  grid-area: nav;
+  background: #53617f;
+}
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+li {
+  list-style: none;
+}
+.content-row {
+  height: 20px;
+  margin: 10px;
+  background: white;
+  box-sizing: content-box;
+  line-height: 20px;
+  padding: 5px;
+  border-radius: 3px;
+}
+.todo-list .content-row {
+  height: 36px;
+  line-height: 36px;
+  margin-bottom: 1px;
+  margin-top: 1px;
+}
+.todo-list h2.content-row {
+  padding-left: 15px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.todo-list .content-row .actions {
+  float: right;
+  cursor: pointer;
+}
+.todo-item .actions {
+  float: right;
+}
+.todo-item .actions i {
+  cursor: pointer;
+}
+.todo-item .done {
+  text-decoration: line-through;
+  color: grey;
+}
+.title-list {
+  grid-area: titlelist;
+  background: #f7f7f7;
+}
+.todo-list {
+  grid-area: todolist;
+}
+.todo-item.done {
+  opacity: 0.5
+}
+.todo-list-titles {
+}
+.todo-list-titles h2 {
+  padding-left: 10px;
+  font-weight: 300;
+  font-size: 16px;
+}
+.info {
+	color: green;
+}
+.warning {
+	color: red;
+}
+
+.md-dialog {
+  min-width: 380px;
+}
