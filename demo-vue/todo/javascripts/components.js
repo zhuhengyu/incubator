@@ -96,10 +96,10 @@ Vue.component('todo-editor', {
 
 Vue.component('todo-list', {
 	template: '#todo-list',
-	props: ['data'],
+	props: ['todolist', 'listlength'],
 	methods: {
 		removeList() {
-			this.$emit('removelist', this.data.id);
+			this.$emit('removelist', this.todolist.id);
 		}
 	}
 });
@@ -123,7 +123,6 @@ Vue.component('input-list', {
 	},
 	methods: {
 		addNewList() {
-			console.log(this.title);
 			this.$parent.$emit('addnewlist', {
 				id: genId(),
 				title: this.title,

@@ -12,7 +12,7 @@
     <header>Todo清单</header>
     <nav></nav>
     <todo-list-titles class="title-list" :todo-lists="todoLists" @showlist="showList" @addnewlist="addNewList"></todo-list-titles>
-    <todo-list class="todo-list" :data="todoLists[activeIndex]" :key="todoLists[activeIndex].id" @removetodo="removeTodo" @addnewtodo="addNewTodo" @removelist="removeList"></todo-list>
+    <todo-list class="todo-list" :todolist="todoLists[activeIndex]" :listlength="todoLists.length" :key="todoLists[activeIndex].id" @removetodo="removeTodo" @addnewtodo="addNewTodo" @removelist="removeList"></todo-list>
   </div>
   <script type="text/x-template" id="todo-item">
     <li class="todo-item content-row" :class="[{done: todo.done}]">
@@ -31,7 +31,7 @@
       <md-dialog ref="dialog-input-todo">
         <md-dialog-title>创建一个新的Todo</md-dialog-title>
         <md-dialog-content>
-          <form>
+          <form @submit.stop.prevent>
             <md-input-container>
               <label>Todo标题</label>
               <md-input v-model="title"></md-input>
@@ -53,17 +53,17 @@
   <script type="text/x-template" id="todo-list">
     <div class="todo-list">
       <h2 class="content-row">
-        <span>{{data.title}}</span>
+        <span>{{todolist.title}}</span>
         <span class="actions">
-          <list-editor :todolist="data"></list-editor>
-          <md-icon @click.native="removeList">delete_forever</md-icon>
+          <list-editor :todolist="todolist"></list-editor>
+          <md-icon v-if="listlength>1" @click.native="removeList">delete_forever</md-icon>
         </span>
       </h2>
       <span class="actions">
-        <input-todo :list-id="data.id"></input-todo>
+        <input-todo :list-id="todolist.id"></input-todo>
       </span>
       <ul>
-        <todo-item v-for="todo in data.todos" :list-id="data.id" :todo="todo" :key="todo.id"></todo-item>
+        <todo-item v-for="todo in todolist.todos" :list-id="todolist.id" :todo="todo" :key="todo.id"></todo-item>
       </ul>
     </div>
   </script>
@@ -85,7 +85,7 @@
       <md-dialog ref="dialog-input-list">
         <md-dialog-title>创建一个新的清单</md-dialog-title>
         <md-dialog-content>
-          <form>
+          <form @submit.stop.prevent>
             <md-input-container>
               <label>清单标题</label>
               <md-input v-model="title"></md-input>
