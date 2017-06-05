@@ -198,10 +198,14 @@ const app = new Vue({
 			storage.setData();
 		},
 		removeList(listId) {
+			if (this.todoLists.length === 1) {
+				return;
+			}
 			this.todoLists = this.todoLists.filter(function(todoList) {
 				return todoList.id !== listId;
 			});
 			this.activeIndex -= 1;
+			this.activeIndex = this.activeIndex < 0 ? 0 : this.activeIndex;
 			storage.setData();
 		}
 	}
