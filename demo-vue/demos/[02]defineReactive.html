@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="list"></ul>
+	<script type="text/javascript">
+		const list = document.querySelector('#list');
+		const data = {
+			foo: 'foo',
+			bar: 'bar',
+			baz: 'baz',
+			qux: 'qux'
+		};
+		function updateDOM() {
+			list.innerHTML = '';
+			for(let key in data) {
+				let li = document.createElement('li');
+				li.innerHTML = data[key];
+				list.appendChild(li);
+			}
+		}
+		updateDOM();
+		function defineReactive(obj, key) {
+			let val = obj[key];
+			Object.defineProperty(obj, key, {
+				get() {
+					return val;
+				},
+				set(newVal) {
+					val = newVal;
+					updateDOM();
+				}
+			});
+		}
+		for(let key in data) {
+			defineReactive(data, key);
+		}
+	</script>
+</body>
+</html>
