@@ -16,6 +16,6 @@ Singleton.getInstance = function(name) {
 const foo = Singleton.getInstance('foo');
 const bar = Singleton.getInstance('bar');
 
-console.log(foo.getName());
+console.log(Singleton.instance.getName());
+console.log(Singleton.instance === foo);
 console.log(bar.getName());
-console.log(foo === bar);
