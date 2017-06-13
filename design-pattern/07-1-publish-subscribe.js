@@ -6,13 +6,15 @@ publisher.listen = function(key, callback) {
 	}
 	this.clientLists[key].push(callback);
 };
-publisher.trigger = function(key, args) {
+publisher.trigger = function() {
+	// get listen key
+	const key = Array.prototype.shift.apply(arguments);
 	const clientList = this.clientLists[key];
 	if (!clientList) {
 		return;
 	}
 	for (var i = 0; i < clientList.length; i++) {
-		clientList[i].apply(this, args);
+		clientList[i].apply(this, arguments);
 	}
 };
 
