@@ -1,6 +1,6 @@
 const publisher = {};
 
-const installEvent = (function() {
+const installEvent = function(obj) {
 	const event = {
 		clientLists: {},
 		listen(key, callback) {
@@ -20,14 +20,12 @@ const installEvent = (function() {
 			}
 		}
 	};
-	return function(obj) {
-		if (obj) {
-			for(let key in event) {
-				obj[key] = event[key];
-			};
-		}
-	};
-})();
+	if (obj) {
+		for(let key in event) {
+			obj[key] = event[key];
+		};
+	}
+};
 
 installEvent(publisher);
 
