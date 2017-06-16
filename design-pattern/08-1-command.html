@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn1">Button1</button>
+	<button id="btn2">Button2</button>
+	<button id="btn3">Button3</button>
+	<!-- programmer 1 -->
+	<script type="text/javascript">
+		const setCommand = function(btn, command) {
+			btn.addEventListener('click', function(event) {
+				command.execute();
+			});
+		};
+	</script>
+	<!-- programmer 2 -->
+	<script type="text/javascript">
+		const btn1 = document.querySelector('#btn1');
+		const btn2 = document.querySelector('#btn2');
+		const btn3 = document.querySelector('#btn3');
+		const command1 = {
+			execute() {
+				console.log('do something.');
+			}
+		};
+		setCommand(btn1, command1);
+	</script>
+</body>
+</html>
