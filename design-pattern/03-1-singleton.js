@@ -1,16 +1,16 @@
 function Singleton(name) {
-	this.name = name;
+  this.name = name;
 }
 
 Singleton.prototype.getName = function() {
-	return this.name;
+  return this.name;
 };
 
 Singleton.getInstance = function(name) {
-	if(!this.instance) {
-		this.instance = new Singleton(name);
-	}
-	return this.instance;
+  if(!this.instance) {
+    this.instance = new Singleton(name);
+  }
+  return this.instance;
 };
 
 const foo = Singleton.getInstance('foo');

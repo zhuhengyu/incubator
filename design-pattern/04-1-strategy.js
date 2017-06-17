@@ -1,7 +1,7 @@
 const strategy = {
-	S: (salary)=> salary * 4,
-	A: (salary)=> salary * 3,
-	B: (salary)=> salary * 2,
+  S: (salary)=> salary * 4,
+  A: (salary)=> salary * 3,
+  B: (salary)=> salary * 2,
 };
 
 const calculateBonus = (strategyKey, salary) => strategy[strategyKey](salary);
