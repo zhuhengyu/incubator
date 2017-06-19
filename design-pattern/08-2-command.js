@@ -16,30 +16,27 @@ const CommandQueueManager = (() => {
   };
 })();
 
-const order1 = {
-  execute() {
-    console.log('鱼香肉丝');
+const orderSystem = {
+  orders: [{
+    execute() {
+      console.log('鱼香肉丝');
+    }
+  }, {
+    execute() {
+      console.log('剁椒鱼头');
+    }
+  }, {
+    execute() {
+      console.log('干煸四季豆');
+    }
+  }],
+  startOrder() {
+    setInterval(() => {
+      const index = Math.floor(Math.random() * 3);
+      CommandQueueManager.push(this.orders[index]);
+    }, 1e3); 
   }
 };
-
-const order2 = {
-  execute() {
-    console.log('剁椒鱼头');    
-  }
-};
-
-const order3 = {
-  execute() {
-    console.log('干煸四季豆');
-  }
-};
-
-CommandQueueManager.push(order1);
-CommandQueueManager.push(order3);
-CommandQueueManager.push(order2);
-CommandQueueManager.push(order3);
-CommandQueueManager.push(order1);
-CommandQueueManager.push(order2);
 
 const chef = {
   startCook() {
@@ -50,8 +47,9 @@ const chef = {
         return ;
       }
       console.log('订单都处理完了');
-    }, 1e3);
+    }, 9e2);
   }
 };
 
+orderSystem.startOrder();
 chef.startCook();
