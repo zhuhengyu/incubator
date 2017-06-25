@@ -13,6 +13,9 @@ Person.prototype.haveSupper = function() {
 Person.prototype.goHome = function() {
   this.openDoor();
   this.doSth();
+  if (this.saySth && typeof this.saySth === 'function') {
+    this.saySth();
+  }
   this.haveSupper();
 };
 
@@ -35,4 +38,7 @@ Child.prototype.doSth = function() {
 const p1 = new Adult('Zhao');
 p1.goHome();
 const p2 = new Child('Qian');
+p2.saySth = function() {
+  console.log('I want to watch TV.');
+};
 p2.goHome();
