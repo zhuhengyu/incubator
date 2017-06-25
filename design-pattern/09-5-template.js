@@ -4,7 +4,9 @@ const Person = function(name) {
 Person.prototype.openDoor = function() {
   console.log(`${this.name} is opening door.`);
 };
-Person.prototype.doSth = function() {};
+Person.prototype.doSth = function() {
+  throw new Error('Person.doSth() not implemented!');
+};
 Person.prototype.haveSupper = function() {
   console.log(`${this.name} having supper`);
 };
