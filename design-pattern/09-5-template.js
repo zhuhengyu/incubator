@@ -4,15 +4,18 @@ const Person = function(name) {
 Person.prototype.openDoor = function() {
   console.log(`${this.name} is opening door.`);
 };
+// doSth is like abstract method in Java
 Person.prototype.doSth = function() {
   throw new Error('Person.doSth() not implemented!');
 };
 Person.prototype.haveSupper = function() {
   console.log(`${this.name} having supper`);
 };
+// template method
 Person.prototype.goHome = function() {
   this.openDoor();
   this.doSth();
+  // this.saySth is a hook method
   if (this.saySth && typeof this.saySth === 'function') {
     this.saySth();
   }
