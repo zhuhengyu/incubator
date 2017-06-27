@@ -4,15 +4,8 @@ const objectPool = (() => {
     this.index = index;
   };
   const pool = [];
-  const getObj = () => {
-    if (pool.length === 0) {
-      return new Foo(index++);
-    }
-    return pool.pop();
-  };
-  const recover = obj => {
-    pool.push(obj);
-  };
+  const getObj = () => pool.length === 0 ? new Foo(index++) : pool.pop();
+  const recover = obj => pool.push(obj);
   return {
     getObj,
     recover
