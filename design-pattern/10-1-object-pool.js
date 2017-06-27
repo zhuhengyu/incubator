@@ -1,16 +1,21 @@
-const objectPool = (() => {
-  let index = 1;
-  const Foo = function(index) {
-    this.index = index;
-  };
+const objectPoolCreator = constructor => {
   const pool = [];
-  const getObj = () => pool.length === 0 ? new Foo(index++) : pool.pop();
+  const getObj = () => pool.length === 0 ? new constructor() : pool.pop();
   const recover = obj => pool.push(obj);
   return {
     getObj,
     recover
   };
+};
+
+const Counter = (() => {
+  let i = 1;
+  return function() {
+    this.index = i++;
+  };
 })();
+
+const objectPool = objectPoolCreator(Counter);
 
 const obj1 = objectPool.getObj();
 console.log(obj1);
