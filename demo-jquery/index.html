@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		const $ = jQuery = window.jQuery = window.$ = function(selector, context) {
+			return new $.fn.init(selector, context);
+		};
+
+		$.fn = $.prototype;
+
+		$.fn.init = function(selector, context) {};
+
+		$.fn.init.prototype = $.fn;
+
+		const temp = $();
+		console.log(temp instanceof $.fn.init);
+	</script>
+</body>
+</html>
