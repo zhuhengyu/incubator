@@ -8,14 +8,14 @@
 <body>
   <ul>
     <li class="cls">haha</li>
-    <li class="cls">hehe</li>
+    <li id="id" class="cls">hehe</li>
     <li class="cls">heihei</li>
     <li>xixi</li>
     <li>gaga</li>
   </ul>
   <script type="text/javascript">
-    _('.cls').css('color', 'red').append(_('<span>test</span>'));
-    _('.cls').css('color', 'red').append(_('<span>test</span>'));
+    _('.cls').css('color', 'red').append(_('<span> test</span>'));
+    _('#id').css('color', 'red').append(_('<span> test</span>'));
     _('span').css('color', 'gold');
   </script>
 </body>

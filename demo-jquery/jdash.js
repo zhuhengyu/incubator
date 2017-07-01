@@ -48,7 +48,6 @@
       return this;
     },
     append(child) {
-      console.log(child[0] instanceof HTMLElement);
       child = child[0] || child;
       if (!child || !(child instanceof HTMLElement)) {
         throw new Error('Not a valid element!');
