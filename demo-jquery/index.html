@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <script src="dodash.js"></script>
+  <script src="jdash.js"></script>
 </head>
 <body>
   <ul>
@@ -14,9 +14,8 @@
     <li>gaga</li>
   </ul>
   <script type="text/javascript">
-    __('li').each(function(ele, idx) {
-      console.log(ele.innerHTML);
-    }).css('color', 'red');;
+    _('.cls').css('color', 'red').append(_.createDOM('span', 'this is in a span'));
+    _('span').css('color', 'gold');
   </script>
 </body>
 </html>
