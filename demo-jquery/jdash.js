@@ -33,24 +33,22 @@
 
   _.fn.extend({
     each(func) {
-      if (!func) {
-        return undefined;
-      }
-      for (let i = 0; i < this.length; i++) {
-        func.call(this[i], this[i], i);
+      if (func) {
+        for (let i = 0; i < this.length; i++) {
+          func.call(this[i], this[i], i);
+        }
       }
       return this;
     },
-    css(prop, value) {
-      if (typeof prop === 'string') {
+    css(propRaw, value) {
+      if (typeof propRaw === 'string') {
         for (let i = 0; i < this.length; i++) {
-          this[i].style[prop] = value;
+          this[i].style[propRaw] = value;
         }
-      } else if (typeof prop === 'object') {
-        let propObj = prop;
+      } else if (typeof propRaw === 'object') {
         for (let i = 0; i < this.length; i++) {
-          for (let prop in propObj) {
-            this[i].style[prop] = propObj[prop];
+          for (let prop in propRaw) {
+            this[i].style[prop] = propRaw[prop];
           }
         }
       }
