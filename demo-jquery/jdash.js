@@ -8,10 +8,17 @@
   _.fn = _.prototype;
   _.fn.init = function(selector, context) {
     context = context || freeDocument;
-    const nodeList = context.querySelectorAll(selector);
-    this.length = nodeList.length;
-    for (let　i = 0; i < nodeList.length; i++) {
-      this[i] = nodeList[i];
+    try {
+      const nodeList = context.querySelectorAll(selector);
+      this.length = nodeList.length;
+      for (let　i = 0; i < nodeList.length; i++) {
+        this[i] = nodeList[i];
+      }
+    } catch (e) {
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = selector;
+      this[0] = tempDiv.firstChild;
+      this.length = 1;
     }
   };
   _.fn.init.prototype = _.fn;
@@ -41,10 +48,18 @@
       return this;
     },
     append(child) {
-      if (!(child instanceof HTMLElement)) {
-        throw new Error('not a HTML element!');
+      console.log(child[0] instanceof HTMLElement);
+      child = child[0] || child;
+      if (!child || !(child instanceof HTMLElement)) {
+        throw new Error('Not a valid element!');
       }
       this[0].appendChild(child);
+      return this[0];
+    },
+    on(event, callback) {
+      this.each(function(ele, idx) {
+        ele.addEventListener(event, callback, false);
+      });
     }
   });
 

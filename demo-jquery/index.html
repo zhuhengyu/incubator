@@ -14,7 +14,8 @@
     <li>gaga</li>
   </ul>
   <script type="text/javascript">
-    _('.cls').css('color', 'red').append(_.createDOM('span', 'this is in a span'));
+    _('.cls').css('color', 'red').append(_('<span>test</span>'));
+    _('.cls').css('color', 'red').append(_('<span>test</span>'));
     _('span').css('color', 'gold');
   </script>
 </body>
