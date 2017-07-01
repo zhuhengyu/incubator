@@ -16,7 +16,9 @@
   <script type="text/javascript">
     _('.cls').css('color', 'red').append(_('<span> test</span>'));
     _('#id').css('color', 'red').append(_('<span> test</span>'));
-    _('span').css('color', 'gold');
+    _('span').css('color', 'gold').on('click', function(event) {
+      console.log('test');
+    });
   </script>
 </body>
 </html>

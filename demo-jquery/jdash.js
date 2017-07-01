@@ -56,9 +56,9 @@
       return this[0];
     },
     on(event, callback) {
-      this.each(function(ele, idx) {
-        ele.addEventListener(event, callback, false);
-      });
+      for (var i = 0; i < this.length; i++) {
+        this[i].addEventListener(event, callback, false);
+      }
     }
   });
 
