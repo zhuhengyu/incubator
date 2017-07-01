@@ -14,10 +14,13 @@
     <li>gaga</li>
   </ul>
   <script type="text/javascript">
-    _('.cls').css('color', 'red').append(_('<span> test</span>'));
-    _('#id').css('color', 'red').append(_('<span> test</span>'));
+    _('.cls').css('color', 'red').append(_('<span>test</span>'));
+    _('#id').css('color', 'red').append(_.createDOM('span', 'content'));
     _('span').css('color', 'gold').on('click', function(event) {
       console.log('test');
+    }).css({
+      color: 'blue',
+      textDecoration: 'underline'
     });
   </script>
 </body>

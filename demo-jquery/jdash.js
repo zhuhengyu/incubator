@@ -24,7 +24,7 @@
   _.fn.init.prototype = _.fn;
 
   _.extend = _.fn.extend = function(source) {
-    for(let prop in source) {
+    for (let prop in source) {
       if (source.hasOwnProperty(prop)) {
         this[prop] = source[prop];
       }
@@ -36,14 +36,23 @@
       if (!func) {
         return undefined;
       }
-      for (var i = 0; i < this.length; i++) {
+      for (let i = 0; i < this.length; i++) {
         func.call(this[i], this[i], i);
       }
       return this;
     },
     css(prop, value) {
-      for (var i = 0; i < this.length; i++) {
-        this[i].style[prop] = value;
+      if (typeof prop === 'string') {
+        for (let i = 0; i < this.length; i++) {
+          this[i].style[prop] = value;
+        }
+      } else if (typeof prop === 'object') {
+        let propObj = prop;
+        for (let i = 0; i < this.length; i++) {
+          for (let prop in propObj) {
+            this[i].style[prop] = propObj[prop];
+          }
+        }
       }
       return this;
     },
@@ -56,9 +65,10 @@
       return this[0];
     },
     on(event, callback) {
-      for (var i = 0; i < this.length; i++) {
+      for (let i = 0; i < this.length; i++) {
         this[i].addEventListener(event, callback, false);
       }
+      return this;
     }
   });
 
