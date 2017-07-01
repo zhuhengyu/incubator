@@ -5,19 +5,48 @@
 	<title>Document</title>
 </head>
 <body>
+	<ul>
+		<li class="cls">haha</li>
+		<li class="cls">hehe</li>
+		<li class="cls">heihei</li>
+		<li>xixi</li>
+		<li>gaga</li>
+	</ul>
 	<script type="text/javascript">
-		const $ = jQuery = window.jQuery = window.$ = function(selector, context) {
+		const $ = jQuery = window.$ = window.jQuery = function(selector, context) {
 			return new $.fn.init(selector, context);
 		};
-
 		$.fn = $.prototype;
-
-		$.fn.init = function(selector, context) {};
-
+		$.fn.init = function(selector, context) {
+			context = context || document;
+			const nodeList = context.querySelectorAll(selector);
+			this.length = nodeList.length;
+			for (let　i = 0; i < nodeList.length; i++) {
+				this[i] = nodeList[i];
+			}
+		};
 		$.fn.init.prototype = $.fn;
 
-		const temp = $();
-		console.log(temp instanceof $.fn.init);
+		$.extend = $.fn.extend = function(source) {
+			for(let property in source) {
+				this[property] = source[property];
+			}
+		};
+
+		$.fn.extend({
+			each(func) {
+				for (var i = 0; i < this.length; i++) {
+					func.call(this[i], this[i], i);
+				}
+			}
+		});
+
+		$('.cls').each(function(ele, idx) {
+			console.log(ele.innerHTML);
+		});
+		$('li').each(function(ele, idx) {
+			console.log(ele.innerHTML);
+		});
 	</script>
 </body>
 </html>
