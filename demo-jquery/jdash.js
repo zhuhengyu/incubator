@@ -1,13 +1,7 @@
 (function(freeSelf) {
-  Object.defineProperty(freeSelf, '_', {
-    enumerable: false,
-    configurable: false,
-    writable: false,
-    value: function(selector, context) {
-      return new _.fn.init(selector, context);
-    }
-  });
-  const _ = freeSelf._;
+  const _ = jdash = freeSelf._ = freeSelf.jdash = function(selector, context) {
+    return new _.fn.init(selector, context);
+  };
 
   const freeDocument = freeSelf.document;
   
