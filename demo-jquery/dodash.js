@@ -16,7 +16,9 @@
 
   __.extend = __.fn.extend = function(source) {
     for(let prop in source) {
-      this[prop] = source[prop];
+      if (source.hasOwnProperty(prop)) {
+        this[prop] = source[prop];
+      }
     }
   };
 
