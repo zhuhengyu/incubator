@@ -47,9 +47,9 @@
       return this[0];
     },
     on(event, callback) {
-      for (let i = 0; i < this.length; i++) {
-        this[i].addEventListener(event, callback, false);
-      }
+      this.each(function(ele, idx) {
+        ele.addEventListener(event, callback, false);
+      });
       return this;
     }
   });
@@ -57,15 +57,15 @@
   _.fn.extend({
     css(propRaw, value) {
       if (typeof propRaw === 'string') {
-        for (let i = 0; i < this.length; i++) {
-          this[i].style[propRaw] = value;
-        }
+        this.each(function(ele, idx) {
+          ele.style[propRaw] = value;
+        });
       } else if (typeof propRaw === 'object') {
-        for (let i = 0; i < this.length; i++) {
+        this.each(function(ele, idx) {
           for (let prop in propRaw) {
             this[i].style[prop] = propRaw[prop];
           }
-        }
+        });
       }
       return this;
     },
@@ -75,17 +75,18 @@
           ele.classList.add(className(idx));
         });
       } else if (typeof className === 'string') {
-        for (var i = this.length - 1; i >= 0; i--) {
-          this[i].classList.add(className);
-        }
+        this.each(function(ele, idx) {
+          ele.classList.add(className);
+        });
       }
+      return this;
     },
     hasClass(className) {
-      for (var i = this.length - 1; i >= 0; i--) {
-        if (this[i].classList.contains(className)) {
+      this.each(function(ele, idx) {
+        if (ele.classList.contains(className)) {
           return true;
         }
-      }
+      });
       return false;
     }
   });
