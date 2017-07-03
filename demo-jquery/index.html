@@ -34,7 +34,10 @@
     console.log(_('#xixi').hasClass('cls'));
     */
 
-    _('#xixi').addClass('cls');
+    // _('#xixi').addClass('cls');
+    _('.cls').addClass(function(idx) {
+      return `test-${idx}`
+    });
   </script>
 </body>
 </html>

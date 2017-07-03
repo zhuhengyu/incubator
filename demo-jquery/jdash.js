@@ -72,8 +72,14 @@
       return this;
     },
     addClass(className) {
-      for (var i = this.length - 1; i >= 0; i--) {
-        this[i].classList.add(className);
+      if (typeof className === 'function') {
+        this.each(function(ele, idx) {
+          ele.classList.add(className(idx));
+        });
+      } else if (typeof className === 'string') {
+        for (var i = this.length - 1; i >= 0; i--) {
+          this[i].classList.add(className);
+        }
       }
     },
     hasClass(className) {
