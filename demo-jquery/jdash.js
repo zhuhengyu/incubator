@@ -71,6 +71,11 @@
       }
       return this;
     },
+    addClass(className) {
+      for (var i = this.length - 1; i >= 0; i--) {
+        this[i].classList.add(className);
+      }
+    },
     hasClass(className) {
       for (var i = this.length - 1; i >= 0; i--) {
         if (this[i].classList.contains(className)) {

@@ -4,16 +4,22 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <script src="jdash.js"></script>
+  <style type="text/css">
+    .cls {
+      color: gold;
+    }
+  </style>
 </head>
 <body>
   <ul>
     <li class="cls">haha</li>
-    <li id="id" class="cls">hehe</li>
+    <li id="id">hehe</li>
     <li class="cls">heihei</li>
     <li id="xixi">xixi</li>
     <li>gaga</li>
   </ul>
   <script type="text/javascript">
+    /*
     _('.cls').css('color', 'red').append(_('<span>test</span>'));
     _('#id').css('color', 'red').append(_.createDOM('span', 'content'));
     _('span').css('color', 'gold').on('click', function(event) {
@@ -26,6 +32,9 @@
     console.log(_('li').hasClass('cls'));
     console.log(_('#id').hasClass('cls'));
     console.log(_('#xixi').hasClass('cls'));
+    */
+
+    _('#xixi').addClass('cls');
   </script>
 </body>
 </html>
