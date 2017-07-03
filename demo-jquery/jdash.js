@@ -92,7 +92,21 @@
       });
       return false;
     },
-    removeClass(className) {}
+    removeClass(className) {
+      if (typeof className === 'function') {
+        this.each(function(ele, idx) {
+          ele.classList.remove(idx);
+        });
+      } else if (typeof className === 'string') {
+        const classesToCheck = className.split(/\s/);
+        this.each(function(ele, idx) {
+          for (var i = classesToCheck.length - 1; i >= 0; i--) {
+            ele.classList.remove(classesToCheck[i]);
+          }
+        });
+      }
+      return this;
+    }
   });
 
   _.extend({
