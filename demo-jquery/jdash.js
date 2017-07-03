@@ -3,11 +3,9 @@
     return new _.fn.init(selector, context);
   };
 
-  const freeDocument = freeSelf.document;
-
   _.fn = _.prototype;
   _.fn.init = function(selector, context) {
-    context = context || freeDocument;
+    context = context || document;
     try {
       const nodeList = context.querySelectorAll(selector);
       this.length = nodeList.length;
@@ -94,7 +92,7 @@
 
   _.extend({
     createDOM(contentType, innerHTML) {
-      const domObj = freeDocument.createElement(contentType);
+      const domObj = document.createElement(contentType);
       domObj.innerHTML = innerHTML;
       return domObj;
     }
