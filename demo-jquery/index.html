@@ -10,7 +10,7 @@
     <li class="cls">haha</li>
     <li id="id" class="cls">hehe</li>
     <li class="cls">heihei</li>
-    <li>xixi</li>
+    <li id="xixi">xixi</li>
     <li>gaga</li>
   </ul>
   <script type="text/javascript">
@@ -22,6 +22,10 @@
       color: 'blue',
       textDecoration: 'underline'
     });
+
+    console.log(_('li').hasClass('cls'));
+    console.log(_('#id').hasClass('cls'));
+    console.log(_('#xixi').hasClass('cls'));
   </script>
 </body>
 </html>

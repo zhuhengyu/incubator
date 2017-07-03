@@ -4,7 +4,7 @@
   };
 
   const freeDocument = freeSelf.document;
-  
+
   _.fn = _.prototype;
   _.fn.init = function(selector, context) {
     context = context || freeDocument;
@@ -40,6 +40,23 @@
       }
       return this;
     },
+    append(child) {
+      child = child[0] || child;
+      if (!child || !(child instanceof HTMLElement)) {
+        throw new Error('Not a valid element!');
+      }
+      this[0].appendChild(child);
+      return this[0];
+    },
+    on(event, callback) {
+      for (let i = 0; i < this.length; i++) {
+        this[i].addEventListener(event, callback, false);
+      }
+      return this;
+    }
+  });
+
+  _.fn.extend({
     css(propRaw, value) {
       if (typeof propRaw === 'string') {
         for (let i = 0; i < this.length; i++) {
@@ -54,19 +71,13 @@
       }
       return this;
     },
-    append(child) {
-      child = child[0] || child;
-      if (!child || !(child instanceof HTMLElement)) {
-        throw new Error('Not a valid element!');
+    hasClass(className) {
+      for (var i = this.length - 1; i >= 0; i--) {
+        if (this[i].classList.contains(className)) {
+          return true;
+        }
       }
-      this[0].appendChild(child);
-      return this[0];
-    },
-    on(event, callback) {
-      for (let i = 0; i < this.length; i++) {
-        this[i].addEventListener(event, callback, false);
-      }
-      return this;
+      return false;
     }
   });
 
