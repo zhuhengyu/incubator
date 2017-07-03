@@ -75,8 +75,11 @@
           ele.classList.add(className(idx));
         });
       } else if (typeof className === 'string') {
+        const newClasses = className.split(/\s/);
         this.each(function(ele, idx) {
-          ele.classList.add(className);
+          for (let i = newClasses.length - 1; i >= 0; i--) {
+            ele.classList.add(newClasses[i]);
+          }
         });
       }
       return this;
@@ -88,7 +91,8 @@
         }
       });
       return false;
-    }
+    },
+    removeClass(className) {}
   });
 
   _.extend({
