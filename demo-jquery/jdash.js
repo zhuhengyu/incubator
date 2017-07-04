@@ -68,6 +68,21 @@
 
   const isArray = Array.isArray;
 
+  function handleClass(jdashObj, className, strategy) {
+    if (isFunction(className)) {
+      jdashObj.each(function(ele, idx) {
+        ele.classList[strategy](className(idx));
+      });
+    } else if (isString(className)) {
+      const newClasses = className.split(/\s/);
+      jdashObj.each(function(ele, idx) {
+        newClasses.forEach(function(cls) {
+          ele.classList[strategy](cls);
+        });
+      });
+    }
+  }
+
   _.fn.extend({
     css(propRaw, value) {
       if (isString(propRaw)) {
@@ -84,18 +99,7 @@
       return this;
     },
     addClass(className) {
-      if (isFunction(className)) {
-        this.each(function(ele, idx) {
-          ele.classList.add(className(idx));
-        });
-      } else if (isString(className)) {
-        const newClasses = className.split(/\s/);
-        this.each(function(ele, idx) {
-          for (let i = newClasses.length - 1; i >= 0; i--) {
-            ele.classList.add(newClasses[i]);
-          }
-        });
-      }
+      handleClass(this, className, 'add');
       return this;
     },
     hasClass(className) {
@@ -107,21 +111,12 @@
       return false;
     },
     removeClass(className) {
-      if (isFunction(className)) {
-        this.each(function(ele, idx) {
-          ele.classList.remove(className(idx));
-        });
-      } else if (isString(className)) {
-        const classesToCheck = className.split(/\s/);
-        this.each(function(ele, idx) {
-          for (var i = classesToCheck.length - 1; i >= 0; i--) {
-            ele.classList.remove(classesToCheck[i]);
-          }
-        });
-      }
+      handleClass(this, className, 'remove');
       return this;
     },
     toggleClass(className) {
+      handleClass(this, className, 'toggle');
+      return this;
     }
   });
 
