@@ -14,13 +14,13 @@
   </style>
 </head>
 <body>
-  <ul>
-    <li class="cls">haha</li>
-    <li id="id">hehe</li>
-    <li class="cls">heihei</li>
-    <li id="xixi">xixi</li>
-    <li>gaga</li>
-  </ul>
+  <div>
+    <div class="cls">haha</div>
+    <div id="id">hehe</div>
+    <div class="cls">heihei</div>
+    <div id="xixi">xixi</div>
+    <div>gaga</div>
+  </div>
   <script type="text/javascript">
     /*
     _('.cls').css('color', 'red').append(_('<span>test</span>'));
@@ -32,18 +32,20 @@
       textDecoration: 'underline'
     });
 
-    console.log(_('li').hasClass('cls'));
+    console.log(_('div div').hasClass('cls'));
     console.log(_('#id').hasClass('cls'));
     console.log(_('#xixi').hasClass('cls'));
     */
 
-    /*
-    _('.cls').addClass('hehe haha');
-    _('.cls').addClass(function(idx) {
-      return `test-${idx}`
-    });
-    */
+    
+    // _('.cls').addClass('hehe');
+    // _('.cls').addClass(function(idx) {
+    //   return `test-${idx}`
+    // });
+    
     _('.cls').removeClass('cls').addClass('cls2');
+
+    _('.cls2').clone().appendTo('#id').remove();
   </script>
 </body>
 </html>
