@@ -29,6 +29,18 @@
     }
   };
 
+  function isObject(arg) {
+    return typeof arg === 'object';
+  }
+
+  function isFunction(arg) {
+    return typeof arg === 'function';
+  }
+
+  function isString(arg) {
+    return typeof arg === 'string';
+  }
+
   _.fn.extend({
     each(func) {
       if (func) {
@@ -53,18 +65,6 @@
       return this;
     }
   });
-
-  function isObject(arg) {
-    return typeof arg === 'object';
-  }
-
-  function isFunction(arg) {
-    return typeof arg === 'function';
-  }
-
-  function isString(arg) {
-    return typeof arg === 'string';
-  }
 
   const isArray = Array.isArray;
 
@@ -109,7 +109,7 @@
     removeClass(className) {
       if (isFunction(className)) {
         this.each(function(ele, idx) {
-          ele.classList.remove(idx);
+          ele.classList.remove(className(idx));
         });
       } else if (isString(className)) {
         const classesToCheck = className.split(/\s/);
