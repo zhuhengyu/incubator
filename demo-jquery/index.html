@@ -20,6 +20,8 @@
     <div class="cls">heihei</div>
     <div id="xixi" title="xixi title">xixi</div>
     <div>gaga</div>
+    <input id="username" class="input" type="text" name="username">
+    <input class="input" type="text" name="username">
   </div>
   <script type="text/javascript">
     /*
@@ -50,7 +52,12 @@
 
     // _('<h1>haha</h1>').replaceAll('.cls');
 
-    console.log(_('#xixi').attr('title'));
+    // console.log(_('#xixi').attr('title'));
+
+    _('.input').val(function(ele, idx) {
+      return `haha-${idx}`;
+    });
+    console.log(_('#username').val());
   </script>
 </body>
 </html>

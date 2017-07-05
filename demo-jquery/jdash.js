@@ -130,9 +130,24 @@
   });
 
   /*general attributes*/
+
   _.fn.extend({
     attr(attributeName) {
       return this[0].attributes[attributeName].value;
+    },
+    val(value) {
+      if (value && isFunction(value)) {
+        this.each(function(ele, idx) {
+          ele.value = value(ele, idx);
+        });
+        return this;
+      } else if (value && isString(value)) {
+        this.each(function(ele) {
+          ele.value = value;
+        });
+        return this;
+      }
+      return this[0].value;
     }
   });
 
