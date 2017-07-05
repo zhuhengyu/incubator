@@ -129,6 +129,13 @@
     }
   });
 
+  /*general attributes*/
+  _.fn.extend({
+    attr(attributeName) {
+      return this[0].attributes[attributeName].value;
+    }
+  });
+
   /*event functions*/
 
   _.fn.extend({
