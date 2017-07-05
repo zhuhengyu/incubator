@@ -115,6 +115,11 @@
       this.each(function(ele, idx) {
         ele.parentNode.removeChild(ele);
       });
+    },
+    replaceWith(newContent) {
+      this.each(function(ele, idx) {
+        ele.parentNode.replaceChild(_(newContent)[0], ele);
+      });
     }
   });
 
