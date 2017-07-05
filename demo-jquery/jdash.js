@@ -112,13 +112,19 @@
       return this;
     },
     remove() {
-      this.each(function(ele, idx) {
+      this.each(function(ele) {
         ele.parentNode.removeChild(ele);
       });
     },
     replaceWith(newContent) {
-      this.each(function(ele, idx) {
+      this.each(function(ele) {
         ele.parentNode.replaceChild(_(newContent)[0], ele);
+      });
+    },
+    replaceAll(target) {
+      const self = this;
+      _(target).each(function(ele, idx) {
+        ele.parentNode.replaceChild(self.clone()[0], ele);
       });
     }
   });
