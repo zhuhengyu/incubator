@@ -18,6 +18,9 @@
       } else if (isString(selector)) {
         const nodeList = context.querySelectorAll(selector);
         domArr = Array.from(nodeList);
+      } else if (isHTMLElement(selector)) {
+        self[0] = selector;
+        self.length = 1;
       }
       domArr.forEach(function(ele, idx) {
         self[idx] = ele;
@@ -54,6 +57,10 @@
   }
 
   const isArray = Array.isArray;
+
+  function isHTMLElement(arg) {
+    return arg instanceof HTMLElement;
+  }
 
   function handleClass(jdashObj, className, strategy) {
     if (isFunction(className)) {
