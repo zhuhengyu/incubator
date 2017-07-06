@@ -75,6 +75,7 @@
         });
       });
     }
+    return jdashObj;
   }
   
   function createElement(str) {
@@ -155,6 +156,14 @@
         return this;
       }
       return this[0].value;
+    },
+    text(value) {
+      if (!value) {
+        return this[0].innerHTML;
+      }
+      return this.each(function(ele) {
+        ele.innerHTML = value;
+      });
     }
   });
 
@@ -162,10 +171,9 @@
 
   _.fn.extend({
     on(event, callback) {
-      this.each(function(ele) {
+      return this.each(function(ele) {
         ele.addEventListener(event, callback, false);
       });
-      return this;
     }
   });
 
@@ -195,16 +203,13 @@
       return false;
     },
     addClass(className) {
-      handleClass(this, className, 'add');
-      return this;
+      return handleClass(this, className, 'add');
     },
     removeClass(className) {
-      handleClass(this, className, 'remove');
-      return this;
+      return handleClass(this, className, 'remove');
     },
     toggleClass(className) {
-      handleClass(this, className, 'toggle');
-      return this;
+      return handleClass(this, className, 'toggle');
     }
   });
 
