@@ -62,13 +62,18 @@
     // console.log(_('#xixi').text());
     // _('#xixi').text('hahahaha');
 
-    _('#xixi').on('click', function(event) {
-      alert('haha');
+    // _('#xixi').on('click', function(event) {
+    //   alert('haha');
+    // });
+    // _('#xixi').on('dblclick', function(event) {
+    //   alert('hehe');
+    // });
+    // _('#xixi').trigger('dblclick');
+
+    _('#xixi').click(function(event) {
+      alert('clicked');
     });
-    _('#xixi').on('dblclick', function(event) {
-      alert('hehe');
-    });
-    _('#xixi').trigger('dblclick');
+    _('#xixi').click();
   </script>
 </body>
 </html>

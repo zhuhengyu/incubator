@@ -179,6 +179,13 @@
       return this.each(function(ele) {
         ele.dispatchEvent(new Event(event));
       });
+    },
+    click(handler) {
+      if (handler) {
+        this.on('click', handler)
+      } else {
+        this.trigger('click');
+      }
     }
   });
 
