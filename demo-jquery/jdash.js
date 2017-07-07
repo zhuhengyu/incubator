@@ -93,8 +93,15 @@
     return jdashObj;
   }
 
-  /*proto functions*/
+  /*jdash and proto each*/
 
+  _.extend({
+    each(arr, func) {
+      for (let i = 0; i < arr.length; i++) {
+        func(arr[i], i);
+      }
+    }
+  });
   _.fn.extend({
     each(func) {
       if (func && isFunction(func)) {
@@ -106,6 +113,7 @@
     }
   });
 
+  /*proto functions*/
   /*dom handling functions*/
 
   _.fn.extend({
@@ -188,13 +196,12 @@
       return this.each(function(ele) {
         ele.dispatchEvent(new Event(event));
       });
-    },
-    click(handler) {
-      return handleEvent(this, 'click', handler);
-    },
-    dblclick(handler) {
-      return handleEvent(this, 'dblclick', handler);
     }
+  });
+  _.each('click dblclick'.split(' '), function(ele, idx) {
+    _.fn[ele] = function(handler) {
+      return handleEvent(this, ele, handler);
+    };
   });
 
   /*style functions*/
@@ -243,12 +250,9 @@
     }
   });
 
+  /*jdash functions*/
+
   _.extend({
-    each(arr, func) {
-      for (let i = 0; i < arr.length; i++) {
-        func(arr[i], i);
-      }
-    },
     createDOM(contentType, innerHTML) {
       const domObj = document.createElement(contentType);
       domObj.innerHTML = innerHTML;
