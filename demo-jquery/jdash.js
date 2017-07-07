@@ -174,6 +174,11 @@
       return this.each(function(ele) {
         ele.addEventListener(event, callback, false);
       });
+    },
+    trigger(event) {
+      return this.each(function(ele) {
+        ele.dispatchEvent(new Event(event));
+      });
     }
   });
 

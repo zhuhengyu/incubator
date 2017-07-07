@@ -59,8 +59,16 @@
     // });
     // console.log(_('#username').val());
 
-    console.log(_('#xixi').text());
-    _('#xixi').text('hahahaha');
+    // console.log(_('#xixi').text());
+    // _('#xixi').text('hahahaha');
+
+    _('#xixi').on('click', function(event) {
+      alert('haha');
+    });
+    _('#xixi').on('dblclick', function(event) {
+      alert('hehe');
+    });
+    _('#xixi').trigger('dblclick');
   </script>
 </body>
 </html>
