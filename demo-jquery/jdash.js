@@ -244,6 +244,11 @@
   });
 
   _.extend({
+    each(arr, func) {
+      for (let i = 0; i < arr.length; i++) {
+        func(arr[i], i);
+      }
+    },
     createDOM(contentType, innerHTML) {
       const domObj = document.createElement(contentType);
       domObj.innerHTML = innerHTML;
