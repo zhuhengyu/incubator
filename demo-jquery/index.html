@@ -70,10 +70,10 @@
     // });
     // _('#xixi').trigger('dblclick');
 
-    _('#xixi').click(function(event) {
-      alert('clicked');
-    });
-    _('#xixi').click();
+    // _('#xixi').click(function(event) {
+    //   alert('clicked');
+    // });
+    // _('#xixi').click();
 
     // _('#xixi').dblclick(function(event) {
     //   alert('clicked');
@@ -83,6 +83,10 @@
     // _.each(['a', 'b', 'c'], function(ele, idx) {
     //   console.log(ele, idx);
     // });
+
+    _('#username').blur(function(event) {
+      console.log(this.value);
+    });
   </script>
 </body>
 </html>

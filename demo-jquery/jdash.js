@@ -84,15 +84,6 @@
     return wrapper.firstChild;
   }
 
-  function handleEvent(jdashObj, eventName, handler) {
-    if (handler) {
-      jdashObj.on(eventName, handler)
-    } else {
-      jdashObj.trigger(eventName);
-    }
-    return jdashObj;
-  }
-
   /*jdash and proto each*/
 
   _.extend({
@@ -198,9 +189,14 @@
       });
     }
   });
-  _.each('click dblclick'.split(' '), function(ele, idx) {
+  _.each('blur focus click dblclick'.split(' '), function(ele, idx) {
     _.fn[ele] = function(handler) {
-      return handleEvent(this, ele, handler);
+      if (handler) {
+        this.on(ele, handler)
+      } else {
+        this.trigger(ele);
+      }
+      return this;
     };
   });
 
