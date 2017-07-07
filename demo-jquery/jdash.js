@@ -186,6 +186,7 @@
       } else {
         this.trigger('click');
       }
+      return this;
     },
     dblclick(handler) {
       if (handler) {
@@ -193,6 +194,7 @@
       } else {
         this.trigger('dblclick');
       }
+      return this;
     }
   });
 
