@@ -186,6 +186,13 @@
       } else {
         this.trigger('click');
       }
+    },
+    dblclick(handler) {
+      if (handler) {
+        this.on('dblclick', handler)
+      } else {
+        this.trigger('dblclick');
+      }
     }
   });
 
