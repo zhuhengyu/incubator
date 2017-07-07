@@ -84,6 +84,15 @@
     return wrapper.firstChild;
   }
 
+  function handleEvent(jdashObj, eventName, handler) {
+    if (handler) {
+      jdashObj.on(eventName, handler)
+    } else {
+      jdashObj.trigger(eventName);
+    }
+    return jdashObj;
+  }
+
   /*proto functions*/
 
   _.fn.extend({
@@ -181,20 +190,10 @@
       });
     },
     click(handler) {
-      if (handler) {
-        this.on('click', handler)
-      } else {
-        this.trigger('click');
-      }
-      return this;
+      return handleEvent(this, 'click', handler);
     },
     dblclick(handler) {
-      if (handler) {
-        this.on('dblclick', handler)
-      } else {
-        this.trigger('dblclick');
-      }
-      return this;
+      return handleEvent(this, 'dblclick', handler);
     }
   });
 
