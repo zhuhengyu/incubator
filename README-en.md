@@ -15,10 +15,14 @@ Valuable programmes or projects will be moved to a new repository, otherwise wil
 - **[basic-demos](https://github.com/oychao/incubator/tree/master/basic-demos)** Some basic JavaScript demos。
 - **[demo-frontend-static-boilerplate](https://github.com/oychao/incubator/tree/master/demo-frontend-static-boilerplate)** Demo frontend static boilerplate based on ES- Gulp and Webpack.
 - **[demo-jersey](https://github.com/oychao/incubator/tree/master/demo-jersey)** Jersey REST API demo.
+- **[demo-jquery](https://github.com/oychao.incubator/tree/master/demo-jquery)** basic jQuery framework implementation.
 - **[demo-latex](https://github.com/oychao/incubator/tree/master/demo-latex)** Latex math fomula demo in HTML.
 - **[demo-npm-package](https://github.com/oychao/incubator/tree/master/demo-npm-package)** NPM package demo。
 - **[demo-react-redux](https://github.com/oychao/incubator/tree/master/demo-react-redux)** User CRUD frontend Demo boilerplate based on ES- Gulp, Webpack, Express, React, Redux and other relative libraries.
 - **[demo-redux](https://github.com/oychao/incubator/tree/master/demo-redux)** Redux Demo with Redux Observable.
+- **[demo-spider](https://github.com/oychao.incubator/tree/master/demo-spider)** Python crawler basic demo。
+- **[demo-vue](https://github.com/oychao.incubator/tree/master/demo-vue)** VueJS basic demo。
+- **[demo-pattern](https://github.com/oychao.incubator/tree/master/demo-pattern)** Design patterns in JavaScript basic demos。
 - **[javascript-interview-questions](https://github.com/oychao/incubator/tree/master/javascript-interview-questions)** JavaScript interview questions (Chinese)。
 - **[nginx-config](https://github.com/oychao/incubator/tree/master/nginx-config)** Basic Nginx configuration。
 - demo-immutable Removed。
