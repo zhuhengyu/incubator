@@ -25,5 +25,6 @@ module.exports = {
         'css-loader'
       ]
     }]
-  }
+  },
+  devtool: 'eval-source-map'
 }
