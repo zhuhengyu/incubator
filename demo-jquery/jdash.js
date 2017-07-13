@@ -28,7 +28,7 @@
       self.length = domArr.length;
     } catch (e) {
       self[0] = createElement(selector);
-      self.length = 1;
+      self.length = 1;        
     }
   };
 
@@ -105,6 +105,45 @@
   });
 
   /*proto functions*/
+  
+  /*dom selectors*/
+  
+  _.fn.extend({
+    constructor: _,
+    pushStack(elems) {
+      let ret = this.constructor();
+      for (var i = 0; i < elems.length; i++) {
+        ret[i] = elems[i];
+      }
+      ret.length = elems.length;
+      ret.prevObject = this;
+      return ret;
+    },
+    find(selector) {
+      if (!isString(selector)) {
+        throw new Error('A selector string needed.');
+      }
+      let ret = [];
+      this.each(function(ele) {
+        ret = ret.concat(Array.from(ele.querySelectorAll(selector)));
+      });
+      return this.pushStack(ret);
+    },
+    first() {
+      return this.eq(0);
+    },
+    last() {
+      return this.eq(-1);
+    },
+    eq(i) {
+      const j = +i + (i < 0 ? this.length : 0);
+      return this.pushStack(j >= 0 && j < this.length ? [this[j]] : []);
+    },
+    end() {
+      return this.prevObject || this.constructor();
+    }
+  });
+
   /*dom handling functions*/
 
   _.fn.extend({
@@ -216,6 +255,9 @@
         });
       }
       return this;
+    },
+    color(value) {
+      return this.css('color', value);
     },
     hasClass(className) {
       this.each(function(ele) {

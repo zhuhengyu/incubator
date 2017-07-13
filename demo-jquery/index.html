@@ -22,6 +22,11 @@
     <div>gaga</div>
     <input id="username" class="input" type="text" name="username">
     <input class="input" type="text" name="username">
+    <div class="parent">
+      <div class="child">child1</div>
+      <div class="child">child1</div>
+      <div class="child">child1</div>
+    </div>
   </div>
   <script type="text/javascript">
     /*
@@ -84,8 +89,16 @@
     //   console.log(ele, idx);
     // });
 
-    _('#username').blur(function(event) {
-      console.log(this.value);
+    // _('#username').blur(function(event) {
+    //   console.log(this.value);
+    // });
+
+    // _('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold');
+
+    _('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold').find('.child').eq('1').css('color', 'green').end().end().css({
+      border: '3px solid purple'
+    }).find('.child').first().color('gold').end().end().css({
+      width: '300px'
     });
   </script>
 </body>
