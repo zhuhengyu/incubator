@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Counter from './components/Counter';
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       count: 0
     };
-    this.add = this.add.bind(this);
-  }
-  add() {
-    this.setState({count: this.state.count + 1});
   }
   render() {
     return (
@@ -23,11 +21,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <div>
-          <button onClick={this.add}>counter</button>
-          <br/>
-          <span>{this.state.count}</span>
-        </div>
+        <Counter initCount={1}/>
       </div>
     );
   }
