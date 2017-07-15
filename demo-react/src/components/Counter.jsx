@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Counter extends React.Component {
   constructor(props) {
@@ -6,10 +7,13 @@ class Counter extends React.Component {
     this.state = {
       count: props.initCount
     };
+    // this.plus = ::this.plus
     this.plus = this.plus.bind(this);
     this.minus = this.minus.bind(this);
   }
   plus() {
+    // modify state directly can change component's state but will not trigger render method
+    this.state.count++;
     this.setState({
       count: this.state.count + 1
     });
@@ -33,8 +37,14 @@ class Counter extends React.Component {
   }
 }
 
+// propTypes check should be removed in production environment
 Counter.propTypes = {
-  count: React.PropTypes.number
+  initCount: PropTypes.number
 };
 
-export default Counter
+// defaultProps is very necessary
+Counter.defaultProps = {
+  initCount: 0
+};
+
+export default Counter;
