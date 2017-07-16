@@ -20,9 +20,6 @@ class App extends Component {
     this.props.store.dispatch(actions.decrement(name));
   }
   render() {
-    const {
-      store
-    } = this.props;
     return (
       <div className="App">
         <div className="App-header">
@@ -32,7 +29,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <CounterPanel values={store.getState()} onIncrement={this.onIncrement} onDecrement={this.onDecrement}/>
+        <CounterPanel/>
       </div>
     );
   }

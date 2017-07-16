@@ -1,11 +1,11 @@
 import * as actionTypes from './actionTypes';
 
-export const increment = key => ({
+export const increment = name => ({
   type: actionTypes.INCREMENT,
-  payload: key
+  payload: name
 });
 
-export const decrement = key => ({
+export const decrement = name => ({
   type: actionTypes.DECREMENT,
-  payload: key
+  payload: name
 });

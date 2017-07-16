@@ -14,11 +14,15 @@ class Summary extends React.Component {
 }
 
 Summary.propTypes = {
-  values: PropTypes.object.isRequired
+  values: PropTypes.object.isRequired,
 };
 
 Summary.defaultProps = {
-  values: 0
+  values: {
+    first: 0,
+    second: 0,
+    third: 0
+  }
 };
 
 export default Summary;
