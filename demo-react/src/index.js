@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 
 import registerServiceWorker from './registerServiceWorker';
 
-import counter from './stores/reducers';
+import counter from './reducers';
 
 import App from './App';
 

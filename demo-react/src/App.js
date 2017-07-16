@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import * as actions from './stores/actions';
+import * as actions from './actions';
 
-import Counter from './components/Counter'
+import CounterPanel from './components/CounterPanel'
 
 import logo from './logo.svg';
 import './App.css';
@@ -13,13 +13,16 @@ class App extends Component {
     this.onIncrement = this.onIncrement.bind(this);
     this.onDecrement = this.onDecrement.bind(this);
   }
-  onIncrement() {
-    this.props.store.dispatch(actions.increment());
+  onIncrement(name) {
+    this.props.store.dispatch(actions.increment(name));
   }
-  onDecrement() {
-    this.props.store.dispatch(actions.decrement());
+  onDecrement(name) {
+    this.props.store.dispatch(actions.decrement(name));
   }
   render() {
+    const {
+      store
+    } = this.props;
     return (
       <div className="App">
         <div className="App-header">
@@ -29,7 +32,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Counter value={this.props.store.getState()} onIncrement={this.onIncrement} onDecrement={this.onDecrement}/>
+        <CounterPanel values={store.getState()} onIncrement={this.onIncrement} onDecrement={this.onDecrement}/>
       </div>
     );
   }
