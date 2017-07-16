@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
+
+import * as actions from './stores/actions';
+
+import Counter from './components/Counter'
+
 import logo from './logo.svg';
 import './App.css';
-
-import CounterPanel from './components/CounterPanel';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      count: 0
-    };
+    this.onIncrement = this.onIncrement.bind(this);
+    this.onDecrement = this.onDecrement.bind(this);
+  }
+  onIncrement() {
+    this.props.store.dispatch(actions.increment());
+  }
+  onDecrement() {
+    this.props.store.dispatch(actions.decrement());
   }
   render() {
     return (
@@ -21,7 +29,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <CounterPanel/>
+        <Counter value={this.props.store.getState()} onIncrement={this.onIncrement} onDecrement={this.onDecrement}/>
       </div>
     );
   }
