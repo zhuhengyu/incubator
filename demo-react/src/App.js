@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import * as actions from './actions';
+import Counter from './counter';
 
-import CounterPanel from './components/CounterPanel'
+import CounterPanel from './counterPanel'
 
 import logo from './logo.svg';
 import './App.css';
@@ -14,10 +14,10 @@ class App extends Component {
     this.onDecrement = this.onDecrement.bind(this);
   }
   onIncrement(name) {
-    this.props.store.dispatch(actions.increment(name));
+    this.props.store.dispatch(Counter.actions.increment(name));
   }
   onDecrement(name) {
-    this.props.store.dispatch(actions.decrement(name));
+    this.props.store.dispatch(Counter.actions.decrement(name));
   }
   render() {
     return (
@@ -29,7 +29,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <CounterPanel/>
+        <CounterPanel.view/>
       </div>
     );
   }

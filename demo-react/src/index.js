@@ -5,13 +5,13 @@ import { Provider } from 'react-redux';
 
 import registerServiceWorker from './registerServiceWorker';
 
-import counter from './reducers';
+import Counter from './counter';
 
 import App from './App';
 
 import './index.css';
 
-const store = createStore(counter);
+const store = createStore(Counter.reducer);
 
 ReactDOM.render(
 <Provider store={store}>

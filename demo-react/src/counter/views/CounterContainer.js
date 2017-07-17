@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import Counter from '../components/Counter';
+import Counter from './Counter';
 
 const mapStateToProps = (state, props) => ({
   value: state[props.name]
