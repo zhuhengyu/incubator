@@ -141,6 +141,13 @@
     },
     end() {
       return this.prevObject || this.constructor();
+    },
+    filter(selector) {
+      let domArr = Array.prototype.slice.apply(this);
+      domArr = domArr.filter(function(ele) {
+        return Array.prototype.slice.apply(ele.parentNode.querySelectorAll(selector)).indexOf(ele) !== -1;
+      });
+      return this.pushStack(domArr);
     }
   });
 

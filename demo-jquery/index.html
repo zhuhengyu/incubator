@@ -24,8 +24,8 @@
     <input class="input" type="text" name="username">
     <div class="parent">
       <div class="child">child1</div>
-      <div class="child">child2</div>
-      <div class="child">child3</div></div>
+      <div class="child filter">child2</div>
+      <div class="child filter">child3</div></div>
   </div>
   <script type="text/javascript">
     /*
@@ -104,7 +104,7 @@
     //   return '<span style="color: red">test</span>';
     // }).after('<span style="color: green">test</span>');
 
-    $('.parent').find('.child').after('<span style="color: green">test</span>');
+    $('.parent').find('.child').filter('.filter').after('<span style="color: green">test</span>');
   </script>
 </body>
 </html>
