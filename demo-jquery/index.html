@@ -25,8 +25,7 @@
     <div class="parent">
       <div class="child">child1</div>
       <div class="child">child2</div>
-      <div class="child">child3</div>
-    </div>
+      <div class="child">child3</div></div>
   </div>
   <script type="text/javascript">
     /*
@@ -101,7 +100,11 @@
     //   width: '300px'
     // });
 
-    $('.parent').find('.child').before('<div>hahaha</div>');
+    // $('.parent').find('.child').before('<div>hahaha</div>').before(function(idx) {
+    //   return '<span style="color: red">test</span>';
+    // }).after('<span style="color: green">test</span>');
+
+    $('.parent').find('.child').after('<span style="color: green">test</span>');
   </script>
 </body>
 </html>

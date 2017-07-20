@@ -183,9 +183,29 @@
       });
     },
     before(content) {
-      this.each(function(ele) {
-        ele.parentNode.insertBefore(createElement(content), ele);
-      });
+      if (isString(content)) {
+        this.each(function(ele) {
+          ele.parentNode.insertBefore(createElement(content), ele);
+        });
+      }
+      if (isFunction(content)) {
+        this.each(function(ele, idx) {
+          ele.parentNode.insertBefore(createElement(content(idx)), ele);
+        });
+      }
+      return this;
+    },
+    after(content) {
+      if (isString(content)) {
+        this.each(function(ele) {
+          ele.parentNode.insertBefore(createElement(content), ele.nextSibling);
+        });
+      }
+      if (isFunction(content)) {
+        this.each(function(ele, idx) {
+          ele.parentNode.insertBefore(createElement(content(idx)), ele.nextSibling);
+        });
+      }
       return this;
     }
   });
