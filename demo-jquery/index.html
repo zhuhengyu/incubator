@@ -24,8 +24,8 @@
     <input class="input" type="text" name="username">
     <div class="parent">
       <div class="child">child1</div>
-      <div class="child">child1</div>
-      <div class="child">child1</div>
+      <div class="child">child2</div>
+      <div class="child">child3</div>
     </div>
   </div>
   <script type="text/javascript">
@@ -95,11 +95,13 @@
 
     // $('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold');
 
-    $('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold').find('.child').eq('1').css('color', 'green').end().end().css({
-      border: '3px solid purple'
-    }).find('.child').first().color('gold').end().end().css({
-      width: '300px'
-    });
+    // $('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold').find('.child').eq('1').css('color', 'green').end().end().css({
+    //   border: '3px solid purple'
+    // }).find('.child').first().color('gold').end().end().css({
+    //   width: '300px'
+    // });
+
+    $('.parent').find('.child').before('<div>hahaha</div>');
   </script>
 </body>
 </html>

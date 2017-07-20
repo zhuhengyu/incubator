@@ -181,6 +181,12 @@
       $(target).each(function(ele, idx) {
         ele.parentNode.replaceChild(self.clone()[0], ele);
       });
+    },
+    before(content) {
+      this.each(function(ele) {
+        ele.parentNode.insertBefore(createElement(content), ele);
+      });
+      return this;
     }
   });
 
