@@ -2,13 +2,13 @@
 
   /*entrance*/
 
-  const _ = jdash = freeSelf._ = freeSelf.jdash = function(selector, context) {
-    return new _.fn.init(selector, context);
+  const $ = jdash = freeSelf.$ = freeSelf.jdash = function(selector, context) {
+    return new $.fn.init(selector, context);
   };
   
-  _.fn = _.prototype;
+  $.fn = $.prototype;
   
-  _.fn.init = function(selector, context) {
+  $.fn.init = function(selector, context) {
     context = context || document;
     const self = this;
     try {
@@ -32,9 +32,9 @@
     }
   };
 
-  _.fn.init.prototype = _.fn;
+  $.fn.init.prototype = $.fn;
   
-  _.extend = _.fn.extend = function(source) {
+  $.extend = $.fn.extend = function(source) {
     for (let prop in source) {
       if (source.hasOwnProperty(prop)) {
         this[prop] = source[prop];
@@ -86,14 +86,14 @@
 
   /*jdash and proto each*/
 
-  _.extend({
+  $.extend({
     each(arr, func) {
       for (let i = 0; i < arr.length; i++) {
         func(arr[i], i);
       }
     }
   });
-  _.fn.extend({
+  $.fn.extend({
     each(func) {
       if (func && isFunction(func)) {
         for (let i = 0; i < this.length; i++) {
@@ -108,8 +108,8 @@
   
   /*dom selectors*/
   
-  _.fn.extend({
-    constructor: _,
+  $.fn.extend({
+    constructor: $,
     pushStack(elems) {
       let ret = this.constructor();
       for (var i = 0; i < elems.length; i++) {
@@ -146,7 +146,7 @@
 
   /*dom handling functions*/
 
-  _.fn.extend({
+  $.fn.extend({
     append(child) {
       child = child[0] || child;
       if (!child || !(child instanceof HTMLElement)) {
@@ -158,7 +158,7 @@
     appendTo(target) {
       const self = this;
       if (isString(target)) {
-        _(target).each(function(parent) {
+        $(target).each(function(parent) {
           self.each(function(child) {
             parent.appendChild(child);
           });
@@ -173,12 +173,12 @@
     },
     replaceWith(newContent) {
       this.each(function(ele) {
-        ele.parentNode.replaceChild(_(newContent)[0], ele);
+        ele.parentNode.replaceChild($(newContent)[0], ele);
       });
     },
     replaceAll(target) {
       const self = this;
-      _(target).each(function(ele, idx) {
+      $(target).each(function(ele, idx) {
         ele.parentNode.replaceChild(self.clone()[0], ele);
       });
     }
@@ -186,7 +186,7 @@
 
   /*general attributes*/
 
-  _.fn.extend({
+  $.fn.extend({
     attr(attributeName) {
       return this[0].attributes[attributeName].value;
     },
@@ -216,7 +216,7 @@
 
   /*event functions*/
 
-  _.fn.extend({
+  $.fn.extend({
     on(event, callback) {
       return this.each(function(ele) {
         ele.addEventListener(event, callback, false);
@@ -228,8 +228,8 @@
       });
     }
   });
-  _.each('blur focus click dblclick'.split(' '), function(ele, idx) {
-    _.fn[ele] = function(handler) {
+  $.each('blur focus click dblclick'.split(' '), function(ele, idx) {
+    $.fn[ele] = function(handler) {
       if (handler) {
         this.on(ele, handler)
       } else {
@@ -241,7 +241,7 @@
 
   /*style functions*/
 
-  _.fn.extend({
+  $.fn.extend({
     css(propRaw, value) {
       if (isString(propRaw)) {
         this.each(function(ele) {
@@ -278,19 +278,19 @@
     }
   });
 
-  _.fn.extend({
+  $.fn.extend({
     clone() {
       const newObjs = [];
       this.each(function(ele) {
         newObjs.push(createElement(ele.outerHTML));
       });
-      return new _.fn.init(newObjs);
+      return new $.fn.init(newObjs);
     }
   });
 
   /*jdash functions*/
 
-  _.extend({
+  $.extend({
     createDOM(contentType, innerHTML) {
       const domObj = document.createElement(contentType);
       domObj.innerHTML = innerHTML;

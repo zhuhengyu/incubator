@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <script src="jdash.js"></script>
+  <script src="jQuery.js"></script>
   <style type="text/css">
     .cls {
       color: gold;
@@ -30,72 +30,72 @@
   </div>
   <script type="text/javascript">
     /*
-    _('.cls').css('color', 'red').append(_('<span>test</span>'));
-    _('#id').css('color', 'red').append(_.createDOM('span', 'content'));
-    _('span').css('color', 'gold').on('click', function(event) {
+    $('.cls').css('color', 'red').append($('<span>test</span>'));
+    $('#id').css('color', 'red').append($.createDOM('span', 'content'));
+    $('span').css('color', 'gold').on('click', function(event) {
       console.log('test');
     }).css({
       color: 'blue',
       textDecoration: 'underline'
     });
 
-    console.log(_('div div').hasClass('cls'));
-    console.log(_('#id').hasClass('cls'));
-    console.log(_('#xixi').hasClass('cls'));
+    console.log($('div div').hasClass('cls'));
+    console.log($('#id').hasClass('cls'));
+    console.log($('#xixi').hasClass('cls'));
     */
 
     
-    // _('.cls').addClass('hehe');
-    // _('.cls').addClass(function(idx) {
+    // $('.cls').addClass('hehe');
+    // $('.cls').addClass(function(idx) {
     //   return `test-${idx}`
     // });
     
-    // _('.cls').removeClass('cls').addClass('cls2');
-    // _('.cls2').clone().appendTo('#id').remove();
+    // $('.cls').removeClass('cls').addClass('cls2');
+    // $('.cls2').clone().appendTo('#id').remove();
 
-    // _('#xixi').replaceWith('<h1>haha</h1>');
+    // $('#xixi').replaceWith('<h1>haha</h1>');
 
-    // _('<h1>haha</h1>').replaceAll('.cls');
+    // $('<h1>haha</h1>').replaceAll('.cls');
 
-    // console.log(_('#xixi').attr('title'));
+    // console.log($('#xixi').attr('title'));
 
-    // _('.input').val(function(ele, idx) {
+    // $('.input').val(function(ele, idx) {
     //   return `haha-${idx}`;
     // });
-    // console.log(_('#username').val());
+    // console.log($('#username').val());
 
-    // console.log(_('#xixi').text());
-    // _('#xixi').text('hahahaha');
+    // console.log($('#xixi').text());
+    // $('#xixi').text('hahahaha');
 
-    // _('#xixi').on('click', function(event) {
+    // $('#xixi').on('click', function(event) {
     //   alert('haha');
     // });
-    // _('#xixi').on('dblclick', function(event) {
+    // $('#xixi').on('dblclick', function(event) {
     //   alert('hehe');
     // });
-    // _('#xixi').trigger('dblclick');
+    // $('#xixi').trigger('dblclick');
 
-    // _('#xixi').click(function(event) {
+    // $('#xixi').click(function(event) {
     //   alert('clicked');
     // });
-    // _('#xixi').click();
+    // $('#xixi').click();
 
-    // _('#xixi').dblclick(function(event) {
+    // $('#xixi').dblclick(function(event) {
     //   alert('clicked');
     // });
-    // _('#xixi').dblclick();
+    // $('#xixi').dblclick();
 
-    // _.each(['a', 'b', 'c'], function(ele, idx) {
+    // $.each(['a', 'b', 'c'], function(ele, idx) {
     //   console.log(ele, idx);
     // });
 
-    // _('#username').blur(function(event) {
+    // $('#username').blur(function(event) {
     //   console.log(this.value);
     // });
 
-    // _('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold');
+    // $('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold');
 
-    _('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold').find('.child').eq('1').css('color', 'green').end().end().css({
+    $('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold').find('.child').eq('1').css('color', 'green').end().end().css({
       border: '3px solid purple'
     }).find('.child').first().color('gold').end().end().css({
       width: '300px'
