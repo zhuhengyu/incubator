@@ -306,7 +306,7 @@
   });
 
   /*jQuery animations*/
-  // To Be Improved
+  // To Be Improved, jQuery.Deferred needed
   $.fn.extend({
     fadeIn() {
       this.each(function(elem, idx) {
@@ -338,6 +338,9 @@
     isArray: Array.isArray,
     isHTMLElement(elem) {
       return arg instanceof HTMLElement;
+    },
+    inArray(elem, list, fromIndex) {
+      return !list ? -1 : Array.prototype.indexOf.call(list, elem, fromIndex);
     }
   });
 
