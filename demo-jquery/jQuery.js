@@ -177,17 +177,20 @@
       this.each(function(ele) {
         ele.parentNode.removeChild(ele);
       });
+      return this;
     },
     replaceWith(newContent) {
       this.each(function(ele) {
         ele.parentNode.replaceChild($(newContent)[0], ele);
       });
+      return this;
     },
     replaceAll(target) {
       const self = this;
       $(target).each(function(ele, idx) {
         ele.parentNode.replaceChild(self.clone()[0], ele);
       });
+      return this;
     },
     before(content) {
       if (isString(content)) {
