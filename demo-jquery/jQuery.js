@@ -321,6 +321,24 @@
     }
   });
 
+  /*jQuery animations*/
+  // To Be Improved
+  $.fn.extend({
+    fadeIn() {
+      this.each(function(elem, idx) {
+        elem.style.opacity = 0;
+        // elem.style.display = "block";
+        (function fade() {
+          if (elem.style.opacity < 1) {
+            elem.style.opacity = +elem.style.opacity + .025;
+            requestAnimationFrame(fade);
+          }
+        })();
+      });
+      return this;
+    }
+  });
+
   /*jQuery functions*/
 
   $.extend({
