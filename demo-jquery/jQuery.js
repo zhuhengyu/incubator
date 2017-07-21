@@ -2,7 +2,7 @@
 
   /*entrance*/
 
-  const $ = jdash = freeSelf.$ = freeSelf.jdash = function(selector, context) {
+  const $ = jQuery = freeSelf.$ = freeSelf.jQuery = function(selector, context) {
     return new $.fn.init(selector, context);
   };
   
@@ -62,20 +62,20 @@
     return arg instanceof HTMLElement;
   }
 
-  function handleClass(jdashObj, className, strategy) {
+  function handleClass(jQueryObj, className, strategy) {
     if (isFunction(className)) {
-      jdashObj.each(function(ele, idx) {
+      jQueryObj.each(function(ele, idx) {
         ele.classList[strategy](className(idx));
       });
     } else if (isString(className)) {
       const newClasses = className.split(/\s/);
-      jdashObj.each(function(ele) {
+      jQueryObj.each(function(ele) {
         newClasses.forEach(function(cls) {
           ele.classList[strategy](cls);
         });
       });
     }
-    return jdashObj;
+    return jQueryObj;
   }
   
   function createElement(str) {
@@ -84,7 +84,7 @@
     return wrapper.firstChild;
   }
 
-  /*jdash and proto each*/
+  /*jQuery and proto each*/
 
   $.extend({
     each(arr, func) {
@@ -154,6 +154,13 @@
   /*dom handling functions*/
 
   $.fn.extend({
+    clone() {
+      const newObjs = [];
+      this.each(function(ele) {
+        newObjs.push(createElement(ele.outerHTML));
+      });
+      return new $.fn.init(newObjs);
+    },
     append(child) {
       child = child[0] || child;
       if (!child || !(child instanceof HTMLElement)) {
@@ -314,17 +321,7 @@
     }
   });
 
-  $.fn.extend({
-    clone() {
-      const newObjs = [];
-      this.each(function(ele) {
-        newObjs.push(createElement(ele.outerHTML));
-      });
-      return new $.fn.init(newObjs);
-    }
-  });
-
-  /*jdash functions*/
+  /*jQuery functions*/
 
   $.extend({
     createDOM(contentType, innerHTML) {
