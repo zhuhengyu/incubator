@@ -13,14 +13,16 @@
     const self = this;
     try {
       let domArr;
-      if (isArray(selector)) {
+      if ($.isArray(selector)) {
         domArr = selector;
-      } else if (isString(selector)) {
+      } else if ($.isString(selector)) {
         const nodeList = context.querySelectorAll(selector);
         domArr = Array.from(nodeList);
-      } else if (isHTMLElement(selector)) {
+      } else if ($.isHTMLElement(selector)) {
         self[0] = selector;
         self.length = 1;
+      } else if ($.isFunction(selector)) {
+        
       }
       domArr.forEach(function(ele, idx) {
         self[idx] = ele;
@@ -44,30 +46,12 @@
 
   /*tool functions*/
 
-  function isObject(arg) {
-    return typeof arg === 'object';
-  }
-
-  function isFunction(arg) {
-    return typeof arg === 'function';
-  }
-
-  function isString(arg) {
-    return typeof arg === 'string';
-  }
-
-  const isArray = Array.isArray;
-
-  function isHTMLElement(arg) {
-    return arg instanceof HTMLElement;
-  }
-
   function handleClass(jQueryObj, className, strategy) {
-    if (isFunction(className)) {
+    if ($.isFunction(className)) {
       jQueryObj.each(function(ele, idx) {
         ele.classList[strategy](className(idx));
       });
-    } else if (isString(className)) {
+    } else if ($.isString(className)) {
       const newClasses = className.split(/\s/);
       jQueryObj.each(function(ele) {
         newClasses.forEach(function(cls) {
@@ -95,7 +79,7 @@
   });
   $.fn.extend({
     each(func) {
-      if (func && isFunction(func)) {
+      if (func && $.isFunction(func)) {
         for (let i = 0; i < this.length; i++) {
           func.call(this[i], this[i], i);
         }
@@ -120,7 +104,7 @@
       return ret;
     },
     find(selector) {
-      if (!isString(selector)) {
+      if (!$.isString(selector)) {
         throw new Error('A selector string needed.');
       }
       let ret = [];
@@ -171,7 +155,7 @@
     },
     appendTo(target) {
       const self = this;
-      if (isString(target)) {
+      if ($.isString(target)) {
         $(target).each(function(parent) {
           self.each(function(child) {
             parent.appendChild(child);
@@ -200,12 +184,12 @@
       return this;
     },
     before(content) {
-      if (isString(content)) {
+      if ($.isString(content)) {
         this.each(function(ele) {
           ele.parentNode.insertBefore(createElement(content), ele);
         });
       }
-      if (isFunction(content)) {
+      if ($.isFunction(content)) {
         this.each(function(ele, idx) {
           ele.parentNode.insertBefore(createElement(content(idx)), ele);
         });
@@ -213,12 +197,12 @@
       return this;
     },
     after(content) {
-      if (isString(content)) {
+      if ($.isString(content)) {
         this.each(function(ele) {
           ele.parentNode.insertBefore(createElement(content), ele.nextSibling);
         });
       }
-      if (isFunction(content)) {
+      if ($.isFunction(content)) {
         this.each(function(ele, idx) {
           ele.parentNode.insertBefore(createElement(content(idx)), ele.nextSibling);
         });
@@ -234,12 +218,12 @@
       return this[0].attributes[attributeName].value;
     },
     val(value) {
-      if (value && isFunction(value)) {
+      if (value && $.isFunction(value)) {
         this.each(function(ele, idx) {
           ele.value = value(ele, idx);
         });
         return this;
-      } else if (value && isString(value)) {
+      } else if (value && $.isString(value)) {
         this.each(function(ele) {
           ele.value = value;
         });
@@ -286,11 +270,11 @@
 
   $.fn.extend({
     css(propRaw, value) {
-      if (isString(propRaw)) {
+      if ($.isString(propRaw)) {
         this.each(function(ele) {
           ele.style[propRaw] = value;
         });
-      } else if (isObject(propRaw)) {
+      } else if ($.isObject(propRaw)) {
         this.each(function(ele) {
           for (let prop in propRaw) {
             ele.style[prop] = propRaw[prop];
@@ -303,7 +287,7 @@
       return this.css('color', value);
     },
     hasClass(className) {
-      this.each(function(ele) {
+      this.each(function(elem) {
         if (ele.classList.contains(className)) {
           return true;
         }
@@ -340,6 +324,22 @@
   });
 
   /*jQuery functions*/
+
+  $.extend({
+    isObject(elem) {
+      return Object.prototype.toString.call(elem) === '[object Object]';
+    },
+    isString(elem) {
+      return Object.prototype.toString.call(elem) === '[object String]';
+    },
+    isFunction(elem) {
+      return Object.prototype.toString.call(elem) === '[object Function]';
+    },
+    isArray: Array.isArray,
+    isHTMLElement(elem) {
+      return arg instanceof HTMLElement;
+    }
+  });
 
   $.extend({
     createDOM(contentType, innerHTML) {
