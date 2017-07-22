@@ -110,11 +110,13 @@
     // console.log($.inArray('d', ['a', 'b', 'c', 'd']));
 
     const fn1 = value => console.log(`fn1 ${value}`);
-    const fn2 = value => console.log(`fn1 ${value}`);
+    const fn2 = value => console.log(`fn2 ${value}`);
     const cb = $.Callbacks();
     cb.add(fn1);
     cb.add(fn2);
     cb.fire('hello $.Callbacks');
+    cb.remove(fn1);
+    cb.fire('hello $.Callbacks2');
   </script>
 </body>
 </html>

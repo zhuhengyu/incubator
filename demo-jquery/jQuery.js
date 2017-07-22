@@ -357,11 +357,17 @@
     return {
       add(fn) {
         list.push(fn);
+        return this;
       },
       fire(value) {
         list.forEach(function(fn) {
           fn(value);
+          return this;
         });
+      },
+      remove(fn) {
+        list.splice($.inArray(fn, list), 1);
+        return this;
       }
     };
   };
