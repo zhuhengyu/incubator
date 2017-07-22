@@ -17,7 +17,7 @@
         domArr = selector;
       } else if ($.isString(selector)) {
         const nodeList = context.querySelectorAll(selector);
-        domArr = Array.from(nodeList);
+        domArr = Array.prototype.slice.apply(nodeList);
       } else if ($.isHTMLElement(selector)) {
         self[0] = selector;
         self.length = 1;
@@ -109,7 +109,7 @@
       }
       let ret = [];
       this.each(function(ele) {
-        ret = ret.concat(Array.from(ele.querySelectorAll(selector)));
+        ret = ret.concat(Array.prototype.slice.apply(ele.querySelectorAll(selector)));
       });
       return this.pushStack(ret);
     },
@@ -352,22 +352,63 @@
     }
   });
 
-  $.Callbacks = function() {
-    const list = [];
+  $.Callbacks = function(options) {
+    options = {
+      [options]: true
+    };
+    // store functions
+    let list = [];
+    // record fired functions
+    let queue = [];
+    // record last fired value
+    let memory;
     return {
       add(fn) {
-        list.push(fn);
+        const self = this;
+        (function add(args) {
+          Array.prototype.forEach.call(args, function(arg) {
+            if ($.isFunction(arg)) {
+              if (!self.has(arg)) {
+                list.push(arg);
+                if (options.memory) {
+                  queue.push(arg);
+                }
+              }
+            } else if (arg && arg.length) {
+              add(arg);
+            }
+          });
+        })(arguments);
+        if (options.memory && memory) {
+          this.fire();
+        }
         return this;
       },
-      fire(value) {
-        list.forEach(function(fn) {
-          fn(value);
-          return this;
+      fire() {
+        memory = arguments.length ? Array.prototype.slice.apply(arguments) : memory;
+        const self = this;
+        if (!queue.length) {
+          queue = list.slice();
+        }
+        queue.forEach(function(fn) {
+          fn.apply(null, memory);
         });
+        if (options.once) {
+          list = [];
+        }
+        queue = [];
+        return this;
+      },
+      has(fn) {
+        return $.inArray(fn, list) !== -1;
       },
       remove(fn) {
         list.splice($.inArray(fn, list), 1);
+        queue.splice($.inArray(fn, list), 1);
         return this;
+      },
+      eject() {
+        return list;
       }
     };
   };

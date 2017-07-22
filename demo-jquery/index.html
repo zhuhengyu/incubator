@@ -109,14 +109,25 @@
 
     // console.log($.inArray('d', ['a', 'b', 'c', 'd']));
 
-    const fn1 = value => console.log(`fn1 ${value}`);
-    const fn2 = value => console.log(`fn2 ${value}`);
-    const cb = $.Callbacks();
+    const fn0 = (val1, val2) => console.log(`fn0 ${val1} ${val2}`);
+    const fn1 = (val1, val2) => console.log(`fn1 ${val1} ${val2}`);
+    const fn2 = (val1, val2) => console.log(`fn2 ${val1} ${val2}`);
+    const fn3 = (val1, val2) => console.log(`fn3 ${val1} ${val2}`);
+    const fn4 = (val1, val2) => console.log(`fn4 ${val1} ${val2}`);
+    const fn5 = (val1, val2) => console.log(`fn5 ${val1} ${val2}`);
+    const fn6 = (val1, val2) => console.log(`fn6 ${val1} ${val2}`);
+    const fn7 = (val1, val2) => console.log(`fn7 ${val1} ${val2}`);
+    const fn8 = (val1, val2) => console.log(`fn8 ${val1} ${val2}`);
+
+    const cb = $.Callbacks('memory');
+    cb.add(fn0);
     cb.add(fn1);
+    cb.fire('v1', 'v2');
     cb.add(fn2);
-    cb.fire('hello $.Callbacks');
-    cb.remove(fn1);
-    cb.fire('hello $.Callbacks2');
+    cb.add(fn3);
+    cb.add(fn4);
+    cb.fire('v1', 'v2');
+    cb.add([fn5, [fn6, fn7], fn8]);
   </script>
 </body>
 </html>
