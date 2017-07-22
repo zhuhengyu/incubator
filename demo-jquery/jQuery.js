@@ -351,4 +351,18 @@
       return domObj;
     }
   });
+
+  $.Callbacks = function() {
+    const list = [];
+    return {
+      add(fn) {
+        list.push(fn);
+      },
+      fire(value) {
+        list.forEach(function(fn) {
+          fn(value);
+        });
+      }
+    };
+  };
 })(self || this);

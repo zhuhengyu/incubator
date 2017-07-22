@@ -107,7 +107,14 @@
     // $('.parent').find('.child').filter('.filter').after('<span style="color: green">test</span>');
     // $('.parent').fadeIn();
 
-    console.log($.inArray('d', ['a', 'b', 'c', 'd']));
+    // console.log($.inArray('d', ['a', 'b', 'c', 'd']));
+
+    const fn1 = value => console.log(`fn1 ${value}`);
+    const fn2 = value => console.log(`fn1 ${value}`);
+    const cb = $.Callbacks();
+    cb.add(fn1);
+    cb.add(fn2);
+    cb.fire('hello $.Callbacks');
   </script>
 </body>
 </html>
