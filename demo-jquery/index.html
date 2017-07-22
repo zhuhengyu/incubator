@@ -25,7 +25,8 @@
     <div class="parent">
       <div class="child">child1</div>
       <div class="child filter">child2</div>
-      <div class="child filter">child3</div></div>
+      <div class="child filter">child3</div>
+    </div>
   </div>
   <script type="text/javascript">
     /*
@@ -119,15 +120,16 @@
     const fn7 = (val1, val2) => console.log(`fn7 ${val1} ${val2}`);
     const fn8 = (val1, val2) => console.log(`fn8 ${val1} ${val2}`);
 
-    const cb = $.Callbacks('memory');
+    const cb = $.Callbacks();
     cb.add(fn0);
     cb.add(fn1);
-    cb.fire('v1', 'v2');
+    cb.fire('v11', 'v12');
     cb.add(fn2);
     cb.add(fn3);
     cb.add(fn4);
-    cb.fire('v1', 'v2');
+    cb.fire('v21', 'v22');
     cb.add([fn5, [fn6, fn7], fn8]);
+    cb.fire('v31', 'v32');
   </script>
 </body>
 </html>

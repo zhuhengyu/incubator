@@ -36,12 +36,16 @@
 
   $.fn.init.prototype = $.fn;
   
-  $.extend = $.fn.extend = function(source) {
+  $.extend = $.fn.extend = function() {
+    const args = Array.prototype.slice.apply(arguments);
+    source = args[1] || args[0];
+    target = source === args[0] ? this : args[0];
     for (let prop in source) {
       if (source.hasOwnProperty(prop)) {
-        this[prop] = source[prop];
+        target[prop] = source[prop];
       }
     }
+    return target;
   };
 
   /*tool functions*/
@@ -353,9 +357,10 @@
   });
 
   $.Callbacks = function(options) {
-    options = {
-      [options]: true
-    };
+    options = $.isString(options) ? 
+      { [options]: true } :
+      $.extend({}, options);
+
     // store functions
     let list = [];
     // record fired functions
