@@ -59,7 +59,7 @@
 
     // console.log($('#xixi').attr('title'));
 
-    // $('.input').val(function(ele, idx) {
+    // $('.input').val(function(elem, idx) {
     //   return `haha-${idx}`;
     // });
     // console.log($('#username').val());
@@ -85,8 +85,8 @@
     // });
     // $('#xixi').dblclick();
 
-    // $.each(['a', 'b', 'c'], function(ele, idx) {
-    //   console.log(ele, idx);
+    // $.each(['a', 'b', 'c'], function(elem, idx) {
+    //   console.log(elem, idx);
     // });
 
     // $('#username').blur(function(event) {
@@ -110,26 +110,29 @@
 
     // console.log($.inArray('d', ['a', 'b', 'c', 'd']));
 
-    const fn0 = (val1, val2) => console.log(`fn0 ${val1} ${val2}`);
-    const fn1 = (val1, val2) => console.log(`fn1 ${val1} ${val2}`);
-    const fn2 = (val1, val2) => console.log(`fn2 ${val1} ${val2}`);
-    const fn3 = (val1, val2) => console.log(`fn3 ${val1} ${val2}`);
-    const fn4 = (val1, val2) => console.log(`fn4 ${val1} ${val2}`);
-    const fn5 = (val1, val2) => console.log(`fn5 ${val1} ${val2}`);
-    const fn6 = (val1, val2) => console.log(`fn6 ${val1} ${val2}`);
-    const fn7 = (val1, val2) => console.log(`fn7 ${val1} ${val2}`);
-    const fn8 = (val1, val2) => console.log(`fn8 ${val1} ${val2}`);
+    // const fn0 = (val1, val2) => console.log(`fn0 ${val1} ${val2}`);
+    // const fn1 = (val1, val2) => console.log(`fn1 ${val1} ${val2}`);
+    // const fn2 = (val1, val2) => console.log(`fn2 ${val1} ${val2}`);
+    // const fn3 = (val1, val2) => console.log(`fn3 ${val1} ${val2}`);
+    // const fn4 = (val1, val2) => console.log(`fn4 ${val1} ${val2}`);
+    // const fn5 = (val1, val2) => console.log(`fn5 ${val1} ${val2}`);
+    // const fn6 = (val1, val2) => console.log(`fn6 ${val1} ${val2}`);
+    // const fn7 = (val1, val2) => console.log(`fn7 ${val1} ${val2}`);
+    // const fn8 = (val1, val2) => console.log(`fn8 ${val1} ${val2}`);
 
-    const cb = $.Callbacks();
-    cb.add(fn0);
-    cb.add(fn1);
-    cb.fire('v11', 'v12');
-    cb.add(fn2);
-    cb.add(fn3);
-    cb.add(fn4);
-    cb.fire('v21', 'v22');
-    cb.add([fn5, [fn6, fn7], fn8]);
-    cb.fire('v31', 'v32');
+    // const cb = $.Callbacks();
+    // cb.add(fn0);
+    // cb.add(fn1);
+    // cb.fire('v11', 'v12');
+    // cb.add(fn2);
+    // cb.add(fn3);
+    // cb.add(fn4);
+    // cb.fire('v21', 'v22');
+    // cb.add([fn5, [fn6, fn7], fn8]);
+    // cb.fire('v31', 'v32');
+    $('.cls').click(function(e) {
+      $('.parent').empty();
+    });
   </script>
 </body>
 </html>

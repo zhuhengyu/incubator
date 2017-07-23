@@ -24,10 +24,12 @@
       } else if ($.isFunction(selector)) {
         
       }
-      domArr.forEach(function(ele, idx) {
-        self[idx] = ele;
-      });
-      self.length = domArr.length;
+      if (domArr) {
+        domArr.forEach(function(elem, idx) {
+          self[idx] = elem;
+        });
+        self.length = domArr.length;
+      }
     } catch (e) {
       self[0] = createElement(selector);
       self.length = 1;        
@@ -52,14 +54,14 @@
 
   function handleClass(jQueryObj, className, strategy) {
     if ($.isFunction(className)) {
-      jQueryObj.each(function(ele, idx) {
-        ele.classList[strategy](className(idx));
+      jQueryObj.each(function(elem, idx) {
+        elem.classList[strategy](className(idx));
       });
     } else if ($.isString(className)) {
       const newClasses = className.split(/\s/);
-      jQueryObj.each(function(ele) {
+      jQueryObj.each(function(elem) {
         newClasses.forEach(function(cls) {
-          ele.classList[strategy](cls);
+          elem.classList[strategy](cls);
         });
       });
     }
@@ -112,8 +114,8 @@
         throw new Error('A selector string needed.');
       }
       let ret = [];
-      this.each(function(ele) {
-        ret = ret.concat(Array.prototype.slice.apply(ele.querySelectorAll(selector)));
+      this.each(function(elem) {
+        ret = ret.concat(Array.prototype.slice.apply(elem.querySelectorAll(selector)));
       });
       return this.pushStack(ret);
     },
@@ -132,8 +134,8 @@
     },
     filter(selector) {
       let domArr = Array.prototype.slice.apply(this);
-      domArr = domArr.filter(function(ele) {
-        return Array.prototype.slice.apply(ele.parentNode.querySelectorAll(selector)).indexOf(ele) !== -1;
+      domArr = domArr.filter(function(elem) {
+        return Array.prototype.slice.apply(elem.parentNode.querySelectorAll(selector)).indexOf(elem) !== -1;
       });
       return this.pushStack(domArr);
     }
@@ -144,8 +146,8 @@
   $.fn.extend({
     clone() {
       const newObjs = [];
-      this.each(function(ele) {
-        newObjs.push(createElement(ele.outerHTML));
+      this.each(function(elem) {
+        newObjs.push(createElement(elem.outerHTML));
       });
       return new $.fn.init(newObjs);
     },
@@ -169,46 +171,46 @@
       return this;
     },
     remove() {
-      this.each(function(ele) {
-        ele.parentNode.removeChild(ele);
+      this.each(function(elem) {
+        elem.parentNode.removeChild(elem);
       });
       return this;
     },
     replaceWith(newContent) {
-      this.each(function(ele) {
-        ele.parentNode.replaceChild($(newContent)[0], ele);
+      this.each(function(elem) {
+        elem.parentNode.replaceChild($(newContent)[0], elem);
       });
       return this;
     },
     replaceAll(target) {
       const self = this;
-      $(target).each(function(ele, idx) {
-        ele.parentNode.replaceChild(self.clone()[0], ele);
+      $(target).each(function(elem, idx) {
+        elem.parentNode.replaceChild(self.clone()[0], elem);
       });
       return this;
     },
     before(content) {
       if ($.isString(content)) {
-        this.each(function(ele) {
-          ele.parentNode.insertBefore(createElement(content), ele);
+        this.each(function(elem) {
+          elem.parentNode.insertBefore(createElement(content), elem);
         });
       }
       if ($.isFunction(content)) {
-        this.each(function(ele, idx) {
-          ele.parentNode.insertBefore(createElement(content(idx)), ele);
+        this.each(function(elem, idx) {
+          elem.parentNode.insertBefore(createElement(content(idx)), elem);
         });
       }
       return this;
     },
     after(content) {
       if ($.isString(content)) {
-        this.each(function(ele) {
-          ele.parentNode.insertBefore(createElement(content), ele.nextSibling);
+        this.each(function(elem) {
+          elem.parentNode.insertBefore(createElement(content), elem.nextSibling);
         });
       }
       if ($.isFunction(content)) {
-        this.each(function(ele, idx) {
-          ele.parentNode.insertBefore(createElement(content(idx)), ele.nextSibling);
+        this.each(function(elem, idx) {
+          elem.parentNode.insertBefore(createElement(content(idx)), elem.nextSibling);
         });
       }
       return this;
@@ -223,13 +225,13 @@
     },
     val(value) {
       if (value && $.isFunction(value)) {
-        this.each(function(ele, idx) {
-          ele.value = value(ele, idx);
+        this.each(function(elem, idx) {
+          elem.value = value(elem, idx);
         });
         return this;
       } else if (value && $.isString(value)) {
-        this.each(function(ele) {
-          ele.value = value;
+        this.each(function(elem) {
+          elem.value = value;
         });
         return this;
       }
@@ -239,8 +241,13 @@
       if (!value) {
         return this[0].innerHTML;
       }
-      return this.each(function(ele) {
-        ele.innerHTML = value;
+      return this.each(function(elem) {
+        elem.innerHTML = value;
+      });
+    },
+    empty() {
+      this.each(function(elem) {
+        elem.innerHTML = '';
       });
     }
   });
@@ -249,22 +256,24 @@
 
   $.fn.extend({
     on(event, callback) {
-      return this.each(function(ele) {
-        ele.addEventListener(event, callback, false);
+      return this.each(function(elem) {
+        elem.addEventListener(event, callback, false);
       });
     },
     trigger(event) {
-      return this.each(function(ele) {
-        ele.dispatchEvent(new Event(event));
+      return this.each(function(elem) {
+        elem.dispatchEvent(new Event(event));
       });
     }
   });
-  $.each('blur focus click dblclick'.split(' '), function(ele, idx) {
-    $.fn[ele] = function(handler) {
+  $.each('blur focus click dblclick'.split(' '), function(event, idx) {
+    $.fn[event] = function(handler) {
       if (handler) {
-        this.on(ele, handler)
+        this.each(function(elem) {
+          $(elem).on(event, handler);
+        });
       } else {
-        this.trigger(ele);
+        this.trigger(event);
       }
       return this;
     };
@@ -275,13 +284,13 @@
   $.fn.extend({
     css(propRaw, value) {
       if ($.isString(propRaw)) {
-        this.each(function(ele) {
-          ele.style[propRaw] = value;
+        this.each(function(elem) {
+          elem.style[propRaw] = value;
         });
       } else if ($.isObject(propRaw)) {
-        this.each(function(ele) {
+        this.each(function(elem) {
           for (let prop in propRaw) {
-            ele.style[prop] = propRaw[prop];
+            elem.style[prop] = propRaw[prop];
           }
         });
       }
@@ -292,7 +301,7 @@
     },
     hasClass(className) {
       this.each(function(elem) {
-        if (ele.classList.contains(className)) {
+        if (elem.classList.contains(className)) {
           return true;
         }
       });
@@ -341,7 +350,7 @@
     },
     isArray: Array.isArray,
     isHTMLElement(elem) {
-      return arg instanceof HTMLElement;
+      return elem instanceof HTMLElement;
     },
     inArray(elem, list, fromIndex) {
       return !list ? -1 : Array.prototype.indexOf.call(list, elem, fromIndex);
