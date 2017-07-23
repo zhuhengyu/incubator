@@ -27,6 +27,14 @@
       <div class="child filter">child2</div>
       <div class="child filter">child3</div>
     </div>
+    <div class="parent">
+      <div class="child">child1</div>
+      <div class="child filter">child2</div>
+      <div class="child filter">child3</div>
+    </div>
+    <div class="parent">
+      there is no child in this div
+    </div>
   </div>
   <script type="text/javascript">
     /*
@@ -130,9 +138,12 @@
     // cb.fire('v21', 'v22');
     // cb.add([fn5, [fn6, fn7], fn8]);
     // cb.fire('v31', 'v32');
-    $('.cls').click(function(e) {
-      $('.parent').empty();
-    });
+
+    // $('.cls').click(function(e) {
+    //   $('.parent').empty();
+    // });
+
+    // $('.parent').has('.child').css('border', '1px solid red').end().css('color', 'blue');
   </script>
 </body>
 </html>

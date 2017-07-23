@@ -138,6 +138,15 @@
         return Array.prototype.slice.apply(elem.parentNode.querySelectorAll(selector)).indexOf(elem) !== -1;
       });
       return this.pushStack(domArr);
+    },
+    has(selector) {
+      const domArr = [];
+      this.each(function(elem) {
+        if ($(selector, elem).length) {
+          domArr.push(elem);
+        }
+      });
+      return this.pushStack(domArr);
     }
   });
 
