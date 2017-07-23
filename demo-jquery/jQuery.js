@@ -150,6 +150,13 @@
     },
     slice() {
       return this.pushStack(Array.prototype.slice.apply(this, arguments));
+    },
+    not(selector) {
+      let domArr = Array.prototype.slice.apply(this);
+      domArr = domArr.filter(function(elem) {
+        return Array.prototype.slice.apply(elem.parentNode.querySelectorAll(selector)).indexOf(elem) === -1;
+      });
+      return this.pushStack(domArr);
     }
   });
 
