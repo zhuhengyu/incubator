@@ -147,6 +147,9 @@
         }
       });
       return this.pushStack(domArr);
+    },
+    slice() {
+      return this.pushStack(Array.prototype.slice.apply(this, arguments));
     }
   });
 
