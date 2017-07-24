@@ -102,7 +102,7 @@
     constructor: $,
     pushStack(elems) {
       let ret = this.constructor();
-      for (var i = 0; i < elems.length; i++) {
+      for (let i = 0; i < elems.length; i++) {
         ret[i] = elems[i];
       }
       ret.length = elems.length;
@@ -155,6 +155,15 @@
       let domArr = Array.prototype.slice.apply(this);
       domArr = domArr.filter(function(elem) {
         return Array.prototype.slice.apply(elem.parentNode.querySelectorAll(selector)).indexOf(elem) === -1;
+      });
+      return this.pushStack(domArr);
+    },
+    parent() {
+      let domArr = [];
+      this.each(function(elem) {
+        if (domArr.indexOf(elem.parentNode) === -1) {
+          domArr.push(elem.parentNode);
+        }
       });
       return this.pushStack(domArr);
     }
