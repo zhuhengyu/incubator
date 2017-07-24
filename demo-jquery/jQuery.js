@@ -168,16 +168,27 @@
       return this.pushStack(domArr);
     },
     parents() {
-      let domArr = [];
-      const html = document.body.parentNode;
-      let curLevel = this;
-      while(domArr.indexOf(html) === -1) {
-        curLevel = curLevel.parent();
-        curLevel.each(function(_, elem) {
-          domArr.push(elem);
-        });
+      return this.parentsUtil();
+    },
+    // TO BE DONE
+    parentsUtil(selector) {
+      if (!selector || $.isHTMLElement(selector)) {
+        let domArr = [];
+        let curLevel = this;
+        const root = document.body.parentNode
+        const target = selector || document.body.parentNode;
+        while(domArr.indexOf(selector) === -1 && domArr.indexOf(root) === -1) {
+          curLevel = curLevel.parent();
+          curLevel.each(function(_, elem) {
+            domArr.push(elem);
+          });
+        }
+        return this.pushStack(domArr);
+      } else if ($.isString(selector)) {
+        const targets = document.querySelectorAll(selector);
+      } else if ($.isArray(selector)) {
       }
-      return this.pushStack(domArr);
+      let domArr = [];
     }
   });
 

@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <script src="jQuery.js"></script>
   <style type="text/css">
     .cls {
       color: gold;
@@ -29,129 +28,18 @@
     </div>
     <div class="parent">
       <div class="child">child1</div>
-      <div class="child filter">child2</div>
+      <div>
+        <div class="child filter">child2</div>
+      </div>
       <div class="child filter">child3</div>
     </div>
-    <div class="parent">
+    <div class="parent filter">
       there is no child in this div
     </div>
   </div>
+  <!-- <script src="jQuery.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript">
-    /*
-    $('.cls').css('color', 'red').append($('<span>test</span>'));
-    $('#id').css('color', 'red').append($.createDOM('span', 'content'));
-    $('span').css('color', 'gold').on('click', function(event) {
-      console.log('test');
-    }).css({
-      color: 'blue',
-      textDecoration: 'underline'
-    });
-
-    console.log($('div div').hasClass('cls'));
-    console.log($('#id').hasClass('cls'));
-    console.log($('#xixi').hasClass('cls'));
-    */
-
-    
-    // $('.cls').addClass('hehe');
-    // $('.cls').addClass(function(idx) {
-    //   return `test-${idx}`
-    // });
-    
-    // $('.cls').removeClass('cls').addClass('cls2');
-    // $('.cls2').clone().appendTo('#id').remove();
-
-    // $('#xixi').replaceWith('<h1>haha</h1>');
-
-    // $('<h1>haha</h1>').replaceAll('.cls');
-
-    // console.log($('#xixi').attr('title'));
-
-    // $('.input').val(function(elem, idx) {
-    //   return `haha-${idx}`;
-    // });
-    // console.log($('#username').val());
-
-    // console.log($('#xixi').text());
-    // $('#xixi').text('hahahaha');
-
-    // $('#xixi').on('click', function(event) {
-    //   alert('haha');
-    // });
-    // $('#xixi').on('dblclick', function(event) {
-    //   alert('hehe');
-    // });
-    // $('#xixi').trigger('dblclick');
-
-    // $('#xixi').click(function(event) {
-    //   alert('clicked');
-    // });
-    // $('#xixi').click();
-
-    // $('#xixi').dblclick(function(event) {
-    //   alert('clicked');
-    // });
-    // $('#xixi').dblclick();
-
-    // $.each(['a', 'b', 'c'], function(elem, idx) {
-    //   console.log(elem, idx);
-    // });
-
-    // $('#username').blur(function(event) {
-    //   console.log(this.value);
-    // });
-
-    // $('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold');
-
-    // $('.parent').find('.child').css('color', 'red').end().css('border', '1px solid gold').find('.child').eq('1').css('color', 'green').end().end().css({
-    //   border: '3px solid purple'
-    // }).find('.child').first().color('gold').end().end().css({
-    //   width: '300px'
-    // });
-
-    // $('.parent').find('.child').before('<div>hahaha</div>').before(function(idx) {
-    //   return '<span style="color: red">test</span>';
-    // }).after('<span style="color: green">test</span>');
-
-    // $('.parent').find('.child').filter('.filter').after('<span style="color: green">test</span>');
-    // $('.parent').fadeIn();
-
-    // console.log($.inArray('d', ['a', 'b', 'c', 'd']));
-
-    // const fn0 = (val1, val2) => console.log(`fn0 ${val1} ${val2}`);
-    // const fn1 = (val1, val2) => console.log(`fn1 ${val1} ${val2}`);
-    // const fn2 = (val1, val2) => console.log(`fn2 ${val1} ${val2}`);
-    // const fn3 = (val1, val2) => console.log(`fn3 ${val1} ${val2}`);
-    // const fn4 = (val1, val2) => console.log(`fn4 ${val1} ${val2}`);
-    // const fn5 = (val1, val2) => console.log(`fn5 ${val1} ${val2}`);
-    // const fn6 = (val1, val2) => console.log(`fn6 ${val1} ${val2}`);
-    // const fn7 = (val1, val2) => console.log(`fn7 ${val1} ${val2}`);
-    // const fn8 = (val1, val2) => console.log(`fn8 ${val1} ${val2}`);
-
-    // const cb = $.Callbacks();
-    // cb.add(fn0);
-    // cb.add(fn1);
-    // cb.fire('v11', 'v12');
-    // cb.add(fn2);
-    // cb.add(fn3);
-    // cb.add(fn4);
-    // cb.fire('v21', 'v22');
-    // cb.add([fn5, [fn6, fn7], fn8]);
-    // cb.fire('v31', 'v32');
-
-    // $('.cls').click(function(e) {
-    //   $('.parent').empty();
-    // });
-
-    // $('.parent').has('.child').css('border', '1px solid red').end().css('color', 'blue');
-
-    // $('.child').slice(-3, -1).css('color', 'blue');
-
-    // $('.child').not('.filter').css('color', 'gold');
-
-    // $('.child').parent().css('border', '1px solid red');
-
-    console.log($('.child').parents());
   </script>
 </body>
 </html>
