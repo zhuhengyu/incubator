@@ -192,11 +192,15 @@
     },
     is(selector) {
       let ret = false;
-      this.each(function(_, elem) {
-        if (elem.matches(selector)) {
-          ret = true;
-        }
-      });
+      if ($.isHTMLElement(selector)) {
+        ret = Array.prototype.indexOf.call(this, selector) !== -1;
+      } else if ($.isString(selector)) {
+        this.each(function(_, elem) {
+          if (elem.matches(selector)) {
+            ret = true;
+          }
+        });
+      }
       return ret;
     }
   });
