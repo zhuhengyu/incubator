@@ -189,6 +189,15 @@
       } else if ($.isArray(selector)) {
       }
       let domArr = [];
+    },
+    is(selector) {
+      let ret = false;
+      this.each(function(_, elem) {
+        if (elem.matches(selector)) {
+          ret = true;
+        }
+      });
+      return ret;
     }
   });
 
