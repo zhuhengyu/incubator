@@ -37,11 +37,10 @@
       there is no child in this div
     </div>
   </div>
-  <!-- <script src="jQuery.js"></script> -->
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="jQuery.js"></script>
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> -->
   <script type="text/javascript">
-    const filter = document.querySelector('.filter');
-    console.log($('.child').is(filter));
+    console.log($('.filter').parentsUntil('.p'));
   </script>
 </body>
 </html>

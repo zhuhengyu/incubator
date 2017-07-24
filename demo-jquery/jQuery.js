@@ -22,7 +22,7 @@
         self[0] = selector;
         self.length = 1;
       } else if ($.isFunction(selector)) {
-        
+
       }
       if (domArr) {
         domArr.forEach(function(elem, idx) {
@@ -168,31 +168,28 @@
       return this.pushStack(domArr);
     },
     parents() {
-      return this.parentsUtil();
+      return this.parentsUntil();
     },
-    // TO BE DONE
-    parentsUtil(selector) {
-      if (!selector || $.isHTMLElement(selector)) {
-        let domArr = [];
-        let curLevel = this;
-        const root = document.body.parentNode
-        const target = selector || document.body.parentNode;
-        while(domArr.indexOf(selector) === -1 && domArr.indexOf(root) === -1) {
-          curLevel = curLevel.parent();
-          curLevel.each(function(_, elem) {
-            domArr.push(elem);
-          });
-        }
-        return this.pushStack(domArr);
-      } else if ($.isString(selector)) {
-        const targets = document.querySelectorAll(selector);
-      } else if ($.isArray(selector)) {
-      }
+    parentsUntil(selector) {
+      selector = selector || document;
       let domArr = [];
+      this.each(function(_, elem) {
+        while(true) {
+          elem = elem.parentNode;
+          let curLevel = $(elem);
+          if (!elem || curLevel.is(selector)) {
+            break;
+          }
+          if (domArr.indexOf(elem) === -1 && elem !== document) {
+            domArr.push(elem);
+          }
+        }
+      });
+      return this.pushStack(domArr);
     },
     is(selector) {
       let ret = false;
-      if ($.isHTMLElement(selector)) {
+      if ($.isHTMLElement(selector) || selector === document) {
         ret = Array.prototype.indexOf.call(this, selector) !== -1;
       } else if ($.isString(selector)) {
         this.each(function(_, elem) {
@@ -431,8 +428,8 @@
 
   $.Callbacks = function(options) {
     options = $.isString(options) ? 
-      { [options]: true } :
-      $.extend({}, options);
+    { [options]: true } :
+    $.extend({}, options);
 
     // store functions
     let list = [];
