@@ -54,12 +54,12 @@
 
   function handleClass(jQueryObj, className, strategy) {
     if ($.isFunction(className)) {
-      jQueryObj.each(function(elem, idx) {
+      jQueryObj.each(function(idx, elem) {
         elem.classList[strategy](className(idx));
       });
     } else if ($.isString(className)) {
       const newClasses = className.split(/\s/);
-      jQueryObj.each(function(elem) {
+      jQueryObj.each(function(_, elem) {
         newClasses.forEach(function(cls) {
           elem.classList[strategy](cls);
         });
@@ -79,7 +79,7 @@
   $.extend({
     each(arr, func) {
       for (let i = 0; i < arr.length; i++) {
-        func(arr[i], i);
+        func(i, arr[i]);
       }
     }
   });
@@ -87,7 +87,7 @@
     each(func) {
       if (func && $.isFunction(func)) {
         for (let i = 0; i < this.length; i++) {
-          func.call(this[i], this[i], i);
+          func.call(this[i], i, this[i]);
         }
       }
       return this;
@@ -114,7 +114,7 @@
         throw new Error('A selector string needed.');
       }
       let ret = [];
-      this.each(function(elem) {
+      this.each(function(_, elem) {
         ret = ret.concat(Array.prototype.slice.apply(elem.querySelectorAll(selector)));
       });
       return this.pushStack(ret);
@@ -141,7 +141,7 @@
     },
     has(selector) {
       const domArr = [];
-      this.each(function(elem) {
+      this.each(function(_, elem) {
         if ($(selector, elem).length) {
           domArr.push(elem);
         }
@@ -160,11 +160,23 @@
     },
     parent() {
       let domArr = [];
-      this.each(function(elem) {
+      this.each(function(_, elem) {
         if (domArr.indexOf(elem.parentNode) === -1) {
           domArr.push(elem.parentNode);
         }
       });
+      return this.pushStack(domArr);
+    },
+    parents() {
+      let domArr = [];
+      const html = document.body.parentNode;
+      let curLevel = this;
+      while(domArr.indexOf(html) === -1) {
+        curLevel = curLevel.parent();
+        curLevel.each(function(_, elem) {
+          domArr.push(elem);
+        });
+      }
       return this.pushStack(domArr);
     }
   });
@@ -174,7 +186,7 @@
   $.fn.extend({
     clone() {
       const newObjs = [];
-      this.each(function(elem) {
+      this.each(function(_, elem) {
         newObjs.push(createElement(elem.outerHTML));
       });
       return new $.fn.init(newObjs);
@@ -190,8 +202,8 @@
     appendTo(target) {
       const self = this;
       if ($.isString(target)) {
-        $(target).each(function(parent) {
-          self.each(function(child) {
+        $(target).each(function(_, parent) {
+          self.each(function(_, child) {
             parent.appendChild(child);
           });
         });
@@ -199,32 +211,32 @@
       return this;
     },
     remove() {
-      this.each(function(elem) {
+      this.each(function(_, elem) {
         elem.parentNode.removeChild(elem);
       });
       return this;
     },
     replaceWith(newContent) {
-      this.each(function(elem) {
+      this.each(function(_, elem) {
         elem.parentNode.replaceChild($(newContent)[0], elem);
       });
       return this;
     },
     replaceAll(target) {
       const self = this;
-      $(target).each(function(elem, idx) {
+      $(target).each(function(idx, elem) {
         elem.parentNode.replaceChild(self.clone()[0], elem);
       });
       return this;
     },
     before(content) {
       if ($.isString(content)) {
-        this.each(function(elem) {
+        this.each(function(_, elem) {
           elem.parentNode.insertBefore(createElement(content), elem);
         });
       }
       if ($.isFunction(content)) {
-        this.each(function(elem, idx) {
+        this.each(function(idx, elem) {
           elem.parentNode.insertBefore(createElement(content(idx)), elem);
         });
       }
@@ -232,12 +244,12 @@
     },
     after(content) {
       if ($.isString(content)) {
-        this.each(function(elem) {
+        this.each(function(_, elem) {
           elem.parentNode.insertBefore(createElement(content), elem.nextSibling);
         });
       }
       if ($.isFunction(content)) {
-        this.each(function(elem, idx) {
+        this.each(function(idx, elem) {
           elem.parentNode.insertBefore(createElement(content(idx)), elem.nextSibling);
         });
       }
@@ -253,12 +265,12 @@
     },
     val(value) {
       if (value && $.isFunction(value)) {
-        this.each(function(elem, idx) {
-          elem.value = value(elem, idx);
+        this.each(function(idx, elem) {
+          elem.value = value(idx, elem);
         });
         return this;
       } else if (value && $.isString(value)) {
-        this.each(function(elem) {
+        this.each(function(_, elem) {
           elem.value = value;
         });
         return this;
@@ -269,12 +281,12 @@
       if (!value) {
         return this[0].innerHTML;
       }
-      return this.each(function(elem) {
+      return this.each(function(_, elem) {
         elem.innerHTML = value;
       });
     },
     empty() {
-      this.each(function(elem) {
+      this.each(function(_, elem) {
         elem.innerHTML = '';
       });
     }
@@ -284,20 +296,20 @@
 
   $.fn.extend({
     on(event, callback) {
-      return this.each(function(elem) {
+      return this.each(function(_, elem) {
         elem.addEventListener(event, callback, false);
       });
     },
     trigger(event) {
-      return this.each(function(elem) {
+      return this.each(function(_, elem) {
         elem.dispatchEvent(new Event(event));
       });
     }
   });
-  $.each('blur focus click dblclick'.split(' '), function(event, idx) {
+  $.each('blur focus click dblclick'.split(' '), function(idx, event) {
     $.fn[event] = function(handler) {
       if (handler) {
-        this.each(function(elem) {
+        this.each(function(_, elem) {
           $(elem).on(event, handler);
         });
       } else {
@@ -312,11 +324,11 @@
   $.fn.extend({
     css(propRaw, value) {
       if ($.isString(propRaw)) {
-        this.each(function(elem) {
+        this.each(function(_, elem) {
           elem.style[propRaw] = value;
         });
       } else if ($.isObject(propRaw)) {
-        this.each(function(elem) {
+        this.each(function(_, elem) {
           for (let prop in propRaw) {
             elem.style[prop] = propRaw[prop];
           }
@@ -328,7 +340,7 @@
       return this.css('color', value);
     },
     hasClass(className) {
-      this.each(function(elem) {
+      this.each(function(_, elem) {
         if (elem.classList.contains(className)) {
           return true;
         }
@@ -350,7 +362,7 @@
   // To Be Improved, jQuery.Deferred needed
   $.fn.extend({
     fadeIn() {
-      this.each(function(elem, idx) {
+      this.each(function(idx, elem) {
         elem.style.opacity = 0;
         // elem.style.display = "block";
         (function fade() {
