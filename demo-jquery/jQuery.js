@@ -199,6 +199,12 @@
         });
       }
       return ret;
+    },
+    get(index) {
+      if (index === undefined) {
+        return Array.prototype.slice.call(this);
+      }
+      return index < 0 ? this[index + this.length] : this[index];
     }
   });
 
