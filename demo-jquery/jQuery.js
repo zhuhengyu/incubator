@@ -220,7 +220,7 @@
     },
     append(child) {
       child = child[0] || child;
-      if (!child || !(child instanceof HTMLElement)) {
+      if (!child || !$.isHTMLElement(child)) {
         throw new Error('Not a valid element!');
       }
       this[0].appendChild(child);
@@ -236,6 +236,11 @@
         });
       }
       return this;
+    },
+    prepend(child) {
+      child = child[0] || child;
+      const firstChild = this[0].children[0];
+      this[0].insertBefore(child[0], this[0].children[0]);
     },
     remove() {
       this.each(function(_, elem) {
