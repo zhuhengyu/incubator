@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import * as actions from './actions';
 
@@ -20,7 +21,11 @@ class Counter extends React.Component {
   }
 }
 
-Counter.propTypes = {};
+Counter.propTypes = {
+  n: PropTypes.number.isRequired,
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired
+};
 
 const mapStateToProps = (state, props) => ({
   n: state.n
