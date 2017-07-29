@@ -7,7 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import Counter from './counter';
 
-import App from './App';
+import CounterPanel from './counterPanel';
 
 import './index.css';
 
@@ -15,7 +15,7 @@ const store = createStore(Counter.reducer);
 
 ReactDOM.render(
 <Provider store={store}>
-  <App/>  
+  <CounterPanel.view/>
 </Provider>, document.getElementById('root'));
 
 registerServiceWorker();

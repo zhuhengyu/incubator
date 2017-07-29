@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import * as actions from './actions';
 
+import './view.css';
+
 class Counter extends React.Component {
   render() {
     const {
@@ -14,8 +16,8 @@ class Counter extends React.Component {
     } = this.props;
     return(
       <div>
-        <button onClick={() => onDecrement(name)}>-</button>&nbsp;&nbsp;&nbsp;&nbsp;
-        <span style={{ color: 'red' }}>{value}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <button onClick={() => onDecrement(name)}>-</button>
+        <span className="value" style={{ color: 'red' }}>{value}</span>
         <button onClick={() => onIncrement(name)}>+</button>
       </div>
     );
