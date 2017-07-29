@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 class Summary extends React.Component {
   render() {
@@ -24,5 +25,10 @@ Summary.defaultProps = {
     third: 0
   }
 };
+const mapStateToProps = (state, props) => ({
+  values: state
+});
 
-export default Summary;
+const mapDispatchToProps = (state, props) => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Summary);

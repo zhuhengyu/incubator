@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import * as actions from './actions';
 
 class Counter extends React.Component {
   render() {
@@ -34,4 +37,20 @@ Counter.defaultProps = {
   onDecrement: foo => foo
 };
 
-export default Counter;
+const mapStateToProps = (state, props) => ({
+  value: state[props.name]
+})
+
+const mapDispatchToProps = (dispatch, props) => ({
+  onIncrement() {
+    dispatch(actions.increment(props.name));
+  },
+  onDecrement() {
+    dispatch(actions.decrement(props.name));
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Counter);

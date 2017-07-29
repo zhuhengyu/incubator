@@ -1,3 +1,3 @@
-import view from './views/CounterPanel';
+import view from './view';
 
 export default { view };

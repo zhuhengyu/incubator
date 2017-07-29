@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Counter from '../../counter';
-import Summary from '../../summary';
+import Counter from '../counter';
+import Summary from '../summary';
 
 class CounterPanel extends React.Component {
   render() {
