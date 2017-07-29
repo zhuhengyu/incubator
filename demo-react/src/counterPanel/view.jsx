@@ -10,7 +10,6 @@ class CounterPanel extends React.Component {
         <Counter.view name="first"/>
         <Counter.view name="second"/>
         <Counter.view name="third"/>
-        <hr/>
         <Summary.view/>
       </div>
     );
