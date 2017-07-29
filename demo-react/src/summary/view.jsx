@@ -9,7 +9,7 @@ class Summary extends React.Component {
     } = this.props;
     const sum = values.first + values.second + values.third;
     return (
-      <div>{sum}</div>
+      <div>Total: {sum}</div>
     );
   }
 }
