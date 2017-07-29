@@ -2,8 +2,10 @@ import React from 'react';
 
 import CounterPanel from '../counterPanel';
 
-export default () => (
+const App = () => (
   <div>
     <CounterPanel.view/>
   </div>
 );
+
+export default App;

@@ -26,7 +26,7 @@ Summary.defaultProps = {
   }
 };
 const mapStateToProps = (state, props) => ({
-  values: state
+  values: state.counter
 });
 
 const mapDispatchToProps = (state, props) => ({});

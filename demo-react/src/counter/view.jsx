@@ -40,7 +40,7 @@ Counter.defaultProps = {
 };
 
 const mapStateToProps = (state, props) => ({
-  value: state[props.name]
+  value: state.counter[props.name]
 })
 
 const mapDispatchToProps = (dispatch, props) => ({
