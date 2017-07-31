@@ -242,6 +242,16 @@
       const firstChild = this[0].children[0];
       this[0].insertBefore(child[0], this[0].children[0]);
     },
+    prependTo() {
+      const self = this;
+      if ($.isString(target)) {
+        $(target).each(function(_, parent) {
+          self.each(function(_, child) {
+            $(parent).prepend(child);
+          });
+        });
+      }
+    },
     remove() {
       this.each(function(_, elem) {
         elem.parentNode.removeChild(elem);
