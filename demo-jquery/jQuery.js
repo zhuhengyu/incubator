@@ -187,6 +187,11 @@
       });
       return this.pushStack(domArr);
     },
+    add(selector) {
+      const thisElems = Array.prototype.slice.apply(this);
+      const elems = Array.prototype.slice.apply(this.constructor(selector)).concat(thisElems);
+      return this.pushStack(elems);
+    },
     is(selector) {
       let ret = false;
       if ($.isHTMLElement(selector) || selector === document) {

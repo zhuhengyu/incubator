@@ -32,6 +32,8 @@
         <div class="child filter">child2</div>
       </div>
       <div class="child filter">child3</div>
+      <div class="child2">child4</div>
+      <div class="child2">child5</div>
     </div>
     <div class="parent filter">
       there is no child in this div
@@ -40,8 +42,7 @@
   <script src="jQuery.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script type="text/javascript">
-    $('.parent.filter').prepend($('<h1>haha</h1>'));
-    $('<h1>hehe</h1>').prependTo('.parent');
+    $('.child').css('color', 'red').add('.child2').css('font-size', '22px');
   </script>
 </body>
 </html>
