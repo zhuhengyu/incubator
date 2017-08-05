@@ -383,9 +383,6 @@
       }
       return this;
     },
-    color(value) {
-      return this.css('color', value);
-    },
     hasClass(className) {
       this.each(function(_, elem) {
         if (elem.classList.contains(className)) {
